@@ -12,10 +12,10 @@ class Stock(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False, unique=True)
-    ticker = db.Column(db.String, nullable=False, unique=True)
+    ticker = db.Column(db.String(4), nullable=False, unique=True)
     price = db.Column(db.Float, nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
-    updated_at = db.Column(db.Date)
+    updated_at = db.Column(db.Date, default = datetime.datetime.now())
     watchlists = relationship ("WatchList", back_populates='stock')
     portfolios = relationship('Portfolio', secondary='shares', back_populates='stocks')
     shares = relationship ("Share", back_populates='stock')

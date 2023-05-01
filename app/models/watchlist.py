@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+import datetime
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Float, Date, Enum, ForeignKey
 
@@ -14,7 +15,17 @@ class Watchlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     stock_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('stocks.id')))
-    created_at = db.Column(db.Date)
-    updated_at = db.Column(db.Date)
+    created_at = db.Column(db.Date, default = datetime.datetime.now())
+    updated_at = db.Column(db.Date, default = datetime.datetime.now())
     stock = relationship("Stock", back_populates="watchlists")
     portfolio = relationship("Portfolio", back_populates="watchlists")
+
+
+def to_watchlist_dict(self):
+    return {
+        'id': self.id,
+        'user_id': self.user_id,
+        'stock_id': self.stock_id,
+        'created_at': self.created_at,
+        'updated_at': self.updated_at
+    }
