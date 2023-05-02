@@ -11,6 +11,7 @@ class StockHistory(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     stock_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('stocks.id')))
+    stock_name = db.Column(db.String,)
     price = db.Column(db.Float, nullable=False)
     date =  db.Column(db.Date , nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())

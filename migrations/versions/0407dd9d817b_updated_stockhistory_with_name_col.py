@@ -1,8 +1,8 @@
-"""all tables, all rele
+"""updated StockHistory with name col
 
-Revision ID: c29cc8aadaea
+Revision ID: 0407dd9d817b
 Revises: 
-Create Date: 2023-05-01 21:37:57.854804
+Create Date: 2023-05-02 17:36:25.173413
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c29cc8aadaea'
+revision = '0407dd9d817b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -41,6 +41,7 @@ def upgrade():
     op.create_table('stock_history',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('stock_id', sa.Integer(), nullable=True),
+    sa.Column('stock_name', sa.String(), nullable=True),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('date', sa.Date(), nullable=False),
     sa.Column('created_at', sa.Date(), nullable=True),
