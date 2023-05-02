@@ -17,7 +17,7 @@ class Wallet(db.Model):
     cash = db.Column(db.Float, nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
-
+    user = relationship("User",  back_populates="wallet")
 
 def to_wallet_dict(self):
     return {

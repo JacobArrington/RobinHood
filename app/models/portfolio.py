@@ -16,7 +16,9 @@ class Portfolio(db.Model):
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
     stocks = relationship('Stock', secondary='shares', back_populates='portfolio')
-
+    user = relationship("User",  back_populates="portfolio")
+    shares = relationship('Share', back_populates='portfolio')
+    transactions = relationship('Transaction', back_populates='portfolio')
 
 def to_portfolio_dict(self):
     return {
