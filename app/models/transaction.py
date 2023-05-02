@@ -13,15 +13,15 @@ class Transaction(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     stock_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('stocks.id')))
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    portfolio_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('portfolios.id')))
+    portfolio_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('portfolio.id')))
     transaction_type = db.Column(Enum('buy', 'sell', name='transaction_type_enum'))
     total_shares = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
     # Relationships
-    # stock = relationship('Stock', back_populates='transactions')
-    # user = relationship('User', back_populates='transactions')
-    # portfolio = relationship('Portfolio', back_populates='transactions')
+    stock = relationship('Stock', back_populates='transactions')
+    user = relationship('User', back_populates='transactions')
+    portfolio = relationship('Portfolio', back_populates='transactions')
 
 
 def to_transaction_dict(self):

@@ -5,7 +5,7 @@ from sqlalchemy import Column, Integer, String, Float, Date, Enum, ForeignKey
 
 
 class Portfolio(db.Model):
-    __tablename__ = 'portfolio'
+    __tablename__ = 'portfolios'
 
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
@@ -15,7 +15,7 @@ class Portfolio(db.Model):
     wallet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('wallet.id')), nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
-    stocks = relationship('Stock', secondary='shares', back_populates='portfolios')
+    stocks = relationship('Stock', secondary='shares', back_populates='portfolio')
 
 
 def to_portfolio_dict(self):
