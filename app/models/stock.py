@@ -16,11 +16,11 @@ class Stock(db.Model):
     price = db.Column(db.Float, nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
-    watchlists = relationship ("WatchList", back_populates='stock')
-    portfolios = relationship('Portfolio', secondary='shares', back_populates='stocks')
-    shares = relationship ("Share", back_populates='stock')
-    transactions = relationship ("Transaction", back_populates='stock')
-    stock_history = relationship("StockHistory", back_populates="stock")
+    # watchlists = relationship ("WatchList", back_populates='stock')
+    # portfolios = relationship('Portfolio', secondary='shares', back_populates='stocks')
+    # shares = relationship ("Share", back_populates='stock')
+    # transactions = relationship ("Transaction", back_populates='stock')
+    # stock_history = relationship("StockHistory", back_populates="stock")
 
 
     def to_stock_dict(self):

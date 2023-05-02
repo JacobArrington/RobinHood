@@ -17,8 +17,8 @@ class Watchlist(db.Model):
     stock_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('stocks.id')))
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
-    stock = relationship("Stock", back_populates="watchlists")
-    portfolio = relationship("Portfolio", back_populates="watchlists")
+    # stock = relationship("Stock", back_populates="watchlists")
+    # portfolio = relationship("Portfolio", back_populates="watchlists")
 
 
 def to_watchlist_dict(self):

@@ -19,9 +19,9 @@ class Transaction(db.Model):
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
     # Relationships
-    stock = relationship('Stock', back_populates='transactions')
-    user = relationship('User', back_populates='transactions')
-    portfolio = relationship('Portfolio', back_populates='transactions')
+    # stock = relationship('Stock', back_populates='transactions')
+    # user = relationship('User', back_populates='transactions')
+    # portfolio = relationship('Portfolio', back_populates='transactions')
 
 
 def to_transaction_dict(self):
