@@ -1,6 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
-from .stocks import seed_stocks, undo_stocks 
+from .stocks import seed_stocks, undo_stocks
+from .wallet import seed_wallet, undo_wallet
 from .stock_history import create_stock_history, undo_stock_history
 from app.models.db import db, environment, SCHEMA
 
@@ -20,9 +21,11 @@ def seed():
         undo_users()
         undo_stocks()
         undo_stock_history()
+        undo_wallet()
     seed_users()
     seed_stocks()
     create_stock_history()
+    seed_wallet()
     # Add other seed functions here
 
 
@@ -32,4 +35,5 @@ def undo():
     undo_users()
     undo_stocks()
     undo_stock_history()
+    undo_wallet()
     # Add other undo functions here
