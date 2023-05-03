@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .stocks import seed_stocks, undo_stocks
 from .wallet import seed_wallet, undo_wallet
 from .stock_history import create_stock_history, undo_stock_history
+from .portfolio import seed_portfolio,  undo_portfolio
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -14,18 +15,20 @@ seed_commands = AppGroup('seed')
 @seed_commands.command('all')
 def seed():
     if environment == 'production':
-        # Before seeding in production, you want to run the seed undo 
-        # command, which will  truncate all tables prefixed with 
+        # Before seeding in production, you want to run the seed undo
+        # command, which will  truncate all tables prefixed with
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         undo_users()
         undo_stocks()
         undo_stock_history()
         undo_wallet()
+        undo_portfolio()
     seed_users()
     seed_stocks()
     create_stock_history()
     seed_wallet()
+    seed_portfolio()
     # Add other seed functions here
 
 
@@ -36,4 +39,5 @@ def undo():
     undo_stocks()
     undo_stock_history()
     undo_wallet()
+    undo_portfolio()
     # Add other undo functions here
