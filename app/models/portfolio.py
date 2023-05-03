@@ -24,7 +24,10 @@ class Portfolio(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'wallet': self.wallet,
+            'wallet': self.wallet_id,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'stocks': [stock.to_stock_dict() for stock in self.stocks],
+            'shares': [share.to_share_dict() for share in self.shares],
+            'transactions': [transaction.to_transaction_dict() for transaction in self.transactions]
         }
