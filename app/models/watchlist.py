@@ -21,11 +21,11 @@ class Watchlist(db.Model):
     user = relationship("User", back_populates="watchlists")
 
 
-def to_watchlist_dict(self):
-    return {
-        'id': self.id,
-        'user_id': self.user_id,
-        'stock_id': self.stock_id,
-        'created_at': self.created_at,
-        'updated_at': self.updated_at
-    }
+    def to_watchlist_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'stock_id': self.stock_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }

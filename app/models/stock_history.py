@@ -20,12 +20,13 @@ class StockHistory(db.Model):
      
 
 
-def to_stock_history_dict(self):
-    return {
-        'id': self.id,
-        'stock_id': self.stock_id,
-        'price': self.price,
-        'date': self.date,
-        'created_at': self.created_at,
-        'updated_at': self.updated_at
-    }
+    def to_stock_history_dict(self):
+        return {
+            'id': self.id,
+            'stock_id': self.stock_id,
+            'stock_name': self.stock_name,
+            'price': self.price,
+            'date': self.date,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }

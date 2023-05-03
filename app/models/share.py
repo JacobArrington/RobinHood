@@ -20,11 +20,11 @@ class Share(db.Model):
 
 
 
-def to_share_dict(self):
-    return {
-        'id': self.id,
-        'stock_id': self.stock_id,
-        'portfolio_id': self.portfolio_id,
-        'created_at': self.created_at,
-        'updated_at': self.updated_at
-    }
+    def to_share_dict(self):
+        return {
+            'id': self.id,
+            'stock_id': self.stock_id,
+            'portfolio_id': self.portfolio_id,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }

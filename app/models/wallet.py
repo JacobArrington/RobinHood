@@ -19,14 +19,14 @@ class Wallet(db.Model):
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
     user = relationship("User",  back_populates="wallet")
 
-def to_wallet_dict(self):
-    return {
-        'id': self.id,
-        'user_id': self.user_id,
-        'account_type': self.account_type,
-        'account_num': self.account_num,
-        'rounting_num': self.rounting_num,
-        'cash': self.cash,
-        'created_at': self.created_at,
-        'updated_at': self.updated_at
-    }
+    def to_wallet_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'account_type': self.account_type,
+            'account_num': self.account_num,
+            'rounting_num': self.rounting_num,
+            'cash': self.cash,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }

@@ -24,14 +24,14 @@ class Transaction(db.Model):
     portfolio = relationship('Portfolio', back_populates='transactions')
 
 
-def to_transaction_dict(self):
-    return {
-        'id': self.id,
-        'stock_id': self.stock_id,
-        'user_id': self.user_id,
-        'portfolio_id': self.portfolio_id,
-        'transaction_type': self.transaction_type,
-        'total_shares': self.total_shares,
-        'created_at': self.created_at,
-        'updated_at': self.updated_at
-    }
+    def to_transaction_dict(self):
+        return {
+            'id': self.id,
+            'stock_id': self.stock_id,
+            'user_id': self.user_id,
+            'portfolio_id': self.portfolio_id,
+            'transaction_type': self.transaction_type,
+            'total_shares': self.total_shares,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }

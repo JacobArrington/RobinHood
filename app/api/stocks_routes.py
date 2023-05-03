@@ -14,9 +14,7 @@ def get_stock_by_id(id):
     return stock.to_stock_dict()
 
 @stocks_routes.route('/<int:id>/stock_history')
-def get_stock_history(id):
+def get_stock_history_by_id(id):
     stock = Stock.query.get(id)
-    print(stock,'@@@@@@@')
-    stock_history = StockHistory.query.get(stock.id)
-    print(stock_history,'!!!!!!!!!')
-    return stock_history.to_stock_history_dict()
+    stock_history = [sh.to_stock_history_dict() for sh in stock.stock_history]
+    return {'stock_history': stock_history}

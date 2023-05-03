@@ -20,11 +20,11 @@ class Portfolio(db.Model):
     shares = relationship('Share', back_populates='portfolio')
     transactions = relationship('Transaction', back_populates='portfolio')
 
-def to_portfolio_dict(self):
-    return {
-        'id': self.id,
-        'user_id': self.user_id,
-        'wallet': self.wallet,
-        'created_at': self.created_at,
-        'updated_at': self.updated_at
-    }
+    def to_portfolio_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'wallet': self.wallet,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
