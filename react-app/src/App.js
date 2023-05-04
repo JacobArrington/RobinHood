@@ -5,7 +5,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import Stock from "./components/Stocks"
+import Stock from "./components/Stocks";
+import GetStockById from "./components/getStocksById";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,8 +26,9 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path ="/Portfolio">
+          <Route path ="/portfolio">
             <Stock />
+            <GetStockById />
           </Route>
         </Switch>
       )}

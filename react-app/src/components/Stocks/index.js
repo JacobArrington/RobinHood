@@ -9,9 +9,9 @@ const Stock = () => {
     const dispatch = useDispatch()
     const allStocks = useSelector((state) => state.stocksReducer);
 
+    const [stocks, setStock] = useState(Object.keys(allStocks))
 
     const [isLoaded, setIsLoaded] = useState(false);
-    console.log(allStocks)
 
     useEffect(() => {
         dispatch(fetchStocks()).then(() => setIsLoaded(true));
@@ -20,10 +20,8 @@ const Stock = () => {
     return (
         <div>
             {Object.values(allStocks).map(stock => (
-                <div key={stock.id}>
-                    <p>
-                        {stock.name}{stock.ticker}{stock.price}
-                    </p>
+                <div key={stock.id} onClick={() => setStock(stock)}>
+                    {stock.id}
                 </div>
             ))}
         </div>
