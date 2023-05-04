@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import Stock from "./components/Stocks";
 import GetStockById from "./components/getStocksById";
 import StockHistory from "./components/StockHistory";
+import Stock from "./components/Stocks"
+import LandingPage from "./components/LandingPage"
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +23,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route exact path="/" >
+            <LandingPage />
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>

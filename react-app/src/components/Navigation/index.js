@@ -9,14 +9,28 @@ function Navigation({ isLoaded }){
 
 	return (
 		<ul>
-			<li>
+			{/* <li>
 				<NavLink exact to="/">Home</NavLink>
-			</li>
+			</li> */}
+
 			{isLoaded && (
 				<li>
 					<ProfileButton user={sessionUser} />
 				</li>
 			)}
+			{/* <div>
+				{!sessionUser || (
+					<>
+						<button> LogOut </button>
+						<label>
+							<input
+								placeholder='search'
+								type='text'
+							/>
+						</label>
+					</>
+				)}
+			</div> */}
 		</ul>
 	);
 }
