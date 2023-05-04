@@ -5,23 +5,27 @@ import { fetchStocks } from "../../store/stock";
 import './stock.css'
 
 
-
-
-
-
 const Stock = () => {
     const dispatch = useDispatch()
-    const allStocks = useSelector((state) => state?.stocks);
-    const objArr = Object.values(allStocks)
+    const allStocks = useSelector((state) => state?.stocksReducer);
 
-    console.log(objArr)
+
+    const [isLoaded, setIsLoaded] = useState(false);
+    console.log(allStocks)
 
     useEffect(() => {
-        dispatch(fetchStocks());
+        dispatch(fetchStocks()).then(() => setIsLoaded(true));
     }, [dispatch]);
 
-return (
+    return (
         <div>
+            {Object.values(allStocks).map(stock => (
+                <div key={stock.id}>
+                    <p>
+                        {stock.name}{stock.ticker}{stock.price}
+                    </p>
+                </div>
+            ))}
         </div>
     );
 }
