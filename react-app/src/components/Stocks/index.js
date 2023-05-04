@@ -10,6 +10,7 @@ const Stock = () => {
     const allStocks = useSelector((state) => state.stocksReducer);
 
     const [stocks, setStock] = useState(Object.keys(allStocks))
+    
 
     const [isLoaded, setIsLoaded] = useState(false);
 

@@ -1,0 +1,34 @@
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { fetchStocks, fetchStockHistory } from "../../store/stock";
+import './StockHistory.css'
+
+
+const StockHistory = () => {
+    const dispatch = useDispatch()
+    const allStocks = useSelector((state) => state.stocksReducer)
+
+    const [selectedStockId, setSelectedStockId] = useState(null);
+
+    useEffect(() =>{
+        dispatch(fetchStocks)
+    })
+
+    const handleStockClick = (stockId) => {
+        setSelectedStockId(stockId);
+        dispatch(fetchStockHistory(stockId))
+    }
+
+
+    return ( 
+     <div>
+        {Object.values(allStocks).map(stock =>(
+            <div key ={stock.id} onClick={() => handleStockClick(stock.id)}>
+                {stock.name}
+            </div>
+        ))}
+    </div>);
+}
+ 
+export default StockHistory;

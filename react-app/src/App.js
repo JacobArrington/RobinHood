@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Stock from "./components/Stocks";
 import GetStockById from "./components/getStocksById";
+import StockHistory from "./components/StockHistory";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
           <Route path ="/portfolio">
             <Stock />
             <GetStockById />
+            <StockHistory />
           </Route>
         </Switch>
       )}
