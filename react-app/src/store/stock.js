@@ -12,8 +12,9 @@ const getStockById = (stock) => ({
     stock
 })
 
-const setStockHistory = (stockHistory) =>({
+const setStockHistory = (stockId,stockHistory) =>({
     type: SET_STOCK_HIST,
+    stockId,
     stockHistory,
 })
 
@@ -40,7 +41,7 @@ export const fetchStockHistory =(stockId) => async (dispatch) =>{
 
     if(response.ok){
         const stockHistory = await response.json()
-        dispatch(setStockHistory(stockHistory))
+        dispatch(setStockHistory(stockId, stockHistory.stock_history))
         
     }
 }
@@ -65,15 +66,22 @@ export default  function stocksReducer(state = initialState, action){
         }
         case SET_STOCK_HIST:{
             newState = {...state};
-            const stockId = action.stockHistory.stockId;
-            console.log(stockId)
+            const stockId = action.stockId;
+            
             if(!newState[stockId]) {
-                newState[stockId] = {...action.stockHistory.stockHistory}
+                newState[stockId] = {stockHistory: {}}
+                
+            }
+            newState[stockId].stockHistory = action.stockHistory.reduce((acc, history) =>{
+                acc[history.id] = history
+                return acc
+            },{})
+            
                 return {...newState}
             }
            
             
-        }
+        
         default:
             return state;
     }
