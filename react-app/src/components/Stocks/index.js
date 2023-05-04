@@ -7,7 +7,7 @@ import './stock.css'
 
 const Stock = () => {
     const dispatch = useDispatch()
-    const allStocks = useSelector((state) => state?.stocksReducer);
+    const allStocks = useSelector((state) => state.stocksReducer);
 
 
     const [isLoaded, setIsLoaded] = useState(false);
