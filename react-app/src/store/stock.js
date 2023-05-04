@@ -16,25 +16,19 @@ export const fetchStocks = () => async (dispatch) => {
 };
 
 
-const initialState = {
-    byId: {},
-    allId: []
-}
+const initialState = {}
 
 export default  function stocksReducer(state = initialState, action){
+    let newState = {}
     switch (action.type){
         case SET_STOCK:{
-            const allId = []
-            const byId ={}
-            action.stocks.forEach(stock =>{
-               allId.push(stock.id)
-               byId[stock.id] = stock 
+            newState = {...state }
+            action.stocks.forEach(stock => {
+                newState[stock.id] = stock
             })
-        
-              return {...state, allId, byId}  
+            return {...newState}
             };
-    
-        default: 
+        default:
             return state;
     }
 }

@@ -1,17 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { fetchStocks } from "../../store/stock";
 import './stock.css'
 
-const Stock = ({stock}) =>{
-    return(
-        <div className="stock">
-            <h2>{stock.name}</h2>
-            <h3>{stock.ticker}</h3>
-            <p>Price: ${stock.price}</p>
+
+
+
+
+
+const Stock = () => {
+    const dispatch = useDispatch()
+    const allStocks = useSelector((state) => state?.stocks);
+    const objArr = Object.values(allStocks)
+
+    console.log(objArr)
+
+    useEffect(() => {
+        dispatch(fetchStocks());
+    }, [dispatch]);
+
+return (
+        <div>
         </div>
-    )
+    );
 }
 
 export default Stock;
