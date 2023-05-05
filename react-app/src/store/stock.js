@@ -73,7 +73,7 @@ export default  function stocksReducer(state = initialState, action){
                 
             }
             newState[stockId].stockHistory = action.stockHistory.reduce((acc, history) =>{
-                acc[history.id] = history
+                acc[history.date] = history
                 return acc
             },{})
             
