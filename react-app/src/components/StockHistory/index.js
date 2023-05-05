@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { fetchStocks, fetchStockHistory } from "../../store/stock";
+import StockChart from "../Graph/chart";
 import './StockHistory.css'
 
 
@@ -21,14 +22,16 @@ const StockHistory = () => {
     }
 
 
-    return ( 
+    return (
      <div>
         {Object.values(allStocks).map(stock =>(
             <div key ={stock.id} onClick={() => handleStockClick(stock.id)}>
                 {stock.name}
             </div>
         ))}
+        {selectedStockId && (
+        <StockChart stockHistory={allStocks[selectedStockId].stockHistory}/>)}
     </div>);
 }
- 
+
 export default StockHistory;
