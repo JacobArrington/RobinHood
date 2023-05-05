@@ -3,14 +3,18 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 
 const StockChart = ({stockHistory}) => {
+  if(!stockHistory){
+    return <div>No Stock Avail</div>
+  }
 
     let data = Object.values(stockHistory).map((history) => ({
         date: history.date,
         price: history.price
     }))
+    console.log(data)
 
     return (
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width={1000} height={750}>
         <LineChart
           width={500}
           height={300}
