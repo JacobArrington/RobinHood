@@ -1,11 +1,18 @@
 import React from 'react';
+import { logout } from "../../store/session";
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
+	const dispatch = useDispatch();
 	const sessionUser = useSelector(state => state.session.user);
+
+	const handleLogout = (e) => {
+		e.preventDefault();
+		dispatch(logout());
+	};
 
 	return (
 		<ul>
@@ -14,14 +21,14 @@ function Navigation({ isLoaded }){
 			</li> */}
 
 			{isLoaded && (
-				<li>
+				<div>
 					<ProfileButton user={sessionUser} />
-				</li>
+				</div>
 			)}
-			{/* <div>
+			<div>
 				{!sessionUser || (
 					<>
-						<button> LogOut </button>
+						<button onClick={handleLogout}>Log Out</button>
 						<label>
 							<input
 								placeholder='search'
@@ -30,7 +37,7 @@ function Navigation({ isLoaded }){
 						</label>
 					</>
 				)}
-			</div> */}
+			</div>
 		</ul>
 	);
 }
