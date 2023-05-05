@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import './chart.css'
 
 const StockChart = ({stockHistory}) => {
   if(!stockHistory){
@@ -14,7 +14,7 @@ const StockChart = ({stockHistory}) => {
     console.log(data)
 
     return (
-      <ResponsiveContainer width={1000} height={750}>
+      <ResponsiveContainer width={1200} height={750}>
         <LineChart
           width={500}
           height={300}
