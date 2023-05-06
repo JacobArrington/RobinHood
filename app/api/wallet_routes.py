@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, g
 from flask_login import current_user, login_required
 from datetime import timedelta, datetime
 from app.models import Wallet, db
@@ -12,6 +12,7 @@ wallet_routes = Blueprint('wallet', __name__)
 def handle_wallet():
     if request.method == 'GET':
         wallet = Wallet.query.filter_by(user_id=current_user.id).all()
+        print(wallet,"!!!!!!!!!!!!!!!!!!!!!!!")
         return wallet.to_wallet_dict()
 
     if request.method == 'POST':
