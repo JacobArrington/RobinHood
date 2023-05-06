@@ -2,8 +2,9 @@ const SET_STOCK = "stock/SET_STOCK"
 const GET_STOCK_BY_ID = "stock/GET_STOCK_BY_ID"
 const SET_STOCK_HIST = "stock/SET_STOCK_HIST"
 
-const setStock = (stocks) => ({
+const setStock = (stocks,time_period) => ({
     type: SET_STOCK,
+    time_period,
     stocks
 })
 
@@ -20,11 +21,12 @@ const setStockHistory = (stockId,stockHistory) =>({
 
 
 
-export const fetchStocks = () => async (dispatch) => {
-    const response = await fetch('/api/stocks');
+export const fetchStocks = (time_period) => async (dispatch) => {
+    const response = await fetch(`/api/stocks?time_period=${time_period}`);
+    console.log(time_period, '@@@@@@@@@@@@@')
     if(response.ok){
         const stocks = await response.json();
-        dispatch(setStock(stocks))
+        dispatch(setStock(stocks, time_period))
     };
 };
 
@@ -35,16 +37,15 @@ export const fetchStockById = (id) => async (dispatch) => {
         dispatch(getStockById(stock))
     }
 }
-
-export const fetchStockHistory =(stockId) => async (dispatch) =>{
+export const fetchStockHistory = (stockId) => async (dispatch) => {
     const response = await fetch(`/api/stocks/${stockId}/stock_history`);
 
-    if(response.ok){
-        const stockHistory = await response.json()
-        dispatch(setStockHistory(stockId, stockHistory.stock_history))
-        
+    if (response.ok) {
+        const stockHistory = await response.json();
+        dispatch(setStockHistory(stockId, stockHistory.stock_history));
+        return stockHistory.stock_history; // return the stock history after dispatching the action
     }
-}
+};
 
 
 const initialState = {}
@@ -55,7 +56,7 @@ export default  function stocksReducer(state = initialState, action){
         case SET_STOCK:{
             newState = {...state }
             action.stocks.forEach(stock => {
-                newState[stock.id] = stock
+                newState[`${action.time_period}_${stock.id}`] = stock;
             })
             return {...newState}
             };

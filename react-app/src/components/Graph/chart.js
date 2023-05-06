@@ -3,21 +3,31 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import './chart.css'
 
 const StockChart = ({stockHistory}) => {
-  if(!stockHistory){
-    return <div>No Stock Avail</div>
+  if (!stockHistory) {
+    return <div>No Stock Avail</div>;
   }
 
-    let data = Object.values(stockHistory).map((history) => ({
-        date: history.date,
-        price: history.price
-    }))
-    console.log(data)
+  let data = []
+
+  Object.values(stockHistory).forEach((history) => {
+    if (history.stockHistory) {
+      Object.entries(history.stockHistory).forEach(([date, price]) => {
+        data.push({
+          date: history.date,
+          price: history.close_price,
+        });
+      });
+    }
+  });
+  
+  console.log("Data for chart:", data);
+  
 
     return (
-      <ResponsiveContainer width={1200} height={750}>
+      <ResponsiveContainer width='70%' height={750}>
         <LineChart
-          width={500}
-          height={300}
+          width={1200}
+          height={750}
           data={data}
           margin={{
             top: 5,
@@ -36,5 +46,6 @@ const StockChart = ({stockHistory}) => {
       </ResponsiveContainer>
     );
   }
+
 
   export default StockChart

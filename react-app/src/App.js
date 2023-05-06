@@ -7,7 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Stock from "./components/Stocks";
 import GetStockById from "./components/getStocksById";
-import StockHistory from "./components/StockHistory";
+//import StockHistory from "./components/StockHistory";
 
 import LandingPage from "./components/LandingPage"
 
@@ -35,7 +35,7 @@ function App() {
           <Route path ="/portfolio">
             <Stock />
             <GetStockById />
-            <StockHistory />
+            
           </Route>
         </Switch>
       )}
