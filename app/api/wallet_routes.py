@@ -11,8 +11,7 @@ wallet_routes = Blueprint('wallet', __name__)
 @login_required
 def handle_wallet():
     if request.method == 'GET':
-        wallet = Wallet.query.get(current_user.id)
-        print(current_user,"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        wallet = Wallet.query.filter_by(user_id=current_user.id).all()
         return wallet.to_wallet_dict()
 
     if request.method == 'POST':
