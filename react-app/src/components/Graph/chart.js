@@ -8,20 +8,20 @@ const StockChart = ({stockHistory}) => {
   }
 
     let data = Object.values(stockHistory).map((history) => ({
-        date: history.date,
+        date: new Date(history.date).toLocaleDateString(),
         price: history.price
     }))
     console.log(data)
 
     return (
-      <ResponsiveContainer width={1200} height={750}>
+      <ResponsiveContainer width={1500} height={750}>
         <LineChart
-          width={500}
-          height={300}
+          width={1200}
+          height={600}
           data={data}
           margin={{
             top: 5,
-            right: 30,
+            right: 40,
             left: 20,
             bottom: 5,
           }}
