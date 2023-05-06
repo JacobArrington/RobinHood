@@ -25,7 +25,7 @@ class Wallet(db.Model):
             'user_id': self.user_id,
             'account_type': self.account_type,
             'account_num': self.account_num,
-            'rounting_num': self.rounting_num,
+            'routing_num': self.routing_num,
             'cash': self.cash,
             'created_at': self.created_at,
             'updated_at': self.updated_at
