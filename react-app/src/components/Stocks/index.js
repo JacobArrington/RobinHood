@@ -10,7 +10,7 @@ const Stock = () => {
     const allStocks = useSelector((state) => state.stocksReducer);
 
     const [stocks, setStock] = useState(Object.keys(allStocks))
-    
+
 
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -20,6 +20,7 @@ const Stock = () => {
 
     return (
         <div>
+           
             {Object.values(allStocks).map(stock => (
                 <div key={stock.id} onClick={() => setStock(stock)}>
                     {stock.id}
