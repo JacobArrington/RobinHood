@@ -23,13 +23,6 @@ function LoginFormModal() {
   };
 
 
-  	const demoSubmit = () => {
-		setEmail("demo@aa.io");
-		setPassword("password");
-		return dispatch(login(email, password));
-	}
-
-
   return (
         <>
       <h1>Log In</h1>
@@ -57,10 +50,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
-        <button onClick={demoSubmit}>
-					DemoUser
-				</button>
+        <button type="submit" className="button">Log In</button>
       </form>
       </>
   );

@@ -11,6 +11,16 @@ const StockHistory = () => {
     const allStocks = useSelector((state) => state.stocksReducer)
     const [timeframe, setTimeFrame] = useState('monthly')
     const [selectedStockId, setSelectedStockId] = useState(null);
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+        setOpen(!open);
+    };
+
+    const handleMenuOne = () => {
+        // do something
+        setOpen(false);
+    };
 
     useEffect(() =>{
         dispatch(fetchStocks)
@@ -20,7 +30,7 @@ const StockHistory = () => {
         setSelectedStockId(stockId);
         dispatch(fetchStockHistory(stockId))
     }
-    
+
     const handleTimeframeChange =(e) =>{
         setTimeFrame(e.target.value)
     }
@@ -35,13 +45,20 @@ const StockHistory = () => {
                 <option value="quarterly">Quarterly</option>
                 <option value="yearly">Yearly</option>
             </select>
-        {Object.values(allStocks).map(stock =>(
-            <div key ={stock.id} onClick={() => handleStockClick(stock.id)}>
-                {stock.name}
-            </div>
-        ))}
-        {selectedStockId && (
-        <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe}/>)}
+        <div className="dropdown">
+            <button onClick={handleOpen}>Stocks</button>
+                {open ? (
+                    <ul className="menu">
+                        {Object.values(allStocks).map(stock =>(
+                            <li lassName="menu-item" key ={stock.id} onClick={() => handleStockClick(stock.id)}>
+                                {stock.name}
+                            </li>
+                        ))}
+                        {selectedStockId && (
+                        <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe}/>)}
+                    </ul>
+            ) : null}
+        </div>
     </div>);
 }
 

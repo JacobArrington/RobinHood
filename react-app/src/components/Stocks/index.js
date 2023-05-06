@@ -20,12 +20,13 @@ const Stock = () => {
 
     return (
         <div>
-           
-            {Object.values(allStocks).map(stock => (
+
+      
+            {/* {Object.values(allStocks).map(stock => (
                 <div key={stock.id} onClick={() => setStock(stock)}>
                     {stock.id}
                 </div>
-            ))}
+            ))} */}
         </div>
     );
 }
