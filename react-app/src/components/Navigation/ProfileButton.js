@@ -6,7 +6,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './ProfileButton.css'
 import { useHistory } from "react-router-dom";
-import { HamburgerIcon } from 'react-hamburger-icon'
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -73,15 +73,9 @@ function ProfileButton({ user }) {
         onClick={() => setNavbarOpen((prev) => !prev)}
       >
         {navbarOpen ? (
-          <HamburgerIcon style={{ width: '24px', height: '24px', color: "white" }} />
+          <i className="fa-solid fa-bars" style={{ color: "white", fontSize: "35px" }}></i>
         ) : (
-          <HamburgerIcon
-            style={{
-              width: '24px',
-              height: '24px',
-              color: "white"
-            }}
-          />
+          <i className="fa-solid fa-bars" style={{ color: "white", fontSize: "35px" }}></i>
         )}
       </button>
       <ul className={`menu-nav${navbarOpen ? ' show-menu' : ''}`}>
