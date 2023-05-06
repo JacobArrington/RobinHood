@@ -9,45 +9,57 @@ const filterDataByTimeframe = (data, timeframe) => {
   let filteredData = data
   switch (timeframe) {
     case 'daily':
+      const lastDateInHistory = new Date(Math.max.apply(null, data.map((hist) => new Date(hist.date))));
+      const previousDateInHistory = new Date(lastDateInHistory - 24 * 60 * 60 * 1000);
       filteredData = data.filter((hist) => {
         const histDate = new Date(hist.date);
-        return currentDate.toLocaleString() === histDate.toDateString()
+        return lastDateInHistory.toDateString() === histDate.toDateString() || previousDateInHistory.toDateString() === histDate.toDateString();
       });
       break;
-    case 'weekly':
-      filteredData = data.filter((hist) => {
-        const histDate = new Date(hist.date);
-        
-        const daysDifference = Math.floor((currentDate - histDate) / (1000 * 60 * 60 * 24));
-        return daysDifference <7
-      })
-      break;
-    case 'monthly':
-      filteredData = data.filter((hist) => {
-        const histDate = new Date(hist.date);
-        return currentDate.getMonth() === histDate.getMonth() && currentDate.getFullYear() === histDate.getFullYear()
-        // checks if the histdate falls in same month and year as the currentDate
-      })
-      break;
+      case 'weekly':
+        const latestDateInHistory = new Date(Math.max.apply(null, data.map((hist) => new Date(hist.date))));
+        filteredData = data.filter((hist) => {
+          const histDate = new Date(hist.date);
+          const startOfLastWeek = new Date(latestDateInHistory.getTime() - 7 * 24 * 60 * 60 * 1000);
+          return histDate >= startOfLastWeek && histDate <= latestDateInHistory;
+        });
+        break;
+
+      
+        case 'monthly':
+          filteredData = data.filter((hist) => {
+            const histDate = new Date(hist.date);
+            const startOfLastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+            const endOfLastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+            return histDate >= startOfLastMonth && histDate <= endOfLastMonth;
+          });
+          break;
     case 'quarterly':
       filteredData = data.filter((hist) => {
         const histDate = new Date(hist.date);
-        const currentQuarter = Math.floor((currentDate.getMonth() + 3) / 3);
-        const histQuarter = Math.floor((histDate.getMonth() + 3) / 3);
-        return currentQuarter === histQuarter && currentDate.getFullYear() === histDate.getFullYear();
+
+        if (currentDate.getFullYear() !== histDate.getFullYear()) {
+          return false;
+        }
+
+        const currentQuarterStartMonth = Math.floor(currentDate.getMonth() / 3) * 3;
+        const currentQuarterEndMonth = currentQuarterStartMonth + 2;
+
+        return histDate.getMonth() >= currentQuarterStartMonth && histDate.getMonth() <= currentQuarterEndMonth;
       });
       break;
-      case 'yearly':
-    filteredData = data.filter((hist) => {
-      const histDate = new Date(hist.date);
-      return currentDate.getFullYear() === histDate.getFullYear();
-    });
-    break;
-  default:
-    break;
-}
 
-return filteredData;
+    case 'yearly':
+      filteredData = data.filter((hist) => {
+        const histDate = new Date(hist.date);
+        return currentDate.getFullYear() === histDate.getFullYear();
+      });
+      break;
+    default:
+      break;
+  }
+
+  return filteredData;
 }
 
 const StockChart = ({ stockHistory, timeframe }) => {
