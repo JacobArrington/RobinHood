@@ -34,6 +34,7 @@ const StockHistory = () => {
                 <option value="monthly">Monthly</option>
                 <option value="quarterly">Quarterly</option>
                 <option value="yearly">Yearly</option>
+                <option value="full history">Full History</option>
             </select>
         {Object.values(allStocks).map(stock =>(
             <div key ={stock.id} onClick={() => handleStockClick(stock.id)}>
@@ -41,7 +42,7 @@ const StockHistory = () => {
             </div>
         ))}
         {selectedStockId && (
-        <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe}/>)}
+        <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe} ticker={allStocks[selectedStockId].ticker}/>)}
     </div>);
 }
 
