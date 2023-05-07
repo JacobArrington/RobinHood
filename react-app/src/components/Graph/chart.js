@@ -3,6 +3,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import './chart.css'
 import { useHistory } from 'react-router-dom';
 
+// this comment means nothing 
 
 const filterDataByTimeframe = (data, timeframe) => {
   const currentDate = new Date()
