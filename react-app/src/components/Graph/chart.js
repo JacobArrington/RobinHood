@@ -25,7 +25,7 @@ const filterDataByTimeframe = (data, timeframe) => {
         });
         break;
 
-      
+
         case 'monthly':
           filteredData = data.filter((hist) => {
             const histDate = new Date(hist.date);
@@ -75,10 +75,10 @@ const StockChart = ({ stockHistory, timeframe }) => {
   let filteredData = filterDataByTimeframe(data, timeframe);
 
   return (
-    <ResponsiveContainer width={1500} height={750}>
+    <ResponsiveContainer width={1250} height={325}>
       <LineChart
-        width={1200}
-        height={600}
+        width={600}
+        height={300}
         data={filteredData}
         margin={{
           top: 5,

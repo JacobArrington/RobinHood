@@ -18,7 +18,6 @@ const StockHistory = () => {
     };
 
     const handleMenuOne = () => {
-        // do something
         setOpen(false);
     };
 
@@ -54,11 +53,14 @@ const StockHistory = () => {
                                 {stock.name}
                             </li>
                         ))}
-                        {selectedStockId && (
-                        <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe}/>)}
                     </ul>
             ) : null}
-        </div>
+            </div>
+            <div className="chart">
+            {selectedStockId && (
+            <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe}/>)}
+
+            </div>
     </div>);
 }
 
