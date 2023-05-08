@@ -6,10 +6,11 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Stock from "./components/Stocks";
-import GetStockById from "./components/getStocksById";
+// import GetStockById from "./components/getStocksById";
 import StockHistory from "./components/StockHistory";
-
 import LandingPage from "./components/LandingPage"
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import ProtectedDashboard from "./components/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,11 +33,17 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path ="/portfolio">
-            <Stock />
+          <ProtectedRoute path="/portfolio">
+            {/* <Stock />
             <GetStockById />
-            <StockHistory />
-          </Route>
+            <StockHistory /> */}
+            <>
+              <Stock />
+              {/* <GetStockById /> */}
+              <StockHistory />
+            </>
+
+          </ProtectedRoute>
         </Switch>
       )}
     </>
