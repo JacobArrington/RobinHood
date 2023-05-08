@@ -4,6 +4,7 @@ from .stocks import seed_stocks, undo_stocks
 from .wallet import seed_wallet, undo_wallet
 from .stock_history import create_stock_history, undo_stock_history
 from .portfolio import seed_portfolio,  undo_portfolio
+from .watchlist import seed_watchlists, undo_watchlists
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -24,6 +25,7 @@ def seed():
         undo_stock_history()
         undo_wallet()
         undo_portfolio()
+
     seed_users()
     seed_stocks()
     create_stock_history()
