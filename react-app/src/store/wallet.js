@@ -1,4 +1,5 @@
 const GET_WALLET = "session/GET_WALLET";
+const ADD_WALLET = "session/ADD_WALLET"
 const DELETE_WALLET = "session/DELETE_WALLET"
 const UPDATE_WALLET = "session/UPDATE_WALLET"
 
@@ -6,6 +7,12 @@ const getWallet = (wallet) => ({
     type: GET_WALLET,
     wallet
 })
+
+const addWallet =(wallet) =>({
+    type: ADD_WALLET,
+    wallet,
+})
+
 
 const deleteWallet = (wallet) => ({
     type: DELETE_WALLET,
@@ -26,6 +33,19 @@ export const fetchWallet= () => async (dispatch) => {
     } 
 }
 
+export const postWallet= (walletdata) => async(dispatch) => {
+    const response = await fetch(`/api/wallet`, {
+        method: "POST",
+        headers: {"Content-Type" : "application/json"},
+        body: JSON.stringify(walletdata)
+    })
+    if (response.ok){
+        const wallet = await response.json()
+        dispatch(addWallet(wallet))
+    }
+}
+
+
 export const destroyWallet= (id) => async(dispatch) => {
     const response = await fetch(`/api/wallet/${id}`, {
         method: "DELETE"
@@ -42,7 +62,7 @@ export const updateUserWallet= (id, walletdata) => async(dispatch) => {
         body: JSON.stringify(walletdata)
     })
     if (response.ok){
-        const wallet = response.json()
+        const wallet = await response.json()
         dispatch(updateWallet(wallet))
     }
 }
@@ -53,6 +73,10 @@ export default function walletReducer(state = initialState, action){
     let newState = {}
         switch (action.type){
             case GET_WALLET:{
+                newState[action.wallet.id]=action.wallet
+                return {...newState}
+            }
+            case ADD_WALLET:{
                 newState[action.wallet.id]=action.wallet
                 return {...newState}
             }

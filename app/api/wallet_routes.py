@@ -17,7 +17,7 @@ def handle_wallet():
     if request.method == 'POST':
         data = request.json
         wallet = Wallet(
-            user_id=data['user_id'],
+            user_id=current_user.id,
             account_type=data['account_type'],
             account_num=data['account_num'],
             routing_num=data['routing_num'],
