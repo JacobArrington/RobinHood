@@ -4,7 +4,7 @@ from app.models import Stock, StockHistory
 
 stocks_routes = Blueprint('stocks', __name__)
 
-@stocks_routes.route('/')
+@stocks_routes.route('')
 @login_required
 def get_all_stocks():
     print(current_user)

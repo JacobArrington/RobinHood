@@ -7,12 +7,11 @@ from app.forms import wallet_form
 
 wallet_routes = Blueprint('wallet', __name__)
 
-@wallet_routes.route('/', methods=['GET', 'POST'])
+@wallet_routes.route('', methods=['GET', 'POST'])
 @login_required
 def handle_wallet():
     if request.method == 'GET':
-        wallet = Wallet.query.filter_by(user_id=current_user.id).all()
-        print(wallet,"!!!!!!!!!!!!!!!!!!!!!!!")
+        wallet = Wallet.query.filter_by(user_id=current_user.id).first()
         return wallet.to_wallet_dict()
 
     if request.method == 'POST':
@@ -67,7 +66,7 @@ def handle_wallet():
 #     return jsonify(wallet.to_wallet_dict()), 201
 
 
-@wallet_routes.route('/wallet/<int:wallet_id>', methods=['PUT'])
+@wallet_routes.route('/<int:wallet_id>', methods=['PUT'])
 @login_required
 def update_wallet(wallet_id):
     data = request.json
@@ -78,12 +77,12 @@ def update_wallet(wallet_id):
     wallet.account_num = data.get('account_num', wallet.account_num)
     wallet.routing_num = data.get('routing_num', wallet.routing_num)
     wallet.cash = data.get('cash', wallet.cash)
-    wallet.updated_at = datetime.datetime.now()
+    wallet.updated_at = datetime.now()
     db.session.commit()
     return jsonify(wallet.to_wallet_dict())
 
 
-@wallet_routes.route('/wallets/<int:wallet_id>', methods=['DELETE'])
+@wallet_routes.route('/<int:wallet_id>', methods=['DELETE'])
 @login_required
 def delete_wallet(wallet_id):
     wallet = Wallet.query.get(wallet_id)
@@ -91,4 +90,4 @@ def delete_wallet(wallet_id):
         return jsonify({'error': 'Wallet not found'}), 404
     db.session.delete(wallet)
     db.session.commit()
-    return '', 204
+    return jsonify({'message': 'Wallet deleted successfully'}), 204
