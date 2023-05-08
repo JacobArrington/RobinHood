@@ -2,9 +2,9 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 import datetime
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Float, Date, Enum, ForeignKey
+from flask_login import UserMixin
 
-
-class Portfolio(db.Model):
+class Portfolio(db.Model, UserMixin):
     __tablename__ = 'portfolios'
 
     if environment == "production":

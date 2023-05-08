@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Float, Date, Enum, ForeignKey
 
 
+
 class Stock(db.Model):
     __tablename__ = 'stocks'
 

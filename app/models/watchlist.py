@@ -2,11 +2,12 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 import datetime
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Float, Date, Enum, ForeignKey
+from flask_login import UserMixin
 
 
 
 
-class Watchlist(db.Model):
+class Watchlist(db.Model, UserMixin):
     __tablename__ = 'watchlist'
 
     if environment == "production":
@@ -14,6 +15,7 @@ class Watchlist(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    name = db.Column(db.String(100), nullable=True)
     stock_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('stocks.id')))
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
