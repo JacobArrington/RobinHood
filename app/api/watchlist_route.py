@@ -40,6 +40,7 @@ def handle_watchlists():
     # return jsonify(watchlist.to_watchlist_dict()), 201
 
 @watchlist_routes.route('/<int:id>', methods=['GET'])
+@login_required
 def get_watchlist(id):
     watchlist = Watchlist.query.get(id)
     if watchlist:
@@ -49,6 +50,7 @@ def get_watchlist(id):
 
 
 @watchlist_routes.route('/<int:id>', methods=['PUT'])
+@login_required
 def update_watchlist(id):
     data = request.get_json()
     watchlist = Watchlist.query.get(id)
@@ -61,6 +63,7 @@ def update_watchlist(id):
 
 
 @watchlist_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
 def delete_watchlist(id):
     watchlist = Watchlist.query.get(id)
     if watchlist:
