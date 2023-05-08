@@ -4,7 +4,7 @@ from app.models import Portfolio, wallet, User
 
 portfolio_routes = Blueprint('portfolios', __name__)
 
-@portfolio_routes.route('/')
+@portfolio_routes.route('')
 @login_required
 def get_portfolio():
     current = current_user.portfolio

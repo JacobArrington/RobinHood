@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { login, demoLogin } from "../../store/session";
+import { authenticate, demoLogin } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import "./LandingPage.css"
