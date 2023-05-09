@@ -31,7 +31,7 @@ const Watchlists = () => {
          <OpenModalButton
             buttonText="Create Watchlist"
             modalComponent={
-               <AddWatchlistModal fetchWatchlist={fetchWatchlist} />
+               <AddWatchlistModal />
             }
          />
       </div>

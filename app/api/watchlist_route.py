@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import Watchlist, db
+from app.models import Watchlist, WatchlistStock, db
 from flask_login import current_user, login_required
 
 
@@ -16,11 +16,20 @@ def handle_watchlists():
         data = request.get_json()
         watchlist = Watchlist(
             user_id=data['user_id'],
-            stock_id=data['stock_id'],
             name=data['name']
         )
         db.session.add(watchlist)
         db.session.commit()
+        
+        # Add stocks to the watchlist
+        for stock_id in data['stock_ids']:
+            watchlist_stock = WatchlistStock(
+                watchlist_id=watchlist.id,
+                stock_id=stock_id
+            )
+            db.session.add(watchlist_stock)
+        db.session.commit()
+
         return jsonify(watchlist.to_watchlist_dict()), 201
 
 # @watchlist_routes.route('/watchlist', methods=['GET'])

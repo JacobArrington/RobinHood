@@ -7,4 +7,5 @@ from .share import Share
 from .wallet import Wallet
 from .watchlist import Watchlist
 from .transaction import Transaction
+from .watchlist_stocks import WatchlistStock
 from .db import environment, SCHEMA
