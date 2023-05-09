@@ -12,6 +12,7 @@ import LandingPage from "./components/LandingPage"
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Wallet from "./components/Wallet";
 import ProtectedDashboard from "./components/Dashboard";
+import Watchlists from "./components/Watchlists";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +44,7 @@ function App() {
               {/* <GetStockById /> */}
               <StockHistory />
               <Wallet />
+              <Watchlists />
             </>
 
           </ProtectedRoute>

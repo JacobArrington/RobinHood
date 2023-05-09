@@ -7,7 +7,6 @@ from flask_login import UserMixin
 
 
 
-
 class Watchlist(db.Model, UserMixin):
     __tablename__ = 'watchlist'
 
@@ -29,6 +28,7 @@ class Watchlist(db.Model, UserMixin):
             'id': self.id,
             'user_id': self.user_id,
             'stock_id': self.stock_id,
+            'name': self.name, 
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

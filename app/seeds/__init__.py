@@ -25,12 +25,14 @@ def seed():
         undo_stock_history()
         undo_wallet()
         undo_portfolio()
+        undo_watchlists()
 
     seed_users()
     seed_stocks()
     create_stock_history()
     seed_wallet()
     seed_portfolio()
+    seed_watchlists()
     # Add other seed functions here
 
 
@@ -42,4 +44,5 @@ def undo():
     undo_stock_history()
     undo_wallet()
     undo_portfolio()
+    undo_watchlists()
     # Add other undo functions here

@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 
 watchlist_routes = Blueprint('watchlist', __name__)
 
-@watchlist_routes.route('/', methods=['GET', 'POST'])
+@watchlist_routes.route('', methods=['GET', 'POST'])
 @login_required
 def handle_watchlists():
     if request.method == 'GET':
@@ -16,7 +16,8 @@ def handle_watchlists():
         data = request.get_json()
         watchlist = Watchlist(
             user_id=data['user_id'],
-            stock_id=data['stock_id']
+            stock_id=data['stock_id'],
+            name=data['name']
         )
         db.session.add(watchlist)
         db.session.commit()
