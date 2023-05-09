@@ -15,29 +15,29 @@ function AddWatchlistModal() {
    const { closeModal } = useModal();
 
    console.log('line 17<------1------>', allStocks)
-
-   const handleSubmit = async (e) => {
-      e.preventDefault();
+   const handleStockClick = async (stockId) => {
+      setStock(stockId);
+      dispatch(fetchStockHistory(stockId))
 
       const WatchlistData = {
-         stock: allStocks.id,
          name: name,
+         stockId
       };
       const Success = await dispatch(postWatchlist(WatchlistData));
       if (Success) {
          dispatch(fetchWatchlist());
          closeModal();
       }
+   }
+
+   const handleSubmit = async (e) => {
+      e.preventDefault();
    };
 
-   const handleStockClick = (stockId) => {
-      setStock(stockId);
-      dispatch(fetchStockHistory(stockId))
-   }
 
 
    return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleStockClick}>
          <label>
             Watchlist Name:
             <input type="text"
@@ -45,22 +45,21 @@ function AddWatchlistModal() {
                onChange={(e) => setName(e.target.value)} />
          </label>
          <select>
-         <option>
+
+         </select>
+         <label>
             {Object.values(allStocks).map(stock => (
                <div key={stock.name} onClick={() => handleStockClick(stock.id)}>
-               Stocks:
+               {stock.name}
                <select>
                   <option value={allStocks}>{allStocks.name}</option>
-               {stock.name}
 
                </select>
             </div>
          ))}
 
 
-         </option>
-
-         </select>
+         </label>
          <button type="submit">Create Watchlist</button>
       </form>
    )
