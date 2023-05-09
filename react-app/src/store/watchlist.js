@@ -1,7 +1,14 @@
-const GET_WATCHLISTS = "session/GET_WATCHLISTS"
+const GET_WATCHLISTS = "session/GET_WATCHLISTS";
+const ADD_WATCHLIST = "session/ADD_WATCHLIST";
+
 
 const getWatchlist = (watchlists) => ({
    type: GET_WATCHLISTS,
+   watchlists
+})
+
+const addWatchlist = (watchlists) => ({
+   type: ADD_WATCHLIST,
    watchlists
 })
 
@@ -13,6 +20,19 @@ export const fetchWatchlist = () => async (dispatch) => {
    };
 };
 
+export const postWatchlist = (watchlistData) => async (dispatch) => {
+   const response = await fetch('/api/watchlist', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(watchlistData)
+   });
+   if (response.ok) {
+      const watchlists = await response.json();
+      dispatch(addWatchlist(watchlists))
+   };
+};
+
+
 const initialState = {};
 
 export default function watchlistReducer(state = initialState, action) {
@@ -23,6 +43,10 @@ export default function watchlistReducer(state = initialState, action) {
             newState[watchlist.id] = watchlist
          })
          return newState
+      }
+      case ADD_WATCHLIST: {
+         newState[action.watchlist.id] = action.watchlist
+         return {...newState}
       }
       default:
          return state
