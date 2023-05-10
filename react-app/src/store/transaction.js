@@ -15,10 +15,11 @@ const addTransaction =  (transaction) => ({
 export const fetchTransaction = () => async (dispatch) => {
     const response = await fetch('/api/transactions')
     if(response.ok){
-        const wallet = await response.json()
+        const transaction = await response.json()
         dispatch(getTransaction(transaction))
     }
 }
+
 
 
 const initialState = {}
