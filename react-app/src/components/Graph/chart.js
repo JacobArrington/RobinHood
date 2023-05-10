@@ -77,7 +77,7 @@ const filterDataByTimeframe = (data, timeframe) => {
 
 
 
-const StockChart = ({ stockHistory, timeframe, ticker }) => {
+const StockChart = ({ stockHistory, timeframe, ticker}) => {
   if (!stockHistory) {
     return <div>No Stock Available</div>;
   }
