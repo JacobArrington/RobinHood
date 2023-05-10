@@ -13,7 +13,7 @@ const getWatchlist = (watchlists) => ({
 // })
 const addWatchlist = (watchlists) => ({
    type: ADD_WATCHLIST,
-   watchlists
+   watchlist: []
 })
 
 export const fetchWatchlist = () => async (dispatch) => {
@@ -48,10 +48,16 @@ export default function watchlistReducer(state = initialState, action) {
          })
          return newState
       }
-      case ADD_WATCHLIST: {
-         newState[action.watchlist.id] = action.watchlist
-         return {...newState}
-      }
+      case ADD_WATCHLIST:{
+         return {
+            ...state,
+            watchlist: [...state.watchlist, action.payload]
+         }
+         }
+      // case ADD_WATCHLIST: {
+      //    newState[action.watchlist.id] = action.watchlist
+      //    return {...newState}
+      // }
       default:
          return state
    }
