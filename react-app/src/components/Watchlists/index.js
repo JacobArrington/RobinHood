@@ -13,7 +13,6 @@ const Watchlists = () => {
 
    const [watchlist, setWatchlist] = useState(false);
 
-   console.log('heereeeee _____+>>>>',allWatchlist)
    useEffect(() => {
       dispatch(fetchWatchlist())
    }, [dispatch]);

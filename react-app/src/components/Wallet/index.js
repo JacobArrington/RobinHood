@@ -10,7 +10,7 @@ import './wallet.css'
 const Wallet = () => {
     const dispatch = useDispatch()
     const allWallets = useSelector((state) => state.walletReducer);
-    console.log(allWallets)
+    
 
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -21,7 +21,7 @@ const Wallet = () => {
         if(confirm){
             dispatch(destroyWallet(walletId))
         }
-        
+
     }
 
     const fetchUpdateWallet = async () => {
@@ -41,9 +41,9 @@ const Wallet = () => {
     return (
         <div>
           {!isWalletsEmpty ? (
-           
+
             <>
-             {console.log(allWallets, '!!!!!!!!!!!!!!!!')}
+
               {Object.values(allWallets).map((wallet) => (
                 <div key={wallet.id}>
                   <p>{wallet.account_type}</p>
@@ -71,7 +71,7 @@ const Wallet = () => {
               buttonText="Create Wallet"
               modalComponent={
                 <PostWalletModal fetchUpdateWallet={fetchUpdateWallet} />
-                
+
               }
             />
             </div>

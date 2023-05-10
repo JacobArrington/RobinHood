@@ -7,6 +7,10 @@ const getWatchlist = (watchlists) => ({
    watchlists
 })
 
+// const addWatchlist = (watchlists) => ({
+//    type: ADD_WATCHLIST,
+//    watchlists
+// })
 const addWatchlist = (watchlists) => ({
    type: ADD_WATCHLIST,
    watchlists
