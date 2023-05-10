@@ -10,6 +10,7 @@ import OpenModalButton from "../OpenModalButton";
 const Watchlists = () => {
    const dispatch = useDispatch()
    const allWatchlist = useSelector((state) => state.watchlistReducer);
+   
 
    const [watchlist, setWatchlist] = useState(false);
 

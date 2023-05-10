@@ -7,13 +7,9 @@ const getWatchlist = (watchlists) => ({
    watchlists
 })
 
-// const addWatchlist = (watchlists) => ({
-//    type: ADD_WATCHLIST,
-//    watchlists
-// })
 const addWatchlist = (watchlists) => ({
    type: ADD_WATCHLIST,
-   watchlist: []
+   watchlists
 })
 
 export const fetchWatchlist = () => async (dispatch) => {
@@ -25,6 +21,7 @@ export const fetchWatchlist = () => async (dispatch) => {
 };
 
 export const postWatchlist = (watchlistData) => async (dispatch) => {
+   console.log('<-----------2----------->', watchlistData);
    const response = await fetch('/api/watchlist', {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -32,6 +29,7 @@ export const postWatchlist = (watchlistData) => async (dispatch) => {
    });
    if (response.ok) {
       const watchlists = await response.json();
+      console.log('Received watchlist from server:', watchlists);
       dispatch(addWatchlist(watchlists))
    };
 };
@@ -48,16 +46,10 @@ export default function watchlistReducer(state = initialState, action) {
          })
          return newState
       }
-      case ADD_WATCHLIST:{
-         return {
-            ...state,
-            watchlist: [...state.watchlist, action.payload]
-         }
-         }
-      // case ADD_WATCHLIST: {
-      //    newState[action.watchlist.id] = action.watchlist
-      //    return {...newState}
-      // }
+      case ADD_WATCHLIST: {
+         newState[action.watchlists.id] = action.watchlists
+         return { ...newState }
+      }
       default:
          return state
    }

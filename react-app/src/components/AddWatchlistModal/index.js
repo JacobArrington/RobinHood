@@ -8,28 +8,29 @@ import "./AddWatchlist.css";
 function AddWatchlistModal() {
    const dispatch = useDispatch();
    const allStocks = useSelector((state) => state.stocksReducer);
+   const user = useSelector(state => state.session.user.id)
    const stocks = Object.values(allStocks)
 
    const [name, setName] = useState('');
-   const [stock, setStock] = useState([]);
+   const [stock, setStock] = useState([{}]);
+
 
    const { closeModal } = useModal();
 
    const handleStockSubmit = async (e) => {
       e.preventDefault();
-      // dispatch(fetchStocks(stock))
 
-      console.log('line 17<------1------>', stock)
+      console.log('line 17<------1------>', user)
       const WatchlistData = {
-         stockName: stock,
-         stockId: stock
+         stock_id: stock,
+         user_id: user,
+         name
       };
 
 
       const Success = await dispatch(postWatchlist(WatchlistData));
       if (Success) {
-         dispatch(fetchWatchlist(WatchlistData));
-         closeModal();
+         dispatch(fetchWatchlist(WatchlistData)).then(() => closeModal())
       }
    }
 
@@ -49,10 +50,9 @@ function AddWatchlistModal() {
 
          <label>
             Stocks:
-            <select key={stock.id} value={stock} onChange={handleStockClick}>
+            <select value={stock.id} onChange={handleStockClick}>
                {stocks.map(stock => (
-                  <option key={stock.id} value={stock} >
-                     {/* {console.log(stock)} */}
+                  <option key={stock.id} value={stock.id} onClick={handleStockClick}>
                      {stock.name}
                   </option>
                ))}
