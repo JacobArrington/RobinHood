@@ -39,9 +39,13 @@ function EditWatchlistModal({ watchlistId }) {
          name,
          stock_ids: selectStockId
       }
-
-      const stocksToAdd = selectStockId.filter((id) =>!watchlist.stock_ids.includes(id))
-      const stocksToRemove = watchlist.stock_ids.filter((id)=>!selectStockId.includes(id))
+      const stocksToAdd = selectStockId && watchlist && watchlist.stock_ids
+      ? selectStockId.filter((id) => !watchlist.stock_ids.includes(id))
+      : [];
+   
+   const stocksToRemove = selectStockId && watchlist && watchlist.stock_ids
+      ? watchlist.stock_ids.filter((id) => !selectStockId.includes(id))
+      : [];
 
       for(const stock_id of stocksToAdd){
         const addedStock ={
@@ -52,8 +56,17 @@ function EditWatchlistModal({ watchlistId }) {
          await dispatch(editWatchlist(watchlist,addedStock))
       }
 
-      
-      await dispatch(editWatchlist(watchlist, watchlistData))
+      for(const stock_id of stocksToRemove) {
+         const removedStock= {
+            ...watchlistData,
+            action: 'remove',
+            stock_id: stock_id
+         };
+         await dispatch(editWatchlist(watchlist, removedStock));
+      }
+
+
+     
       await dispatch(fetchWatchlist())
       setName("")
       setSelectStockId([])
