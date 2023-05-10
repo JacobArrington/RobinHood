@@ -1,5 +1,7 @@
 const GET_WATCHLISTS = "session/GET_WATCHLISTS";
 const ADD_WATCHLIST = "session/ADD_WATCHLIST";
+const UPDATE_WATCHLIST = 'sessions/UPDATE_WATCHLIST'
+const DELETE_WATCHLIST = 'sessions/DELETE_WATCHLIST'
 
 
 const getWatchlist = (watchlists) => ({
@@ -11,6 +13,17 @@ const addWatchlist = (watchlist) => ({
    type: ADD_WATCHLIST,
    watchlist
 })
+
+
+const updateWatchlist = (watchlist) => ({
+   type: UPDATE_WATCHLIST,
+   watchlist
+})
+
+const deleteWatchlist = (watchlist) => ({
+   type: DELETE_WATCHLIST,
+   watchlist
+ });
 
 export const fetchWatchlist = () => async (dispatch) => {
    const response = await fetch('/api/watchlist');
@@ -32,6 +45,28 @@ export const postWatchlist = (watchlistData) => async (dispatch) => {
    };
 };
 
+export const editWatchlist =(id, watchlistData) => async(dispatch) =>{
+   const response = await fetch(`/api/watchlist/${id}/stocks`,{
+      method: 'PUT',
+      headers: {"Content-Type" : "application/json"},
+      body: JSON.stringify(watchlistData)
+   })
+   if(response.ok){
+      const watchlists = await response.json();
+      dispatch(updateWatchlist(watchlists))
+   }
+}  
+
+export const destroyWatchlist = (id) => async (dispatch) => {
+   const response = await fetch(`/api/watchlist/${id}`, {
+     method: "DELETE"
+   });
+ 
+   if (response.ok) {
+     dispatch(deleteWatchlist(id));
+   }
+ };
+
 
 const initialState = {};
 
@@ -48,6 +83,16 @@ export default function watchlistReducer(state = initialState, action) {
          newState[action.watchlist.id] = action.watchlist
          return newState
       }
+      case UPDATE_WATCHLIST: {
+         const newState = { ...state };
+         newState[action.watchlist.id] = action.watchlist
+         return newState
+      }
+      case DELETE_WATCHLIST: {
+         const newState = { ...state };
+         delete newState[action.watchlist];
+         return newState;
+       }
       default:
          return state
    }
