@@ -3,13 +3,13 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import './chart.css'
 import { useHistory } from 'react-router-dom';
 
-// this comment means nothing 
+// this comment means nothing
 
 const filterDataByTimeframe = (data, timeframe) => {
   const currentDate = new Date()
   let filteredData = data
   switch (timeframe) {
-   
+
     case 'daily':
       // Get the last date in history by mapping the data to a list of dates, and then finding the latest date
       const lastDateInHistory = new Date(Math.max.apply(null, data.map((hist) => new Date(hist.date))));
@@ -32,15 +32,15 @@ const filterDataByTimeframe = (data, timeframe) => {
         });
         break;
 
-      
+
         case 'monthly':
           filteredData = data.filter((hist) => {
             const histDate = new Date(hist.date);
             // finds the first day of the month
             const startOfLastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1); //subtracts one month from current month and sets the date to first day of last month
-            // finds the last of the month 
+            // finds the last of the month
             const endOfLastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0); // sets the day of month to 0 since no 0 day rollsback to last day of prev month
-            // returns only the dates that fall in the month that 
+            // returns only the dates that fall in the month that
             return histDate >= startOfLastMonth && histDate <= endOfLastMonth;
           });
           break;
@@ -115,31 +115,31 @@ const StockChart = ({ stockHistory, timeframe, ticker }) => {
   return (
     <div>
       <h3>{ticker}</h3>
-    <ResponsiveContainer width='80%' height={750}>
-      <LineChart
-        width={1200}
-        height={600}
-        data={filteredData}
-        margin={{
-          top: 5,
-          right: 40,
-          left: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line type="monotone" dataKey="price" stroke="#8884d8" activeDot={{ r: 8 }} />
-      </LineChart>
-    </ResponsiveContainer>
-    <div className='Growth'>
+      <ResponsiveContainer width={1250} height={325}>
+        <LineChart
+          width={600}
+          height={300}
+          data={filteredData}
+          margin={{
+            top: 5,
+            right: 40,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="price" stroke="#8884d8" activeDot={{ r: 8 }} />
+        </LineChart>
+      </ResponsiveContainer>
+      <div className='Growth'>
         {performanceFilter} Performance: {growthRate}%
-    </div>
       </div>
-    
+    </div>
+
   );
 };
 

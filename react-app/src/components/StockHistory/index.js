@@ -11,8 +11,17 @@ const StockHistory = () => {
     const allStocks = useSelector((state) => state.stocksReducer)
     const [timeframe, setTimeFrame] = useState('monthly')
     const [selectedStockId, setSelectedStockId] = useState(null);
+    const [open, setOpen] = React.useState(false);
 
-    useEffect(() =>{
+    const handleOpen = () => {
+        setOpen(!open);
+    };
+
+    const handleMenuOne = () => {
+        setOpen(false);
+    };
+
+    useEffect(() => {
         dispatch(fetchStocks)
     })
 
@@ -20,15 +29,15 @@ const StockHistory = () => {
         setSelectedStockId(stockId);
         dispatch(fetchStockHistory(stockId))
     }
-    
-    const handleTimeframeChange =(e) =>{
+
+    const handleTimeframeChange = (e) => {
         setTimeFrame(e.target.value)
     }
 
 
     return (
-     <div>
-         <select value={timeframe} onChange={handleTimeframeChange}>
+        <div>
+            <select value={timeframe} onChange={handleTimeframeChange}>
                 <option value="daily">Daily</option>
                 <option value="weekly">Weekly</option>
                 <option value="monthly">Monthly</option>
@@ -36,14 +45,25 @@ const StockHistory = () => {
                 <option value="yearly">Yearly</option>
                 <option value="full history">Full History</option>
             </select>
-        {Object.values(allStocks).map(stock =>(
-            <div key ={stock.id} onClick={() => handleStockClick(stock.id)}>
-                {stock.name}
+            <div className="dropdown">
+                <button onClick={handleOpen}>Stocks</button>
+                {open ? (
+                    <ul className="menu">
+                        {Object.values(allStocks).map(stock => (
+                            <li lassName="menu-item" key={stock.id} onClick={() => handleStockClick(stock.id)}>
+                                {stock.name}
+                            </li>
+                        ))}
+                    </ul>
+                ) : null}
             </div>
-        ))}
-        {selectedStockId && (
-        <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe} ticker={allStocks[selectedStockId].ticker}/>)}
-    </div>);
+            <div className="chart">
+                {selectedStockId && (
+                    <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe={timeframe} ticker={allStocks[selectedStockId].ticker} />)}
+
+            </div>
+        </div>);
 }
 
 export default StockHistory;
+
