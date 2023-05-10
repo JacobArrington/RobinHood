@@ -34,7 +34,12 @@ const Watchlists = () => {
          {Object.values(allWatchlist).map(watchlist => (
             <div key={watchlist.id} onClick={() => {setWatchlist(watchlist); setStocks(watchlist.stocks); }}>
 
-               <li key={watchlist.id}>{watchlist.name}</li>
+               <h2>{watchlist.name}</h2>
+               <ul>
+                  {watchlist.stocks.map((stock) =>(
+                     <li key={stock.id}>{stock.name}</li>
+                  ))}
+               </ul>
                
             </div>
          ))}

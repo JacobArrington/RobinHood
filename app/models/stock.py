@@ -31,6 +31,7 @@ class Stock(db.Model):
             'name': self.name,
             'ticker': self.ticker,
             'price': self.price,
+            'watchlists': [watchlist.id for watchlist in self.watchlists],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
