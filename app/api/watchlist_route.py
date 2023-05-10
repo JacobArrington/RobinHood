@@ -90,6 +90,7 @@ def update_watchlist_stocks(id):
 
     return jsonify({'message': 'Watchlist not found'}), 404
 
+
 @watchlist_routes.route('/<int:id>', methods=['DELETE'])
 @login_required
 def delete_watchlist(id):

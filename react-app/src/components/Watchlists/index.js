@@ -43,7 +43,7 @@ const Watchlists = () => {
                
             </div>
          ))}
-         <p>Marlon is Gay</p>
+        
          <OpenModalButton
             buttonText="Create Watchlist"
             modalComponent={
@@ -55,7 +55,9 @@ const Watchlists = () => {
                <OpenModalButton
                   buttonText="Edit Watchlist"
                   modalComponent={
-                     <EditWatchlistModal watchlistId={watchlist.id} />
+                     <EditWatchlistModal 
+                     watchlistId={watchlist.id} 
+                     editwatchlist={watchlist} />
                   }
                />
                <button onClick={handleDelete}>Delete Watchlist</button>
