@@ -1,4 +1,4 @@
-from app.models import db, Watchlist , environment, SCHEMA
+from app.models import db, Watchlist , environment, SCHEMA, Stock
 from sqlalchemy.sql import text
 
 

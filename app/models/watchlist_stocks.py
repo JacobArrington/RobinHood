@@ -5,8 +5,14 @@ from sqlalchemy import Column, Integer, String, Float, Date, Enum, ForeignKey
 from flask_login import UserMixin
 
 
-watchlist_stocks = db.Table(
-    'watchlist_stocks',
-    db.Column('watchlist_id', db.Integer, db.ForeignKey(add_prefix_for_prod('watchlist.id')), primary_key=True),
-    db.Column('stock_id', db.Integer, db.ForeignKey(add_prefix_for_prod('stocks.id')), primary_key=True),
-)
+
+
+
+class WatchlistStock(db.Model):
+    __tablename__ = 'watchlist_stocks'
+
+    watchlist_id = db.Column(db.Integer, db.ForeignKey('watchlist.id'), primary_key=True)
+    stock_id = db.Column(db.Integer, db.ForeignKey('stocks.id'), primary_key=True)
+
+    watchlist = db.relationship("Watchlist", back_populates="watchlist_stocks")
+    stock = db.relationship("Stock", back_populates="watchlist_stocks")

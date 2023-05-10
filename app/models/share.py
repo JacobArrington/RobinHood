@@ -15,7 +15,7 @@ class Share(db.Model):
     portfolio_id = db.Column(db.Integer, db.ForeignKey('portfolios.id'))
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
-    stocks = relationship('Stock', back_populates='shares')
+    stock = relationship('Stock', back_populates='shares')
     portfolio = relationship('Portfolio', back_populates='shares')
 
 
