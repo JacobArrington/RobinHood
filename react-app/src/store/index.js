@@ -3,17 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session'
 import stocksReducer from './stock'
 import walletReducer from "./wallet"
-<<<<<<< HEAD
 import transactionReducer from './transaction';
-=======
 import watchlistReducer from "./watchlist"
->>>>>>> j_watchlist
 
 const rootReducer = combineReducers({
   session,
   stocksReducer,
   walletReducer,
-  transactionReducer
+  transactionReducer,
   watchlistReducer
 });
 
