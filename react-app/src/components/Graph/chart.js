@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import OpenModalButton from "../OpenModalButton";
 import BuyTransactionModal from "../BuyTransactionModal";
+import SellTransactionModal from "../SellTransactionModal";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import './chart.css'
 import { useHistory } from 'react-router-dom';
@@ -144,6 +145,12 @@ const StockChart = ({ stockHistory, timeframe, ticker, stock }) => {
         buttonText="Buy"
         modalComponent={
           <BuyTransactionModal stock={stock}/>
+        }
+      />
+      <OpenModalButton
+        buttonText="Sell"
+        modalComponent={
+          <SellTransactionModal stock={stock}/>
         }
       />
     </div>

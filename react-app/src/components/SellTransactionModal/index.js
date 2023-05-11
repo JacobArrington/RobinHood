@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import {  fetchTransaction, makeTransaction } from "../../store/transaction";
-import "./BuyTransactionModal.css";
+import "./SellTransactionModal.css";
 
 
-function PostBuyTransaction({stock}) {
+function PostSellTransaction({stock}) {
     const dispatch = useDispatch();
     const user = useSelector((state) => (state.session.user));
     // const portfolio = useSelector((state)=> (state.portfolio))
-    const [transactionType, setTransactionType] = useState('buy');
-    const [totalShares, setTotalShares] = useState(0);
+    const [transactionType, setTransactionType] = useState('sell');
+    const [totalShares, setTotalShares] = useState(0) //this state would key into portfolio to grap the number of shares the user has, specified by stock_id;
     const [totalPrice, setTotalPrice] = useState(0);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
@@ -56,4 +56,4 @@ function PostBuyTransaction({stock}) {
     );
 }
 
-export default PostBuyTransaction
+export default PostSellTransaction
