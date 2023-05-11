@@ -28,7 +28,7 @@ def seed():
         undo_wallet()
         undo_stocks()
         undo_users()
-        #ORDER MATTERS!!!!!!
+        #ORDER MATTERS!!!!!!!!
 
     seed_users()
     seed_stocks()
