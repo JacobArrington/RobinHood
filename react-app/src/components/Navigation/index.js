@@ -6,16 +6,20 @@ import ProfileButton from './ProfileButton';
 import { Redirect, useHistory } from "react-router-dom";
 import './Navigation.css';
 import StockChart from '../Graph/chart';
+import { fetchStocks, fetchStockHistory } from "../../store/stock";
 
 
 function Navigation({ isLoaded }) {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const sessionUser = useSelector(state => state.session.user);
+	const allStocks = useSelector((state) => state.stocksReducer)
 
-	const [searchInput, setSearchInput] = useState('');
+	const [searchInput, setSearchInput] = useState(null);
 
 	const handleSearchChange = (e) => {
+		e.preventDefault();
+
 		setSearchInput(e.target.value);
 	};
 
@@ -43,16 +47,24 @@ function Navigation({ isLoaded }) {
 				{!sessionUser || (
 					<>
 						<button onClick={handleLogout}>Log Out</button>
+						<form>
 						<label>
 							<input
 								placeholder='search'
 								type='text'
 								value={searchInput}
-								onChange={(e) => setSearchInput(e.target.value)}
+								// onChange={(e) => setSearchInput(e.target.value)}
 							/>
-						<StockChart
-							ticker={searchInput} />
+						{/* <StockChart
+							ticker={searchInput} /> */}
 						</label>
+							<button onClick={handleSearchChange}>
+								{searchInput && (
+									<StockChart ticker={allStocks[searchInput].ticker} />
+								)}
+								Search
+							</button>
+						</form>
 					</>
 				)}
 			</div>
