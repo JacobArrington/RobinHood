@@ -1,8 +1,8 @@
 from .db import db
 from .user import User
 from .share import Share
-from .portfolio import Portfolio
 from .stock import Stock
+from .portfolio import Portfolio
 from .stock_history import StockHistory
 
 from .wallet import Wallet
