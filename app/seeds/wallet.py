@@ -30,3 +30,5 @@ def undo_wallet():
         db.session.execute(text("DELETE FROM wallet"))
 
     db.session.commit()
+
+#jkjd
