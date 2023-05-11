@@ -15,8 +15,8 @@ class Watchlist(db.Model, UserMixin):
     name = db.Column(db.String(100), nullable=True)
     created_at = db.Column(db.Date, default=datetime.datetime.now())
     updated_at = db.Column(db.Date, default=datetime.datetime.now())
-    user = relationship("User", back_populates="watchlists")
-    stocks = relationship("Stock", secondary='watchlist_stocks', back_populates="watchlists")
+    user = db.relationship("User", back_populates="watchlists")
+    stocks = db.relationship("Stock", secondary='watchlist_stocks', back_populates="watchlists")
     watchlist_stocks = db.relationship("WatchlistStock", back_populates="watchlist")
 
     def to_watchlist_dict(self):

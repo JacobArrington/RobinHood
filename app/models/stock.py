@@ -17,11 +17,11 @@ class Stock(db.Model):
     price = db.Column(db.Float, nullable=False)
     created_at = db.Column(db.Date, default=datetime.datetime.now())
     updated_at = db.Column(db.Date, default=datetime.datetime.now())
-    watchlists = relationship("Watchlist", secondary='watchlist_stocks', back_populates='stocks')
-    shares = relationship("Share", back_populates='stock')
-    portfolios = relationship("Portfolio", secondary='shares', back_populates='stocks')
-    transactions = relationship("Transaction", back_populates='stocks')
-    stock_history = relationship("StockHistory", back_populates="stocks")
+    watchlists = db.relationship("Watchlist", secondary='watchlist_stocks', back_populates='stocks')
+    shares = db.relationship("Share", back_populates='stock')
+    portfolios = db.relationship("Portfolio", secondary='shares', back_populates='stocks')
+    transactions = db.relationship("Transaction", back_populates='stocks')
+    stock_history = db.relationship("StockHistory", back_populates="stocks")
     watchlist_stocks = db.relationship("WatchlistStock", back_populates="stock")
 
 

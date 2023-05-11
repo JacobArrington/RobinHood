@@ -16,7 +16,7 @@ class StockHistory(db.Model):
     date =  db.Column(db.Date , nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
-    stocks = relationship("Stock", back_populates="stock_history")
+    stocks =db.relationship("Stock", back_populates="stock_history")
      
 
 
