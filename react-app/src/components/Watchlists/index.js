@@ -36,7 +36,8 @@ const Watchlists = () => {
 
                <h2>{watchlist.name}</h2>
                <ul>
-                  {watchlist.stocks.map((stock) =>(
+               {watchlist.stocks && watchlist.stocks.map((stock) =>(
+
                      <li key={stock.id}>{stock.name}</li>
                   ))}
                </ul>

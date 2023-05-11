@@ -35,43 +35,44 @@ function EditWatchlistModal({ watchlistId }) {
    const handleSubmit = async (e) => {
       e.preventDefault();
       const watchlistData = {
-         user_id: user.id,
-         name,
-         stock_ids: selectStockId
+          user_id: user.id,
+          name,
+          stock_ids: selectStockId
       }
-      const stocksToAdd = selectStockId && watchlist && watchlist.stock_ids
+
+      console.log('selectStockId:', selectStockId); 
+    console.log('watchlist.stock_ids:', watchlist.stock_ids); 
+
+  
+      const stocksToAdd = watchlist && watchlist.stock_ids
       ? selectStockId.filter((id) => !watchlist.stock_ids.includes(id))
       : [];
-   
-   const stocksToRemove = selectStockId && watchlist && watchlist.stock_ids
+      const stocksToRemove = watchlist && watchlist.stock_ids
       ? watchlist.stock_ids.filter((id) => !selectStockId.includes(id))
       : [];
 
+    console.log('stocksToAdd:', stocksToAdd); 
+    console.log('stocksToRemove:', stocksToRemove); 
+
+  
       for(const stock_id of stocksToAdd){
-        const addedStock ={
-         ...watchlistData,
-         action: 'add',
-         stock_id: stock_id
-         }
-         await dispatch(editWatchlist(watchlist,addedStock))
+          watchlistData.action ='add'
+          watchlistData.stock_id = stock_id
+          console.log("Adding stock, watchlist:", watchlist) 
+          await dispatch(editWatchlist(watchlist.id,watchlistData))
+          await dispatch(fetchWatchlist())
       }
-
-      for(const stock_id of stocksToRemove) {
-         const removedStock= {
-            ...watchlistData,
-            action: 'remove',
-            stock_id: stock_id
-         };
-         await dispatch(editWatchlist(watchlist, removedStock));
+      for(const stock_id of stocksToRemove){
+          watchlistData.action ='remove'
+          watchlistData.stock_id = stock_id
+          await dispatch(editWatchlist(watchlist.id,watchlistData))
+          await dispatch(fetchWatchlist())
       }
-
-
-     
-      await dispatch(fetchWatchlist())
+  
       setName("")
       setSelectStockId([])
       closeModal()
-   };
+  };
 
    return (
       <form onSubmit={handleSubmit}>
