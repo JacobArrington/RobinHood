@@ -38,12 +38,12 @@ function PostWalletModal() {
             cash,
         };
         const Success = await dispatch(postWallet(WalletData));
-        if (Success){
+        if (Success) {
+            setErrors(Success);
+        } else {
             dispatch(fetchWallet());
             closeModal();
-            
-        }
-        
+        }    
     };
 
     return (

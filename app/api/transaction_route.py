@@ -19,7 +19,8 @@ def create_transaction():
     data = request.get_json()
     transaction = Transaction(
         stock_id=data['stock_id'],
-        
+        user_id=data['user_id'],
+        # portfolio_id=data['portfolio_id']
         transaction_type=data['transaction_type'],
         total_shares=data['total_shares'],
         total_price=data['total_price']

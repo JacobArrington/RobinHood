@@ -15,7 +15,6 @@ const Watchlists = () => {
    const [watchlist, setWatchlist] = useState(null);
    const [stocks, setStocks] = useState([]);
 
-   console.log('heereeeee _____+>>>>',allWatchlist)
    useEffect(() => {
       dispatch(fetchWatchlist())
    }, [dispatch]);

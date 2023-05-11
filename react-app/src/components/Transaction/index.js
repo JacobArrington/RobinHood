@@ -14,7 +14,7 @@ const Transaction = () => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(()=> {
-        dispatch(fetchTransaction()).then(() => setIsLoaded(true))
+        dispatch(fetchTransaction())
     }, [dispatch])
 
     return (
