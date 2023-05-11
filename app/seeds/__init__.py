@@ -34,10 +34,10 @@ def seed():
 
     seed_users()
     seed_stocks()
-    create_stock_history()
     seed_wallet()
     seed_portfolio()
     seed_watchlists()
+    create_stock_history()
     # Add other seed functions here
 
 
