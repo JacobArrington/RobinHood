@@ -30,6 +30,7 @@ def seed():
         undo_users()
         #ORDER MATTERS!!!!!!
         #//
+        #ORDER MATTERS!!!!!!!!
 
     seed_users()
     seed_stocks()
