@@ -11,6 +11,7 @@ import StockHistory from "./components/StockHistory";
 import LandingPage from "./components/LandingPage"
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Wallet from "./components/Wallet";
+import Transaction from "./components/Transaction";
 import ProtectedDashboard from "./components/Dashboard";
 import Watchlists from "./components/Watchlists";
 
@@ -45,8 +46,8 @@ function App() {
               <StockHistory />
               <Wallet />
               <Watchlists />
+              <Transaction />
             </>
-
           </ProtectedRoute>
         </Switch>
       )}

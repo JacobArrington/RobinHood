@@ -1,8 +1,8 @@
-"""test
+"""added total price to trans
 
-Revision ID: 07c592aa98ea
+Revision ID: 9a8eb61e06e3
 Revises: 
-Create Date: 2023-05-09 15:17:08.844970
+Create Date: 2023-05-10 22:20:23.871021
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '07c592aa98ea'
+revision = '9a8eb61e06e3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -104,6 +104,7 @@ def upgrade():
     sa.Column('portfolio_id', sa.Integer(), nullable=True),
     sa.Column('transaction_type', sa.Enum('buy', 'sell', name='transaction_type_enum'), nullable=True),
     sa.Column('total_shares', sa.Integer(), nullable=False),
+    sa.Column('total_price', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('updated_at', sa.Date(), nullable=True),
     sa.ForeignKeyConstraint(['portfolio_id'], ['portfolios.id'], ),

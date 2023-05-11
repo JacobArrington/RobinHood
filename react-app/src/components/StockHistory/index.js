@@ -42,7 +42,7 @@ const StockHistory = () => {
             </div>
         ))}
         {selectedStockId && (
-        <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe} ticker={allStocks[selectedStockId].ticker}/>)}
+        <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe} ticker={allStocks[selectedStockId].ticker} stock={allStocks[selectedStockId]}/>)}
     </div>);
 }
 

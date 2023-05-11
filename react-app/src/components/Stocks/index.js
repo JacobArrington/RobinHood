@@ -21,10 +21,9 @@ const Stock = () => {
 
     return (
         <div>
-           
+
             {Object.values(allStocks).map(stock => (
                 <div key={stock.id} onClick={() => setStock(stock)}>
-                    
                 </div>
             ))}
         </div>

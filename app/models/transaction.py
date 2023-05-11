@@ -16,6 +16,7 @@ class Transaction(db.Model, UserMixin):
     portfolio_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('portfolios.id')))
     transaction_type = db.Column(Enum('buy', 'sell', name='transaction_type_enum'))
     total_shares = db.Column(db.Integer, nullable=False)
+    total_price = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
     # Relationships
@@ -31,6 +32,7 @@ class Transaction(db.Model, UserMixin):
             'user_id': self.user_id,
             'portfolio_id': self.portfolio_id,
             'transaction_type': self.transaction_type,
+            # total_price=data['total_price']
             'total_shares': self.total_shares,
             'created_at': self.created_at,
             'updated_at': self.updated_at
