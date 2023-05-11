@@ -20,7 +20,7 @@ class Transaction(db.Model, UserMixin):
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
     # Relationships
     stocks = db.relationship('Stock', back_populates='transactions')
-    user = db.elationship('User', back_populates='transactions')
+    user = db.relationship('User', back_populates='transactions')
     portfolio = db.relationship('Portfolio', back_populates='transactions')
 
 
