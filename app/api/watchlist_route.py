@@ -61,35 +61,36 @@ def get_watchlist(id):
 @watchlist_routes.route('/<int:id>/stocks', methods=['PUT'])
 @login_required
 def update_watchlist_stocks(id):
-    data = request.get_json()
-    action = data.get('action')
-    stock_id = data.get('stock_id')
-    new_name = data.get('name')
+     data = request.get_json()
+     action = data.get('action')
+     stock_id = data.get('stock_id')
 
-    watchlist = Watchlist.query.get(id)
+     watchlist = Watchlist.query.get(id)
+     if not watchlist:
+        return {"message": "Watchlist not found"}, 404
 
-    if watchlist:
-        if new_name:
-            watchlist.name = new_name
+     stock = Stock.query.get(stock_id)
+     if not stock:
+         return {"message": "Stock not found"}, 404
 
-        if action and stock_id:
-            stock = Stock.query.get(stock_id)
-            if stock:
-                if action == 'add':
-                    new_watchlist_stock = WatchlistStock(watchlist_id=id, stock_id=stock_id)
-                    db.session.add(new_watchlist_stock)
-                elif action == 'remove':
-                    watchlist_stock = WatchlistStock.query.filter_by(watchlist_id=id, stock_id=stock_id).first()
-                    if watchlist_stock:
-                        db.session.delete(watchlist_stock)
-                else:
-                    return jsonify({'message': 'Invalid action'}), 400
+     if action == 'add':
+         watchlist_stock = WatchlistStock.query.filter_by(watchlist_id=id, stock_id=stock_id).first()
+         if watchlist_stock:
+             return {"message": "Stock already in watchlist"}, 400
+         new_watchlist_stock = WatchlistStock(watchlist_id=id, stock_id=stock_id)
+         db.session.add(new_watchlist_stock)
+     elif action == 'remove':
+        watchlist_stock = WatchlistStock.query.filter_by(watchlist_id=id, stock_id=stock_id).first()
+        if not watchlist_stock:
+            return {"message": "Stock not in watchlist"}, 400
+        db.session.delete(watchlist_stock)
+     else:
+        return {"message": "Invalid action"}, 400
 
-        db.session.commit()
-        return jsonify(watchlist.to_watchlist_dict())
+     db.session.commit()
 
-    return jsonify({'message': 'Watchlist not found'}), 404
-
+     updated_watchlist = Watchlist.query.get(id)
+     return updated_watchlist.to_watchlist_dict(), 200
 
 @watchlist_routes.route('/<int:id>', methods=['DELETE'])
 @login_required

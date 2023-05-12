@@ -52,8 +52,8 @@ export const editWatchlist =(id, watchlistData) => async(dispatch) =>{
       body: JSON.stringify(watchlistData)
    })
    if(response.ok){
-      const watchlists = await response.json();
-      dispatch(updateWatchlist(watchlists))
+      const updatedWatchlists = await response.json();
+      dispatch(updateWatchlist(updatedWatchlists))
    }
 }  
 
@@ -90,7 +90,7 @@ export default function watchlistReducer(state = initialState, action) {
       }
       case DELETE_WATCHLIST: {
          const newState = { ...state };
-         delete newState[action.watchlist];
+         delete newState[action.watchlist.id];
          return newState;
        }
       default:

@@ -12,11 +12,11 @@ class Share(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     stock_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('stocks.id')))
-    portfolio_id = db.Column(db.Integer, db.ForeignKey('portfolios.id'))
+    portfolio_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('portfolios.id')))
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
-    stock = relationship('Stock', back_populates='shares')
-    portfolio = relationship('Portfolio', back_populates='shares')
+    stock = db.relationship('Stock', back_populates='shares')
+    portfolio = db.relationship('Portfolio', back_populates='shares')
 
 
 
