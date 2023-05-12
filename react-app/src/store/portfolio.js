@@ -10,6 +10,11 @@ const subtractBuyingPower = (newBuyingPower, portfolio) => ({
     type: UPDATE_PORTFOLIO,
     payload: {newBuyingPower, portfolio}
 })
+// const subtractBuyingPower = (newBuyingPower) => ({
+//     type: UPDATE_PORTFOLIO,
+//     payload: { buyingPower: newBuyingPower }
+// })
+
 
 const addToBuyingPower = (newBuyingPower) => ({
     type: UPDATE_PORTFOLIO,
@@ -23,6 +28,15 @@ export const fetchPortfolio = () => async (dispatch) => {
         dispatch(getPortfolio(portfolio))
     }
 }
+
+// export const reduceBuyingPower = (newBuyingPower) => async (dispatch) => {
+//     const response = await fetch('/api/portfolios')
+//     if (response.ok){
+//         const portfolio = await response.json()
+//         dispatch(subtractBuyingPower(newBuyingPower, portfolio))
+//     }
+// }
+
 
 export const reduceBuyingPower = (newBuyingPower) => async (dispatch) => {
     const response = await fetch('/api/portfolios')
@@ -42,11 +56,16 @@ export default function portfolioReducer(state = initialState, action){
             // return newState
             return {portfolio: action.portfolio}
         }
+        // case UPDATE_PORTFOLIO:{
+        //     newState = {...state}
+        //     newState['portfolio']['buyingPower'] = {...action.payload.newBuyingPower}
+        //     console.log(newState, "!@!@!@!@!@!@!@!@!@!@!@!@!@!@")
+        //     return {portfolio: newState}
+        // }
         case UPDATE_PORTFOLIO:{
-            newState = {...state}
-            newState['portfolio']['buyingPower'] = {...action.payload.newBuyingPower}
-            console.log(newState, "!@!@!@!@!@!@!@!@!@!@!@!@!@!@")
-            return {portfolio: newState}
+            return {...state,
+                portfolio: {...state.portfolio,buyingPower: action.payload.buyingPower}
+            }
         }
         default:
             return state;
