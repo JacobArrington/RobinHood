@@ -34,7 +34,6 @@ function UpdateWalletModal({ wallet, fetchUpdateWallet }) {
             account_type: accountType,
             account_num: accountNum,
             routing_num: routingNum,
-            cash,
         };
         await dispatch(updateUserWallet(wallet.id, updatedWalletData));
         fetchUpdateWallet(); // Call the function passed from the parent component to refresh the wallet data.
@@ -66,14 +65,6 @@ function UpdateWalletModal({ wallet, fetchUpdateWallet }) {
                     type="text"
                     value={routingNum}
                     onChange={(e) => setRoutingNum(parseInt(e.target.value))}
-                />
-            </label>
-            <label>
-                Cash:
-                <input
-                    type="number"
-                    value={cash}
-                    onChange={(e) => setCash(e.target.value)}
                 />
             </label>
             <button type="submit">Update Wallet</button>

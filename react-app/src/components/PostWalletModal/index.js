@@ -35,7 +35,6 @@ function PostWalletModal() {
             account_type: accountType,
             account_num: accountNum,
             routing_num: routingNum,
-            cash,
         };
         const Success = await dispatch(postWallet(WalletData));
         if (Success) {
@@ -71,14 +70,6 @@ function PostWalletModal() {
                     type="text"
                     value={routingNum}
                     onChange={(e) => setRoutingNum(parseInt(e.target.value))}
-                />
-            </label>
-            <label>
-                Cash:
-                <input
-                    type="number"
-                    value={cash}
-                    onChange={(e) => setCash(e.target.value)}
                 />
             </label>
             <button type="submit">Update Wallet</button>

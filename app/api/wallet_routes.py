@@ -21,7 +21,6 @@ def handle_wallet():
             account_type=data['account_type'],
             account_num=data['account_num'],
             routing_num=data['routing_num'],
-            cash=data['cash']
         )
         db.session.add(wallet)
         db.session.commit()
@@ -76,7 +75,6 @@ def update_wallet(wallet_id):
     wallet.account_type = data.get('account_type', wallet.account_type)
     wallet.account_num = data.get('account_num', wallet.account_num)
     wallet.routing_num = data.get('routing_num', wallet.routing_num)
-    wallet.cash = data.get('cash', wallet.cash)
     wallet.updated_at = datetime.now()
     db.session.commit()
     return jsonify(wallet.to_wallet_dict())

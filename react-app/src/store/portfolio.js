@@ -6,9 +6,9 @@ const getPortfolio = (portfolio) => ({
     portfolio
 })
 
-const subtractBuyingPower = (newBuyingPower, portfolio) => ({
+const subtractBuyingPower = (newBuyingPower) => ({
     type: UPDATE_PORTFOLIO,
-    payload: {newBuyingPower, portfolio}
+    payload: newBuyingPower
 })
 // const subtractBuyingPower = (newBuyingPower) => ({
 //     type: UPDATE_PORTFOLIO,
@@ -29,20 +29,16 @@ export const fetchPortfolio = () => async (dispatch) => {
     }
 }
 
-// export const reduceBuyingPower = (newBuyingPower) => async (dispatch) => {
-//     const response = await fetch('/api/portfolios')
-//     if (response.ok){
-//         const portfolio = await response.json()
-//         dispatch(subtractBuyingPower(newBuyingPower, portfolio))
-//     }
-// }
 
-
-export const reduceBuyingPower = (newBuyingPower) => async (dispatch) => {
-    const response = await fetch('/api/portfolios')
+export const reduceBuyingPower = (portfolio_id, newBuyingPower) => async (dispatch) => {
+    const response = await fetch(`/api/portfolios/${portfolio_id}`, {
+        method: "PUT",
+        headers: {"Content-Type" : "application/json"},
+        body: JSON.stringify(newBuyingPower)
+    })
     if (response.ok){
         const portfolio = await response.json()
-        dispatch(subtractBuyingPower(newBuyingPower, portfolio))
+        dispatch(subtractBuyingPower(portfolio))
     }
 }
 
@@ -52,20 +48,19 @@ export default function portfolioReducer(state = initialState, action){
     let newState = {}
     switch (action.type){
         case GET_PORTFOLIO:{
-            // newState[action.portfolio.user_id] = action.portfolio
-            // return newState
-            return {portfolio: action.portfolio}
+            newState = {...state}
+            newState['portfolio'] = action.portfolio
+            return newState
         }
-        // case UPDATE_PORTFOLIO:{
-        //     newState = {...state}
-        //     newState['portfolio']['buyingPower'] = {...action.payload.newBuyingPower}
-        //     console.log(newState, "!@!@!@!@!@!@!@!@!@!@!@!@!@!@")
-        //     return {portfolio: newState}
-        // }
         case UPDATE_PORTFOLIO:{
-            return {...state,
-                portfolio: {...state.portfolio,buyingPower: action.payload.buyingPower}
-            }
+            const updatedPortfolio = {
+                ...state.portfolio,
+                buyingPower: action.payload.newBuyingPower
+            };
+            return {
+                ...state,
+                portfolio: updatedPortfolio
+            };
         }
         default:
             return state;

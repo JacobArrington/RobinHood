@@ -48,7 +48,6 @@ const Wallet = () => {
                 <div key={wallet.id}>
                   <p>{wallet.account_type}</p>
                   <p>{wallet.routing_num}</p>
-                  <p>{wallet.cash}</p>
                   <button onClick={() => deleteWallet(wallet.id)}>
                     Delete Wallet
                   </button>

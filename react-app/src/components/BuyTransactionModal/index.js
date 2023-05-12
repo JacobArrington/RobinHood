@@ -14,7 +14,6 @@ function PostBuyTransaction({stock}) {
     const [totalShares, setTotalShares] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [errors, setErrors] = useState([]);
-    const [updatedBuyingPower, setUpdatedBuyingPower] = useState(0);
     const { closeModal } = useModal();
 
     const buyingPower = useSelector((state) => (state.portfolioReducer.portfolio.buyingPower))
@@ -31,18 +30,18 @@ function PostBuyTransaction({stock}) {
             total_price: totalPrice
         }
 
-        const buyingpowerData = buyingPower - totalPrice
-        const newBuyingPower = buyingPower - totalPrice;
+        const buyingpowerData = {
+            ...portfolio,
+            buyingPower: buyingPower - totalPrice
+        }
 
-        // const transfer = await dispatch(reduceBuyingPower(buyingpowerData))
-        const transfer = await dispatch(reduceBuyingPower(newBuyingPower));
+        const transfer = await dispatch(reduceBuyingPower(portfolio.id, buyingpowerData))
         const transaction = await dispatch(makeTransaction(transactionData))
         if (transaction && transfer) {
             setErrors(transaction);
             setErrors(transfer)
         } else {
             dispatch(fetchTransaction());
-            dispatch(fetchPortfolio())
             closeModal();
         }
     }
