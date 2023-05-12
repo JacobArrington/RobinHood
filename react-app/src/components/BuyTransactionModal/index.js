@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import {  fetchTransaction, makeTransaction } from "../../store/transaction";
 import "./BuyTransactionModal.css";
-import { fetchPortfolio, reduceBuyingPower } from "../../store/portfolio";
+import { changeBuyingPower } from "../../store/portfolio";
 
 
 function PostBuyTransaction({stock}) {
@@ -35,7 +35,7 @@ function PostBuyTransaction({stock}) {
             buyingPower: buyingPower - totalPrice
         }
 
-        const transfer = await dispatch(reduceBuyingPower(portfolio.id, buyingpowerData))
+        const transfer = await dispatch(changeBuyingPower(portfolio.id, buyingpowerData))
         const transaction = await dispatch(makeTransaction(transactionData))
         if (transaction && transfer) {
             setErrors(transaction);

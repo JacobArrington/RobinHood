@@ -25,7 +25,7 @@ export const fetchPortfolio = () => async (dispatch) => {
 }
 
 
-export const reduceBuyingPower = (portfolio_id, newBuyingPower) => async (dispatch) => {
+export const changeBuyingPower = (portfolio_id, newBuyingPower) => async (dispatch) => {
     const response = await fetch(`/api/portfolios/${portfolio_id}`, {
         method: "PUT",
         headers: {"Content-Type" : "application/json"},
