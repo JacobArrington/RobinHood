@@ -19,8 +19,9 @@ export default function portfolioReducer(state = initialState, action){
     let newState = {}
     switch (action.type){
         case GET_PORTFOLIO:{
-            newState[action.portfolio.id] = action.portfolio
-            return newState
+            // newState[action.portfolio.user_id] = action.portfolio
+            // return newState
+            return {portfolio: action.portfolio}
         }
         default:
             return state;

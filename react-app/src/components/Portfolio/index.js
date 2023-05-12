@@ -16,12 +16,8 @@ const Portfolio = () => {
 
     return (
         <>
-         {Object.values(portfolioState).map((portfolio) => (
-           <div key={portfolio.id}>
-             <p>{portfolio.user_id}</p>
-             <p>{portfolio.wallet_id}</p>
-           </div>
-         ))}
+        <p>{portfolioState.portfolio.user_id}</p>
+        <p>{portfolioState.portfolio.wallet}</p>
        </>
     )
 }
