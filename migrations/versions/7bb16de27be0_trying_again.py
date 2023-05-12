@@ -1,19 +1,16 @@
-"""added total price to trans
+"""trying again
 
-Revision ID: 9a8eb61e06e3
+Revision ID: 7bb16de27be0
 Revises: 
-Create Date: 2023-05-10 22:20:23.871021
+Create Date: 2023-05-12 13:17:16.315988
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-import os
-environment = os.getenv("FLASK_ENV")
-SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = '9a8eb61e06e3'
+revision = '7bb16de27be0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -32,8 +29,6 @@ def upgrade():
     sa.UniqueConstraint('name'),
     sa.UniqueConstraint('ticker')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE stocks SET SCHEMA {SCHEMA};")
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
@@ -43,9 +38,6 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
-
     op.create_table('stock_history',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('stock_id', sa.Integer(), nullable=True),
@@ -57,22 +49,17 @@ def upgrade():
     sa.ForeignKeyConstraint(['stock_id'], ['stocks.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE stock_history SET SCHEMA {SCHEMA};")
     op.create_table('wallet',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('account_type', sa.Enum('checking', 'savings', 'saving', name='account_type_enum'), nullable=True),
     sa.Column('account_num', sa.Integer(), nullable=False),
     sa.Column('routing_num', sa.Integer(), nullable=False),
-    sa.Column('cash', sa.Float(), nullable=False),
     sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('updated_at', sa.Date(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE wallet SET SCHEMA {SCHEMA};")
     op.create_table('watchlist',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
@@ -82,29 +69,24 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE watchlist SET SCHEMA {SCHEMA};")
     op.create_table('portfolios',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('wallet_id', sa.Integer(), nullable=False),
+    sa.Column('buyingPower', sa.Float(), nullable=False),
     sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('updated_at', sa.Date(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['wallet_id'], ['wallet.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE portfolios SET SCHEMA {SCHEMA};")
     op.create_table('watchlist_stocks',
     sa.Column('watchlist_id', sa.Integer(), nullable=False),
-    sa.Column('stock_id', sa.Integer(), nullable=False),
+    sa.Column('stock_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['stock_id'], ['stocks.id'], ),
     sa.ForeignKeyConstraint(['watchlist_id'], ['watchlist.id'], ),
-    sa.PrimaryKeyConstraint('watchlist_id', 'stock_id')
+    sa.PrimaryKeyConstraint('watchlist_id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE watchlist_stocks SET SCHEMA {SCHEMA};")
     op.create_table('shares',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('stock_id', sa.Integer(), nullable=True),
@@ -115,8 +97,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['stock_id'], ['stocks.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE shares SET SCHEMA {SCHEMA};")
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('stock_id', sa.Integer(), nullable=True),
@@ -132,8 +112,6 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    if environment == "production":
-        op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

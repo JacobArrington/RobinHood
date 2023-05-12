@@ -15,7 +15,7 @@ class Wallet(db.Model, UserMixin):
     account_type = db.Column(db.Enum('checking','savings','saving', name ='account_type_enum'))
     account_num = db.Column(db.Integer, nullable=False)
     routing_num = db.Column(db.Integer, nullable=False)
-    cash = db.Column(db.Float, nullable=False)
+    # cash = db.Column(db.Float, nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
     user = db.relationship("User",  back_populates="wallet")
@@ -27,7 +27,7 @@ class Wallet(db.Model, UserMixin):
             'account_type': self.account_type,
             'account_num': self.account_num,
             'routing_num': self.routing_num,
-            'cash': self.cash,
+            # 'cash': self.cash,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

@@ -32,7 +32,7 @@ class Transaction(db.Model, UserMixin):
             'user_id': self.user_id,
             'portfolio_id': self.portfolio_id,
             'transaction_type': self.transaction_type,
-            # total_price=data['total_price']
+            'total_price':self.total_price,
             'total_shares': self.total_shares,
             'created_at': self.created_at,
             'updated_at': self.updated_at
