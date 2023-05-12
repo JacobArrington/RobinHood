@@ -15,7 +15,7 @@ class Portfolio(db.Model, UserMixin):
     wallet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('wallet.id')), nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
-    stocks = db.relationship('Stock', secondary='shares', back_populates='portfolios')
+    stocks = db.relationship('Stock', secondary=add_prefix_for_prod('shares'), back_populates='portfolios')
     user = db.relationship("User",  back_populates="portfolio")
     shares = db.relationship('Share', back_populates='portfolio')
     transactions = db.relationship('Transaction', back_populates='portfolio')
