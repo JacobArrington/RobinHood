@@ -8,13 +8,8 @@ const getPortfolio = (portfolio) => ({
 
 const subtractBuyingPower = (newBuyingPower) => ({
     type: UPDATE_PORTFOLIO,
-    payload: newBuyingPower
+    newBuyingPower
 })
-// const subtractBuyingPower = (newBuyingPower) => ({
-//     type: UPDATE_PORTFOLIO,
-//     payload: { buyingPower: newBuyingPower }
-// })
-
 
 const addToBuyingPower = (newBuyingPower) => ({
     type: UPDATE_PORTFOLIO,
@@ -38,7 +33,7 @@ export const reduceBuyingPower = (portfolio_id, newBuyingPower) => async (dispat
     })
     if (response.ok){
         const portfolio = await response.json()
-        dispatch(subtractBuyingPower(portfolio))
+        dispatch(subtractBuyingPower(portfolio.buyingPower))
     }
 }
 
@@ -55,7 +50,7 @@ export default function portfolioReducer(state = initialState, action){
         case UPDATE_PORTFOLIO:{
             const updatedPortfolio = {
                 ...state.portfolio,
-                buyingPower: action.payload.newBuyingPower
+                buyingPower: action.newBuyingPower
             };
             return {
                 ...state,
