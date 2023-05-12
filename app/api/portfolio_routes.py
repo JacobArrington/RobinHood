@@ -13,7 +13,7 @@ def get_portfolio():
 @portfolio_routes.route('/<int:portfolio_id>', methods=['PUT'])
 @login_required
 def update_buyingpower(portfolio_id):
-    data=request.json
+    data = request.json
     portfolio = Portfolio.query.get(portfolio_id)
     portfolio.buyingPower = data.get('buyingPower', portfolio.buyingPower)
     db.session.commit()
