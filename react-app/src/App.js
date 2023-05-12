@@ -14,6 +14,7 @@ import Wallet from "./components/Wallet";
 import Transaction from "./components/Transaction";
 import ProtectedDashboard from "./components/Dashboard";
 import Watchlists from "./components/Watchlists";
+import Portfolio from "./components/Portfolio";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function App() {
               <Wallet />
               <Watchlists />
               <Transaction />
+              <Portfolio />
             </>
           </ProtectedRoute>
         </Switch>

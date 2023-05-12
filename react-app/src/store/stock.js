@@ -67,21 +67,15 @@ export default  function stocksReducer(state = initialState, action){
         case SET_STOCK_HIST:{
             newState = {...state};
             const stockId = action.stockId;
-            
             if(!newState[stockId]) {
                 newState[stockId] = {stockHistory: {}}
-                
             }
             newState[stockId].stockHistory = action.stockHistory.reduce((acc, history) =>{
                 acc[history.date] = history
                 return acc
             },{})
-            
                 return {...newState}
             }
-           
-            
-        
         default:
             return state;
     }

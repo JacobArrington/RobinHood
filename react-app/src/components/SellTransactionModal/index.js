@@ -10,7 +10,7 @@ function PostSellTransaction({stock}) {
     const user = useSelector((state) => (state.session.user));
     // const portfolio = useSelector((state)=> (state.portfolio))
     const [transactionType, setTransactionType] = useState('sell');
-    const [totalShares, setTotalShares] = useState(0) //this state would key into portfolio to grap the number of shares the user has, specified by stock_id;
+    const [totalShares, setTotalShares] = useState(0); //this state would key into portfolio to grab the number of shares the user has, specified by stock_id
     const [totalPrice, setTotalPrice] = useState(0);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
