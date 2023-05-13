@@ -9,6 +9,7 @@ import './transaction.css'
 
 const Transaction = () => {
     const dispatch = useDispatch()
+    const userId = useSelector((state) => state.session.user.id)
     // const buyingPower = userSelector((state) => state.portfolioReducer) PLACE HOLDER
     const allTransactions = useSelector((state) => state.transactionReducer)
     const [isLoaded, setIsLoaded] = useState(false);
@@ -17,11 +18,14 @@ const Transaction = () => {
         dispatch(fetchTransaction())
     }, [dispatch])
 
+
+
     return (
         <>
          {Object.values(allTransactions).map((transaction) => (
            <div key={transaction.id}>
              <p>{transaction.stock_id}</p>
+             <p>{transaction.user_id}</p>
              <p>{transaction.transaction_type}</p>
              <p>{transaction.createdAt}</p>
            </div>
