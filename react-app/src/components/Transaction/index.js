@@ -6,6 +6,7 @@ import { Redirect } from "react-router-dom";
 // import OpenModalButton from "../OpenModalButton";
 import { fetchTransaction } from "../../store/transaction";
 import './transaction.css'
+import { fetchShares } from "../../store/shares";
 
 const Transaction = () => {
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ const Transaction = () => {
 
     useEffect(()=> {
         dispatch(fetchTransaction())
+        dispatch(fetchShares())
     }, [dispatch])
 
     const userTransactions = Object.values(allTransactions).filter(
