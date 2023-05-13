@@ -24,6 +24,8 @@ const Transaction = () => {
       (transaction) => transaction.user_id === userId
     );
 
+  const firstFiveTransactions = userTransactions.slice(0, 5);
+
     // return (
     //     <>
     //      {Object.values(allTransactions).map((transaction) => (
@@ -39,7 +41,7 @@ const Transaction = () => {
 
     return (
     <>
-      {userTransactions.map((transaction) => (
+        {firstFiveTransactions.map((transaction) => (
         <div key={transaction.id}>
           <p>{transaction.stock_id}</p>
           <p>{transaction.user_id}</p>
