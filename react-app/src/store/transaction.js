@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux"
+
 const GET_TRANSACTIONS = "session/GET_TRANSACTIONS"
 const ADD_TRANSACTION = "session/ADD_TRANSACTION"
 
@@ -19,6 +21,15 @@ export const fetchTransaction = () => async (dispatch) => {
         dispatch(getTransaction(transaction))
     }
 }
+
+// export const fetchTransaction = () => async (dispatch) => {
+//     const userId = useSelector((state) => state.session.user.id);
+//     const response = await fetch(`/api/users/${userId}/transactions`);
+//     if (response.ok) {
+//         const transaction = await response.json();
+//         dispatch(getTransaction(transaction));
+//     }
+// };
 
 export const makeTransaction = (transaction) => async (dispatch) => {
     const response = await fetch('/api/transactions', {
