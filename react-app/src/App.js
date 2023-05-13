@@ -15,7 +15,7 @@ import Transaction from "./components/Transaction";
 import ProtectedDashboard from "./components/Dashboard";
 import Watchlists from "./components/Watchlists";
 import Portfolio from "./components/Portfolio";
-import OwnedStock from "./components/OwnedStock";
+// import OwnedStock from "./components/OwnedStock";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,12 +46,12 @@ function App() {
               <Stock />
               {/* <GetStockById /> */}
               <StockHistory />
-              
+
               <Wallet />
               <Watchlists />
               <Transaction />
               <Portfolio />
-              <OwnedStock />
+              {/* <OwnedStock /> */}
             </>
           </ProtectedRoute>
         </Switch>
