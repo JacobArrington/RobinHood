@@ -19,3 +19,11 @@ class WatchlistStock(db.Model):
 
     watchlist = db.relationship("Watchlist", back_populates="watchlist_stocks")
     stock = db.relationship("Stock", back_populates="watchlist_stocks")
+
+
+    def to_watchlistStock_dict(self):
+        return{
+            'watchlist_id': self.watchlist_id,
+            'stock_id': self.stock_id,
+            'stocks': self.stock.to_stock_dict()
+        }

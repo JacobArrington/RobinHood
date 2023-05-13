@@ -63,31 +63,59 @@ def get_watchlist(id):
 def update_watchlist_stocks(id):
      data = request.get_json()
      action = data.get('action')
-     stock_id = data.get('stock_id')
+     stock_ids = data.get('stock_ids')
+     print(data,'@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
 
      watchlist = Watchlist.query.get(id)
      if not watchlist:
         return {"message": "Watchlist not found"}, 404
+     
+     if stock_ids is None:
+        return {"message": "No stock IDs provided"}, 400
 
-     stock = Stock.query.get(stock_id)
-     if not stock:
-         return {"message": "Stock not found"}, 404
+    #  stock = Stock.query.get(stock_ids)
+    #  if not stock:
+    #      return {"message": "Stock not found"}, 404
+    
+     errors = []
 
      if action == 'add':
-         watchlist_stock = WatchlistStock.query.filter_by(watchlist_id=id, stock_id=stock_id).first()
-         if watchlist_stock:
-             return {"message": "Stock already in watchlist"}, 400
-         new_watchlist_stock = WatchlistStock(watchlist_id=id, stock_id=stock_id)
-         db.session.add(new_watchlist_stock)
+         for stock_id in stock_ids:
+             stock = Stock.query.get(stock_id)
+             if not stock: 
+                 errors.append(f"Stock with id {stock_id} not found")
+                 continue
+             
+             watchlist_stock = WatchlistStock.query.filter_by(watchlist_id=id, stock_id=stock_id)
+             if watchlist_stock:
+                errors.append(f"Stock with id {stock_id} already in watchlist")
+                continue 
+         
+             new_watchlist_stock = WatchlistStock(watchlist_id=id, stock_id=stock_id)
+             db.session.add(new_watchlist_stock)
+            
+           
+
      elif action == 'remove':
-        watchlist_stock = WatchlistStock.query.filter_by(watchlist_id=id, stock_id=stock_id).first()
-        if not watchlist_stock:
-            return {"message": "Stock not in watchlist"}, 400
-        db.session.delete(watchlist_stock)
+        for stock_id in stock_ids:
+             stock = Stock.query.get(stock_id)
+             if not stock: 
+                errors.append(f"Stock with id {stock_id} not found")
+                continue
+             watchlist_stock = WatchlistStock.query.filter_by(watchlist_id=id, stock_id=stock_id).first()
+             if not watchlist_stock:
+                errors.append(f"Stock with id {stock_id} not in watchlist")
+                continue
+            
+             db.session.delete(watchlist_stock)
+             
+           
      else:
         return {"message": "Invalid action"}, 400
 
      db.session.commit()
+     if errors: 
+         return{'message': 'There were some errors processing the request', 'errors': errors}, 400
 
      updated_watchlist = Watchlist.query.get(id)
      return updated_watchlist.to_watchlist_dict(), 200

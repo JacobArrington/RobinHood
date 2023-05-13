@@ -53,6 +53,7 @@ export const editWatchlist =(id, watchlistData) => async(dispatch) =>{
    })
    if(response.ok){
       const updatedWatchlists = await response.json();
+      console.log('updatedWatchlists!!!!!!!!!!!:', updatedWatchlists);
       dispatch(updateWatchlist(updatedWatchlists))
    }
 }  
