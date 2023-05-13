@@ -8,14 +8,14 @@ const getShares = (shares) => ({
     shares
 })
 
-const addTransaction =  (transaction) => ({
+const addTransaction = (transaction) => ({
     type: ADD_TRANSACTION,
     transaction
 })
 
 export const fetchShares = () => async (dispatch) => {
     const response = await fetch('/api/shares')
-    if(response.ok){
+    if (response.ok) {
         const share = await response.json()
         dispatch(getShares(share))
     }
@@ -25,10 +25,10 @@ export const fetchShares = () => async (dispatch) => {
 export const makeTransaction = (transaction) => async (dispatch) => {
     const response = await fetch('/api/shares', {
         method: "POST",
-        headers: {"Content-Type" : "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(transaction)
     })
-    if (response.ok){
+    if (response.ok) {
         const transaction = await response.json()
         dispatch(addTransaction(transaction))
     }
@@ -37,15 +37,15 @@ export const makeTransaction = (transaction) => async (dispatch) => {
 
 const initialState = {}
 
-export default function sharesReducer(state = initialState, action){
+export default function sharesReducer(state = initialState, action) {
     let newState = {}
-    switch(action.type){
-        case GET_SHARES:{
-            newState={...state}
+    switch (action.type) {
+        case GET_SHARES: {
+            newState = { ...state }
             action.shares.forEach(transaction => {
                 newState[transaction.id] = transaction
             })
-            return {...newState}
+            return { ...newState }
         }
         // case ADD_TRANSACTION: {
         //     newState = {...state}
@@ -62,18 +62,23 @@ export default function sharesReducer(state = initialState, action){
             let share_price = 0;
 
             if (newState[stockId]) {
-              oldShares = newState[stockId].total_shares
-              share_price = newState[stockId].total_price
+                oldShares = newState[stockId].total_shares
+                share_price = newState[stockId].total_price
+            }
+            const newTotalShares = transaction.total_shares + oldShares;
+            if (newTotalShares <= 0) {
+                // Remove the stock from the state when shares hit 0
+                delete newState[stockId];
+            } else {
+                newState[stockId] = {
+                    ...transaction,
+                    total_shares: newTotalShares,
+                    total_price: transaction.total_price + share_price
+                };
             }
 
-            newState[stockId] = {
-              ...transaction,
-              total_shares: transaction.total_shares + oldShares,
-              total_price: transaction.total_price + share_price
-            };
-
             return { ...newState };
-          }
+        }
         default:
             return state
     }
