@@ -9,8 +9,8 @@ transaction_route = Blueprint('transactions',__name__)
 @transaction_route.route('', methods=['GET'])
 @login_required
 def get_transactions():
-    print(current_user.id, "!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@@!@!@!@")
-    transactions = Transaction.query.filter_by(user_id=current_user.id).all()
+    user_id = current_user.id
+    transactions = Transaction.query.filter_by(user_id=user_id).all()
     return jsonify([transaction.to_transaction_dict() for transaction in transactions])
 
 # Create a new transaction

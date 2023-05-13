@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux"
-
 const GET_TRANSACTIONS = "session/GET_TRANSACTIONS"
 const ADD_TRANSACTION = "session/ADD_TRANSACTION"
 
@@ -50,7 +48,6 @@ export default function transactionReducer(state = initialState, action){
     let newState = {}
     switch(action.type){
         case GET_TRANSACTIONS:{
-            newState={...state}
             action.transactions.forEach(transaction => {
                 newState[transaction.id] = transaction
             })
