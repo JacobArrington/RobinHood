@@ -59,14 +59,17 @@ export default function sharesReducer(state = initialState, action){
             const transaction = action.transaction;
             const stockId = transaction.stock_id;
             let oldShares = 0;
+            let share_price = 0;
 
             if (newState[stockId]) {
-              oldShares = newState[stockId].total_shares;
+              oldShares = newState[stockId].total_shares
+              share_price = newState[stockId].total_price
             }
 
             newState[stockId] = {
               ...transaction,
               total_shares: transaction.total_shares + oldShares,
+              total_price: transaction.total_price + share_price
             };
 
             return { ...newState };
