@@ -29,9 +29,9 @@ function PostWalletModal() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         const WalletData = {
-            
+
             account_type: accountType,
             account_num: accountNum,
             routing_num: routingNum,
@@ -42,7 +42,7 @@ function PostWalletModal() {
         } else {
             dispatch(fetchWallet());
             closeModal();
-        }    
+        }
     };
 
     return (
