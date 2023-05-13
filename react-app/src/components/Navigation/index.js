@@ -3,6 +3,7 @@ import { logout } from "../../store/session";
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import StockSearch from '../Search';
 import { Redirect, useHistory } from "react-router-dom";
 import './Navigation.css';
 
@@ -35,12 +36,7 @@ function Navigation({ isLoaded }) {
 				{!sessionUser || (
 					<>
 						<button onClick={handleLogout}>Log Out</button>
-						<label>
-							<input
-								placeholder='search'
-								type='text'
-							/>
-						</label>
+						<StockSearch />
 					</>
 				)}
 			</div>
