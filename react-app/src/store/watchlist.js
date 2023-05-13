@@ -64,7 +64,7 @@ export const destroyWatchlist = (id) => async (dispatch) => {
    });
  
    if (response.ok) {
-     dispatch(deleteWatchlist(id));
+     dispatch(deleteWatchlist({id:id}));
    }
  };
 

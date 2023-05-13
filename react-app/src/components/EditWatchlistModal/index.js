@@ -43,6 +43,16 @@ function EditWatchlistModal({ watchlistId }) {
          name,
          stock_ids: selectStockId
       }
+      if (name !== watchlist.name && selectStockId.sort().join(',') === watchlist.stock_ids.sort().join(',')) {
+         const updateNameData = {
+           user_id: user.id,
+           name,
+           action: 'add',
+           stock_ids: watchlist.stock_ids
+         }
+         await dispatch(editWatchlist(watchlist.id, updateNameData))
+       }
+     
 
       console.log('selectStockId:', selectStockId);
       console.log('watchlist.stock_ids:', watchlist.stock_ids);
@@ -93,7 +103,7 @@ function EditWatchlistModal({ watchlistId }) {
             Watchlist Name:
             <input type="text"
                value={name}
-               onChange={(e) => setName(e.target.value)} required />
+               onChange={(e) => setName(e.target.value)} />
          </label>
          {Object.values(allStocks).map(stock => (
             <div key={stock.id} className="stockSelect">

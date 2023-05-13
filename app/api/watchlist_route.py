@@ -64,14 +64,18 @@ def update_watchlist_stocks(id):
      data = request.get_json()
      action = data.get('action')
      stock_ids = data.get('stock_ids')
+    
+     new_name = data.get('name')
      print(data,'@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
 
      watchlist = Watchlist.query.get(id)
      if not watchlist:
         return {"message": "Watchlist not found"}, 404
      
-     if stock_ids is None:
-        return {"message": "No stock IDs provided"}, 400
+     if new_name: 
+         watchlist.name = new_name
+     
+     
 
     #  stock = Stock.query.get(stock_ids)
     #  if not stock:
@@ -86,7 +90,9 @@ def update_watchlist_stocks(id):
                  errors.append(f"Stock with id {stock_id} not found")
                  continue
              
-             watchlist_stock = WatchlistStock.query.filter_by(watchlist_id=id, stock_id=stock_id)
+             
+             
+             watchlist_stock = WatchlistStock.query.filter_by(watchlist_id=id, stock_id=stock_id).first()
              if watchlist_stock:
                 errors.append(f"Stock with id {stock_id} already in watchlist")
                 continue 
@@ -110,12 +116,11 @@ def update_watchlist_stocks(id):
              db.session.delete(watchlist_stock)
              
            
-     else:
-        return {"message": "Invalid action"}, 400
+     
 
      db.session.commit()
      if errors: 
-         return{'message': 'There were some errors processing the request', 'errors': errors}, 400
+         return{'message': 'There were some errors processing the request', 'errors': errors}
 
      updated_watchlist = Watchlist.query.get(id)
      return updated_watchlist.to_watchlist_dict(), 200
