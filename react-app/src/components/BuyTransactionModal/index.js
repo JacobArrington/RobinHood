@@ -24,7 +24,7 @@ function PostBuyTransaction({stock}) {
         const transactionData = {
             stock_id: stock.id,
             user_id: user.id,
-            portfolio: portfolio.id,
+            portfolio_id: portfolio.id,
             transaction_type: transactionType,
             total_shares: totalShares,
             total_price: totalPrice

@@ -1,5 +1,5 @@
-const GET_PORTFOLIO = "stock/GET_PORTFOLIO"
-const UPDATE_PORTFOLIO = "stock/UPDATE_PORTFOLIO"
+const GET_PORTFOLIO = "portfolio/GET_PORTFOLIO"
+const UPDATE_PORTFOLIO = "portfolio/UPDATE_PORTFOLIO"
 
 const getPortfolio = (portfolio) => ({
     type: GET_PORTFOLIO,

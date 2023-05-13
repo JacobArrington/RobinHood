@@ -7,20 +7,21 @@ transaction_route = Blueprint('transactions',__name__)
 
 # Get all transactions
 @transaction_route.route('', methods=['GET'])
-
+@login_required
 def get_transactions():
+    print(current_user.id, "!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@!@@!@!@!@")
     transactions = Transaction.query.filter_by(user_id=current_user.id)
     return jsonify([transaction.to_transaction_dict() for transaction in transactions])
 
 # Create a new transaction
 @transaction_route.route('', methods=['POST'])
-
+@login_required
 def create_transaction():
     data = request.get_json()
     transaction = Transaction(
         stock_id=data['stock_id'],
         user_id=data['user_id'],
-        # portfolio_id=data['portfolio_id']
+        portfolio_id=data['portfolio_id'],
         transaction_type=data['transaction_type'],
         total_shares=data['total_shares'],
         total_price=data['total_price']
