@@ -18,21 +18,38 @@ const Transaction = () => {
         dispatch(fetchTransaction())
     }, [dispatch])
 
+    const userTransactions = Object.values(allTransactions).filter(
+      (transaction) => transaction.user_id === userId
+    );
 
+    // return (
+    //     <>
+    //      {Object.values(allTransactions).map((transaction) => (
+    //        <div key={transaction.id}>
+    //          <p>{transaction.stock_id}</p>
+    //          <p>{transaction.user_id}</p>
+    //          <p>{transaction.transaction_type}</p>
+    //          <p>{transaction.createdAt}</p>
+    //        </div>
+    //      ))}
+    //    </>
+    // )
 
     return (
-        <>
-         {Object.values(allTransactions).map((transaction) => (
-           <div key={transaction.id}>
-             <p>{transaction.stock_id}</p>
-             <p>{transaction.user_id}</p>
-             <p>{transaction.transaction_type}</p>
-             <p>{transaction.createdAt}</p>
-           </div>
-         ))}
-       </>
-    )
-
+    <>
+      {userTransactions.map((transaction) => (
+        <div key={transaction.id}>
+          <p>{transaction.stock_id}</p>
+          <p>{transaction.user_id}</p>
+          <p>{transaction.transaction_type}</p>
+          <p>{transaction.createdAt}</p>
+        </div>
+      ))}
+    </>
+    );
 }
+
+
+
 
 export default Transaction
