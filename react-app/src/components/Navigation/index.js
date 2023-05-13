@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import { Redirect, useHistory } from "react-router-dom";
+import Icon from '../Logo';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
@@ -17,15 +18,11 @@ function Navigation({ isLoaded }) {
 	const handleLogout = (e) => {
 		e.preventDefault();
 		dispatch(logout()).then(() => history.push('/'));
-		
+
 	};
 
 	return (
 		<ul>
-			{/* <li>
-				<NavLink exact to="/">Home</NavLink>
-			</li> */}
-
 			{isLoaded && (
 				<div>
 					<ProfileButton user={sessionUser} />

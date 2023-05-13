@@ -15,23 +15,15 @@ function LandingPage() {
 
    if (sessionUser) return <Redirect to="/portfolio" />;
 
-   // const demoSubmit = () => {
-   //    setEmail("demo@aa.io");
-   //    setPassword("password");
-   //    console.log(email, password)
-   //    dispatch(login( email, password ));
-   // }
-
    const demoSubmit = () => {
       dispatch(demoLogin())
    }
 
    return (
       <div className="welcome">
-         <h1 className="fade-in-text">AppExchange</h1>
-         <i className="fa fa-solid fa-feather fa-bounce" onClick={demoSubmit}></i>
-         {/* <i className="fa fa-solid fa-feather fa-beat-fade"></i> */}
-         {/* <i className="fa fa-solid fa-feather fa-2xl"></i> */}
+         <h1 className="fade-in">AppExchange</h1>
+         {/* <i className="fa fa-solid fa-feather fa-bounce" onClick={demoSubmit}></i> */}
+         <img className="logo" src={"https://res.cloudinary.com/dip4w3xmy/image/upload/v1684002074/robinhood-icon-logo-ACF2820914-seeklogo.com_nvgpa6.png"} onClick={demoSubmit} />
       </div>
    )
 }
