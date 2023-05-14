@@ -31,6 +31,7 @@ export const makeTransaction = (transaction) => async (dispatch) => {
     if (response.ok) {
         const transaction = await response.json()
         dispatch(addTransaction(transaction))
+        dispatch(fetchShares())
     }
 }
 
