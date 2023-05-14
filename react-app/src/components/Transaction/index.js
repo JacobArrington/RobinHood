@@ -17,7 +17,7 @@ const Transaction = () => {
 
     useEffect(()=> {
         dispatch(fetchTransaction())
-        dispatch(fetchShares())
+        //dispatch(fetchShares())
     }, [dispatch])
 
     const userTransactions = Object.values(allTransactions).filter(
