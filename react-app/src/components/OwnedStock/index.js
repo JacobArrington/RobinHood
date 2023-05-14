@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTransaction } from "../../store/transaction";
 import { fetchShares } from "../../store/shares";
 import { fetchStocks } from "../../store/stock";
-
+// this means nothing 
 const OwnedStock = () => {
     const dispatch = useDispatch()
     const userId = useSelector((state) => state.session.user.id)
