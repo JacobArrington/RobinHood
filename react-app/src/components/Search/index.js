@@ -49,6 +49,7 @@ export default function StockSearch() {
                     className="searchField"
                     value={searchInput}
                     onChange={handleChange}
+                    onClick={handleChange}
 
                 />
                 <OpenModalButton
