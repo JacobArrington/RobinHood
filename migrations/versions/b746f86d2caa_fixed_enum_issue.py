@@ -1,8 +1,8 @@
-"""redo on dev
+"""fixed enum issue
 
-Revision ID: 70fed479f82d
+Revision ID: b746f86d2caa
 Revises: 
-Create Date: 2023-05-13 22:47:52.077818
+Create Date: 2023-05-14 10:54:03.502455
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '70fed479f82d'
+revision = 'b746f86d2caa'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -52,7 +52,7 @@ def upgrade():
     op.create_table('wallet',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('account_type', sa.Enum('checking', 'savings', 'saving', name='account_type_enum'), nullable=True),
+    sa.Column('account_type', sa.Enum('checking', 'savings', name='account_type_enum'), nullable=True),
     sa.Column('account_num', sa.Integer(), nullable=False),
     sa.Column('routing_num', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.Date(), nullable=True),
