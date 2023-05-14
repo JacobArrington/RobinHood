@@ -1,8 +1,8 @@
-"""fixed enum issue
+"""redo enum
 
-Revision ID: b746f86d2caa
+Revision ID: 5551ee8d399f
 Revises: 
-Create Date: 2023-05-14 10:54:03.502455
+Create Date: 2023-05-14 11:09:35.669770
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b746f86d2caa'
+revision = '5551ee8d399f'
 down_revision = None
 branch_labels = None
 depends_on = None
