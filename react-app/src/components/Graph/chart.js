@@ -118,7 +118,7 @@ const StockChart = ({ stockHistory, timeframe, ticker, stock }) => {
   return (
     <div>
       <h3>{ticker}</h3>
-      <ResponsiveContainer width='80%' height={750}>
+      <ResponsiveContainer width='95%' height={425}>
         <LineChart
           width={1200}
           height={600}

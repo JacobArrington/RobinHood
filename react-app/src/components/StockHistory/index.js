@@ -81,7 +81,7 @@ const StockHistory = () => {
         <div className="StockHistory-list">
           {Object.values(allStocks).map(stock => (
             <div key={stock.id} onClick={() => handleStockClick(stock.id)}>
-              {stock.name}
+              {/* {stock.name} */}
             </div>
           ))}
         </div>

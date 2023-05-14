@@ -14,7 +14,8 @@ export default function StockSearch() {
     const [searchResults, setSearchResults] = useState([]);
     const [selectedStockId, setSelectedStockId] = useState(null);
     const [timeframe, setTimeFrame] = useState('monthly')
-
+    const [showModal, setShowModal] = useState(false);
+    const { openModal } = useModal();
     useEffect(() => {
         dispatch(fetchStocks)
     }, [dispatch])
@@ -34,7 +35,14 @@ export default function StockSearch() {
     const handleStockSelect = (stockId) => {
         setSelectedStockId(stockId);
         dispatch(fetchStockHistory(stockId));
+        setShowModal(false)
       };
+    
+      const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            setShowModal(true);
+        }
+    }
 
     const handleTimeframeChange = (e) => {
         setTimeFrame(e.target.value)
@@ -50,12 +58,10 @@ export default function StockSearch() {
                     value={searchInput}
                     onChange={handleChange}
                     onClick={handleChange}
+                    onKeyDown={handleKeyDown}
 
                 />
-                <OpenModalButton
-        modalComponent={<SearchResModal searchResults={searchResults} onStockSelect={handleStockSelect} />}
-        buttonText="Search"
-      />
+          {showModal && <SearchResModal searchResults={searchResults} onStockSelect={handleStockSelect} />}
       </div>
             </div>
             <select value={timeframe} onChange={handleTimeframeChange}>
@@ -71,6 +77,7 @@ export default function StockSearch() {
                     stockHistory={allStocks[selectedStockId].stockHistory}
                     timeframe={timeframe} ticker={allStocks[selectedStockId].ticker}
                     stock={allStocks[selectedStockId]} />)}
+                    
         </>
     )
 }
