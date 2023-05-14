@@ -36,10 +36,8 @@ const Wallet = () => {
     useEffect(() => {
         dispatch(fetchWallet()).then(() => setIsLoaded(true));
     }, [dispatch]);
-    
-    if (isLoaded && Object.keys(allWallets).length === 0) {
-      return <p>No wallet found</p>;
-  }
+
+  
 
     const isWalletsEmpty = Object.keys(allWallets).length === 0;
 
@@ -76,7 +74,7 @@ const Wallet = () => {
             </>
           ) : (
             <div>
-            <p>Marlon is Gay</p>
+            <p>no wallet found please add one</p>
             <OpenModalButton
               buttonText="Create Wallet"
               modalComponent={
