@@ -1,8 +1,8 @@
-"""trying again
+"""dsfds
 
-Revision ID: 7bb16de27be0
+Revision ID: 7487855a6057
 Revises: 
-Create Date: 2023-05-12 13:17:16.315988
+Create Date: 2023-05-13 22:10:21.614440
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7bb16de27be0'
+revision = '7487855a6057'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -82,10 +82,10 @@ def upgrade():
     )
     op.create_table('watchlist_stocks',
     sa.Column('watchlist_id', sa.Integer(), nullable=False),
-    sa.Column('stock_id', sa.Integer(), nullable=True),
+    sa.Column('stock_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['stock_id'], ['stocks.id'], ),
     sa.ForeignKeyConstraint(['watchlist_id'], ['watchlist.id'], ),
-    sa.PrimaryKeyConstraint('watchlist_id')
+    sa.PrimaryKeyConstraint('watchlist_id', 'stock_id')
     )
     op.create_table('shares',
     sa.Column('id', sa.Integer(), nullable=False),
