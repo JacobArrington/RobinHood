@@ -10,8 +10,8 @@ def seed_watchlists():
     db.session.add(user1_watchlist2)
     db.session.commit()
 
-    tech_stock_ids = [1]  # Add stock IDs for the "Tech Stocks" watchlist
-    energy_stock_ids = [4]  # Add stock IDs for the "Energy Stocks" watchlist
+    tech_stock_ids = [1, 2, 3]  # Add stock IDs for the "Tech Stocks" watchlist
+    energy_stock_ids = [4, 5, 6]  # Add stock IDs for the "Energy Stocks" watchlist
 
     tech_stocks = Stock.query.filter(Stock.id.in_(tech_stock_ids)).all()
     energy_stocks = Stock.query.filter(Stock.id.in_(energy_stock_ids)).all()
