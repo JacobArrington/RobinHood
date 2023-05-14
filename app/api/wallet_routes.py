@@ -12,7 +12,10 @@ wallet_routes = Blueprint('wallet', __name__)
 def handle_wallet():
     if request.method == 'GET':
         wallet = Wallet.query.filter_by(user_id=current_user.id).first()
-        return wallet.to_wallet_dict()
+        if wallet is None:
+            return {}
+        else:
+            return wallet.to_wallet_dict()
 
     if request.method == 'POST':
         data = request.json
