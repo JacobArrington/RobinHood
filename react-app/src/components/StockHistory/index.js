@@ -36,11 +36,11 @@ const StockHistory = () => {
                 <option value="yearly">Yearly</option>
                 <option value="full history">Full History</option>
             </select>
-        {Object.values(allStocks).map(stock =>(
+        {/* {Object.values(allStocks).map(stock =>(
             <div key ={stock.id} onClick={() => handleStockClick(stock.id)}>
                 {stock.name}
             </div>
-        ))}
+        ))} */}
         {selectedStockId && (
         <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe} ticker={allStocks[selectedStockId].ticker} stock={allStocks[selectedStockId]}/>)}
     </div>);

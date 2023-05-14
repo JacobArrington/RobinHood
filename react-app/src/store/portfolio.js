@@ -34,6 +34,7 @@ export const changeBuyingPower = (portfolio_id, newBuyingPower) => async (dispat
     if (response.ok){
         const portfolio = await response.json()
         dispatch(subtractBuyingPower(portfolio.buyingPower))
+        dispatch(addToBuyingPower(portfolio.buyingPower))
     }
 }
 

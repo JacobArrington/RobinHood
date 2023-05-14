@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 def seed_portfolio():
    portfolio_1 = Portfolio(
-      user_id = 1, wallet_id = 1, buyingPower=200
+      user_id = 1, wallet_id = 1, buyingPower=750000
    )
    portfolio_2 = Portfolio(
       user_id = 2, wallet_id = 2, buyingPower=30

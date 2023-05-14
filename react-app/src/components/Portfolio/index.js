@@ -18,6 +18,7 @@ const Portfolio = () => {
         <>
         <p>{portfolioState?.portfolio?.user_id}</p>
         <p>{portfolioState?.portfolio?.wallet}</p>
+        <p>{portfolioState?.portfolio?.buyingPower}</p>
        </>
     )
 }
