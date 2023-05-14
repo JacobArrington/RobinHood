@@ -52,7 +52,8 @@ export default function transactionReducer(state = initialState, action){
         case GET_TRANSACTIONS:{
             newState={...state}
             action.transactions.forEach(transaction => {
-                newState[transaction.stock_id] = transaction
+                newState[transaction.id] = transaction
+
 
                 })
                 
@@ -62,7 +63,7 @@ export default function transactionReducer(state = initialState, action){
         case ADD_TRANSACTION: {
             newState = {...state}
             newState[action.transaction.id]=action.transaction
-            return {...newState}
+            return newState
         }
         default:
             return state
