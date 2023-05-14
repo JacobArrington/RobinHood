@@ -32,40 +32,46 @@ const OwnedStock = () => {
         (transaction) => transaction.user_id === userId
     );
    
-
     const userOwnedStocks = userTransactions.reduce((acc, transaction) => {
         const stock = stocks[transaction.stock_id];
-        if (!acc[transaction.stock_id]) {
-            acc[transaction.stock_id] = {
-                stockName: stocks[transaction.stock_id].name,
-                totalShares: 0,
-                totalValue: 0
-            }
-        }
-       
-
         const shares = Number(transaction.total_shares);
+        let newTotalShares = 0;
         if (transaction.transaction_type === 'buy') {
-            acc[transaction.stock_id].totalShares += shares;
-            acc[transaction.stock_id].totalValue += shares * stock.price;
+            newTotalShares = (acc[transaction.stock_id]?.totalShares || 0) + shares;
         } else if (transaction.transaction_type === 'sell') {
-            acc[transaction.stock_id].totalShares -= shares;
-            acc[transaction.stock_id].totalValue -= shares * stock.price;
+            newTotalShares = (acc[transaction.stock_id]?.totalShares || 0) - shares;
         }
-       
+    
+        if (newTotalShares > 0) {
+            if (!acc[transaction.stock_id]) {
+                acc[transaction.stock_id] = {
+                    stockName: stocks[transaction.stock_id].name,
+                    totalShares: 0,
+                    totalValue: 0
+                }
+            }
+            acc[transaction.stock_id].totalShares = newTotalShares;
+            acc[transaction.stock_id].totalValue = newTotalShares * stock.price;
+        } else {
+            delete acc[transaction.stock_id]; // Remove the stock from the object if its share count is 0
+        }
+    
         return acc;
-
-    }, {})
+    }, {});
     console.log(userOwnedStocks)
     return (
         <>
-            {Object.values(userOwnedStocks).map((stock) => (
-                <div key={stock.stockName}>
-                    <h3>Stock Name: {stock.stockName}</h3>
-                    <p>Total Shares Owned: {stock.totalShares}</p>
-                    <p>Total Value: ${stock.totalValue.toFixed(2)}</p>
-                </div>
-            ))}
+            {Object.values(userOwnedStocks).map((stock) => {
+                if (stock.totalShares > 0) {
+                    return (
+                        <div key={stock.stockName}>
+                            <h3>Stock Name: {stock.stockName}</h3>
+                            <p>Total Shares Owned: {stock.totalShares}</p>
+                            <p>Total Value: ${stock.totalValue.toFixed(2)}</p>
+                        </div>
+                    )
+                }
+})}
         </>
     );
 }

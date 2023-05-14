@@ -1,25 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-import {  fetchTransaction, makeTransaction } from "../../store/transaction";
-import "./SellTransactionModal.css";
+import { fetchTransaction, makeTransaction } from "../../store/transaction";
 import { changeBuyingPower } from "../../store/portfolio";
 
-
-function PostSellTransaction({stock}) {
+function PostSellTransaction({ stock }) {
     const dispatch = useDispatch();
-    const user = useSelector((state) => (state.session.user));
-    const portfolio = useSelector((state)=> (state.portfolioReducer.portfolio))
+    const user = useSelector((state) => state.session.user);
+    const portfolio = useSelector((state) => state.portfolioReducer.portfolio);
     const [transactionType, setTransactionType] = useState('sell');
-    const [totalShares, setTotalShares] = useState(0); //this state would key into portfolio to grab the number of shares the user has, specified by stock_id
+    const [totalShares, setTotalShares] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
-    const buyingPower = useSelector((state) => (state.portfolioReducer.portfolio.buyingPower))
+    const buyingPower = useSelector((state) => state.portfolioReducer.portfolio.buyingPower)
+
+    const allTransactions = useSelector((state) => state.transactionReducer);
+    const stocks = useSelector((state) => state.stocksReducer);
+
+    const userTransactions = useMemo(() => {
+        return Object.values(allTransactions).filter(transaction => transaction.user_id === user.id);
+    }, [allTransactions, user.id]);
+
+    const userOwnedStocks = useMemo(() => {
+        return userTransactions.reduce((acc, transaction) => {
+            const stock = stocks[transaction.stock_id];
+            if (!acc[stock.id]) {
+                acc[stock.id] = {
+                    totalShares: transaction.total_shares,
+                    stock: stock,
+                };
+            } else {
+                acc[stock.id].totalShares += transaction.total_shares;
+            }
+            return acc;
+        }, {});
+    }, [userTransactions, stocks]);
+
+    const ownedShares = userOwnedStocks[stock.id]?.totalShares || 0;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (totalShares > ownedShares) {
+            setErrors(["You cannot sell more shares than you own."]);
+            return;
+        }
 
         const transactionData = {
             stock_id: stock.id,
@@ -53,16 +80,20 @@ function PostSellTransaction({stock}) {
                 <input
                     type="number"
                     value={totalShares}
-                    onChange={(e) => setTotalShares(parseInt(e.target.value), setTotalPrice(e.target.value * stock.price))}
+                    onChange={(e) => {
+                        const value = parseInt(e.target.value);
+                        setTotalShares(value);
+                        setTotalPrice(value * stock.price);
+                    }}
                 />
             </label>
 
             <label>
-                Total:{totalShares * stock.price}
+                Total: {totalPrice}
             </label>
             <button type="submit">Sell</button>
         </form>
     );
 }
 
-export default PostSellTransaction
+export default PostSellTransaction;
