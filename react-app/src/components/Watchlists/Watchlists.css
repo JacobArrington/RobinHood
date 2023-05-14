@@ -1,4 +1,4 @@
-/* .watchlist-container {
+.watchlist-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -15,7 +15,7 @@
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    width: 280px;
+    width: 180px;
   }
 
   .watchlist-container > div:hover {
@@ -74,4 +74,4 @@
 
   .watchlist-buttons button:hover {
     opacity: 0.8;
-  } */
+  }
