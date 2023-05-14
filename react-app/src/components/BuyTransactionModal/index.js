@@ -47,7 +47,7 @@ function PostBuyTransaction({stock}) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="buyTransactionModal">
             <label>
                 Shares:
                 <input

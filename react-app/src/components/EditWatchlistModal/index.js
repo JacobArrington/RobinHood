@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { fetchWatchlist, editWatchlist } from "../../store/watchlist";
-import "./EditWatchlist.css";
+import "../AddWatchlistModal/AddWatchlist.css";
 
 function EditWatchlistModal({ watchlistId }) {
    const dispatch = useDispatch();
@@ -98,15 +98,16 @@ function EditWatchlistModal({ watchlistId }) {
 
 
    return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="add-watchlist-form">
          <label>
             Watchlist Name:
             <input type="text"
                value={name}
+               className="form-input"
                onChange={(e) => setName(e.target.value)} />
          </label>
          {Object.values(allStocks).map(stock => (
-            <div key={stock.id} className="stockSelect">
+            <div key={stock.id} className="stock-select">
                <input
                   type="checkbox"
                   value={stock.id}

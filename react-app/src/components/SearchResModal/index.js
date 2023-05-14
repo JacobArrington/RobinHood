@@ -36,7 +36,7 @@ export default function SearchResModal({ searchResults, onStockSelect }) {
   return (
     <div className="search-res-modal">
       <div className="search-res-list">
-        {searchResults.slice(0, 10).map((stock) => (
+        {searchResults.map((stock) => (
           <div key={stock.id} onClick={() => handleClick(stock.id)}>
             {stock.name}
           </div>

@@ -1,0 +1,48 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-height: 70vh;
+    overflow-y: scroll;
+  }
+  
+  label {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  input[type="number"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+  }
+  
+  button[type="submit"] {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #0069d9;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0053a3;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .buyTransactionModal {
+    padding: 20px;
+  }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { changeBuyingPower } from "../../store/portfolio";
+import './AddFundsModal.css'
 
 function AddFundsModal() {
     const dispatch = useDispatch()
@@ -29,7 +30,8 @@ function AddFundsModal() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div>
+        <form onSubmit={handleSubmit} className="form-container">
             <label>
                 How much would you like to add to your account?
                 <input
@@ -44,6 +46,7 @@ function AddFundsModal() {
             </label>
             <button type="submit" disabled={totalFunds < 0}>Add funds</button>
         </form>
+        </div>
     );
 }
 

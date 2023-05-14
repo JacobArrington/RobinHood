@@ -15,7 +15,6 @@ function AddWatchlistModal() {
 
    const { closeModal } = useModal();
 
-   console.log('line 17<------1------>', allStocks)
    const handleStockSelect = (e) =>{
       const selectId = parseInt(e.target.value);
       if(selectStockId.includes(selectId)){
@@ -42,15 +41,16 @@ function AddWatchlistModal() {
 
 
    return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="add-watchlist-form">
          <label>
             Watchlist Name:
             <input type="text"
                value={name}
+               className="form-input"
                onChange={(e) => setName(e.target.value)} required />
          </label>
          {Object.values(allStocks).map(stock =>(
-            <div key={stock.id} className="stockSelect">
+            <div key={stock.id} className="stock-select">
                <input 
                   type="checkbox"
                   value={stock.id}
