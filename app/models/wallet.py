@@ -12,7 +12,7 @@ class Wallet(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-    account_type = db.Column(db.Enum('checking','savings','saving', name ='account_type_enum'))
+    account_type = db.Column(db.Enum('checking','savings', name ='account_type_enum'))
     account_num = db.Column(db.Integer, nullable=False)
     routing_num = db.Column(db.Integer, nullable=False)
     # cash = db.Column(db.Float, nullable=False)
