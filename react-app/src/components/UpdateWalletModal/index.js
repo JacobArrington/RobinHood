@@ -7,8 +7,8 @@ import "./UpdateWalletModal.css";
 function UpdateWalletModal({ wallet, fetchUpdateWallet }) {
     const dispatch = useDispatch();
     const [accountType, setAccountType] = useState(wallet.account_type);
-    const [accountNum, setAccountNum] = useState(wallet.account_num);
-    const [routingNum, setRoutingNum] = useState(wallet.routing_num);
+    const [accountNum, setAccountNum] = useState(wallet.account_num );
+    const [routingNum, setRoutingNum] = useState(wallet.routing_num );
     const [cash, setCash] = useState(wallet.cash);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
@@ -32,8 +32,8 @@ function UpdateWalletModal({ wallet, fetchUpdateWallet }) {
     
         const updatedWalletData = {
             account_type: accountType,
-            account_num: accountNum,
-            routing_num: routingNum,
+            account_num: parseInt(accountNum),
+            routing_num: parseInt(routingNum),
         };
         await dispatch(updateUserWallet(wallet.id, updatedWalletData));
         fetchUpdateWallet(); // Call the function passed from the parent component to refresh the wallet data.
@@ -54,8 +54,9 @@ function UpdateWalletModal({ wallet, fetchUpdateWallet }) {
                 Account Number:
                 <input
                     type="text"
+                   // defaultValue={'00000000000'}
                     value={accountNum}
-                    onChange={(e) => setAccountNum(parseInt(e.target.value))}
+                    onChange={(e) => setAccountNum(e.target.value)}
                 />
             </label>
 
@@ -63,8 +64,9 @@ function UpdateWalletModal({ wallet, fetchUpdateWallet }) {
                 Routing Number:
                 <input
                     type="text"
+                    //defaultValue={'00000000000'}
                     value={routingNum}
-                    onChange={(e) => setRoutingNum(parseInt(e.target.value))}
+                    onChange={(e) => setRoutingNum(e.target.value)} 
                 />
             </label>
             <button type="submit">Update Wallet</button>

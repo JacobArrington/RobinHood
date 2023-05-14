@@ -29,20 +29,26 @@ function PostWalletModal() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!accountType || !accountNum || !routingNum) {
+            setErrors(["Please fill out all required fields."]);
+            return;
+        }
     
         const WalletData = {
             
             account_type: accountType,
-            account_num: accountNum,
-            routing_num: routingNum,
+            account_num: parseInt(accountNum),
+            routing_num: parseInt(routingNum),
         };
         const Success = await dispatch(postWallet(WalletData));
         if (Success) {
             setErrors(Success);
         } else {
-            dispatch(fetchWallet());
+            setErrors([]);
             closeModal();
-        }    
+        } 
+        dispatch(fetchWallet());   
     };
 
     return (
@@ -59,8 +65,9 @@ function PostWalletModal() {
                 Account Number:
                 <input
                     type="text"
+                   // defaultValue={'00000000000'}
                     value={accountNum}
-                    onChange={(e) => setAccountNum(parseInt(e.target.value))}
+                    onChange={(e) => setAccountNum(e.target.value)}
                 />
             </label>
 
@@ -68,8 +75,9 @@ function PostWalletModal() {
                 Routing Number:
                 <input
                     type="text"
+                   // defaultValue={'00000000000'}
                     value={routingNum}
-                    onChange={(e) => setRoutingNum(parseInt(e.target.value))}
+                    onChange={(e) => setRoutingNum(e.target.value)} 
                 />
             </label>
             <button type="submit">Update Wallet</button>

@@ -37,6 +37,8 @@ const Wallet = () => {
         dispatch(fetchWallet()).then(() => setIsLoaded(true));
     }, [dispatch]);
 
+  
+
     const isWalletsEmpty = Object.keys(allWallets).length === 0;
 
     return (
@@ -71,6 +73,7 @@ const Wallet = () => {
             </>
           ) : (
             <div>
+            <p>no wallet found please add one</p>
             <OpenModalButton
               buttonText="Create Wallet"
               modalComponent={
