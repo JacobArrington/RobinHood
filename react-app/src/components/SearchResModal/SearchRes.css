@@ -1,0 +1,11 @@
+.search-res-modal {
+    max-height: 300px;
+    overflow-y: scroll;
+  }
+
+  .search-res-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+  }
