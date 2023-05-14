@@ -5,7 +5,7 @@ import { fetchStocks, fetchStockHistory } from "../../store/stock";
 import SearchResModal from "../SearchResModal";
 import OpenModalButton from "../OpenModalButton";
 import StockChart from "../Graph/chart";
-
+// abc
 
 export default function StockSearch() {
     const dispatch = useDispatch()
