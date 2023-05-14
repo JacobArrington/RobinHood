@@ -53,6 +53,7 @@ export const editWatchlist =(id, watchlistData) => async(dispatch) =>{
    })
    if(response.ok){
       const updatedWatchlists = await response.json();
+      console.log('updatedWatchlists!!!!!!!!!!!:', updatedWatchlists);
       dispatch(updateWatchlist(updatedWatchlists))
    }
 }  
@@ -63,7 +64,7 @@ export const destroyWatchlist = (id) => async (dispatch) => {
    });
  
    if (response.ok) {
-     dispatch(deleteWatchlist(id));
+     dispatch(deleteWatchlist({id:id}));
    }
  };
 

@@ -12,6 +12,7 @@ function EditWatchlistModal({ watchlistId }) {
 
    const [name, setName] = useState('');
    const [selectStockId, setSelectStockId] = useState([]);
+   const [touchedStockIds, setTouchedStockIds] = useState([]);
 
    const { closeModal } = useModal();
 
@@ -20,59 +21,81 @@ function EditWatchlistModal({ watchlistId }) {
          setName(watchlist.name)
          setSelectStockId(watchlist.stock_ids || [])
       }
-   }, [watchlist,watchlist.name, watchlist.stock_ids])
+   }, [watchlist, watchlist.name, watchlist.stock_ids])
 
-   const handleStockSelect = (e) =>{
-      const selectedId = parseInt(e.target.value);
-      setSelectStockId(prev => [...prev, selectedId]);
-   }
-
-   const handleStockRemove = (e) =>{
-      const selectedId = parseInt(e.target.value);
-      setSelectStockId(prev => prev.filter(id => id !== selectedId));
-   }
+   const handleCheckboxChange = (e) => {
+      const selectId = parseInt(e.target.value);
+      const isChecked = e.target.checked;
+    
+      setSelectStockId((prev) => {
+        if (isChecked) {
+          return [...prev, selectId];
+        } else {
+          return prev.filter((id) => id !== selectId);
+        }
+      });
+    };
 
    const handleSubmit = async (e) => {
       e.preventDefault();
       const watchlistData = {
-          user_id: user.id,
-          name,
-          stock_ids: selectStockId
+         user_id: user.id,
+         name,
+         stock_ids: selectStockId
+      }
+      if (name !== watchlist.name && selectStockId.sort().join(',') === watchlist.stock_ids.sort().join(',')) {
+         const updateNameData = {
+           user_id: user.id,
+           name,
+           action: 'add',
+           stock_ids: watchlist.stock_ids
+         }
+         await dispatch(editWatchlist(watchlist.id, updateNameData))
+       }
+     
+
+      console.log('selectStockId:', selectStockId);
+      console.log('watchlist.stock_ids:', watchlist.stock_ids);
+
+
+      // const stocksToAdd = watchlist && watchlist.stock_ids
+      // ? selectStockId.filter((id) => !watchlist.stock_ids.includes(id))
+      // : [];
+      // const stocksToRemove = watchlist && watchlist.stock_ids
+      // ? touchedStockIds.filter((id) => !selectStockId.includes(id))
+      // : [];
+      const stocksToAdd = selectStockId.filter((id) => !watchlist.stock_ids.includes(id));
+      const stocksToRemove = watchlist.stock_ids.filter((id) => !selectStockId.includes(id))
+      console.log('stocksToAdd:', stocksToAdd);
+      console.log('stocksToRemove:', stocksToRemove);
+
+      if (stocksToAdd.length > 0) {
+         const addData = {
+            user_id: user.id,
+            name,
+            action: 'add',
+            stock_ids: stocksToAdd
+
+         }
+         await dispatch(editWatchlist(watchlist.id, addData))
       }
 
-      console.log('selectStockId:', selectStockId); 
-    console.log('watchlist.stock_ids:', watchlist.stock_ids); 
-
-  
-      const stocksToAdd = watchlist && watchlist.stock_ids
-      ? selectStockId.filter((id) => !watchlist.stock_ids.includes(id))
-      : [];
-      const stocksToRemove = watchlist && watchlist.stock_ids
-      ? watchlist.stock_ids.filter((id) => !selectStockId.includes(id))
-      : [];
-
-    console.log('stocksToAdd:', stocksToAdd); 
-    console.log('stocksToRemove:', stocksToRemove); 
-
-  
-      for(const stock_id of stocksToAdd){
-          watchlistData.action ='add'
-          watchlistData.stock_id = stock_id
-          console.log("Adding stock, watchlist:", watchlist) 
-          await dispatch(editWatchlist(watchlist.id,watchlistData))
-          await dispatch(fetchWatchlist())
+      if (stocksToRemove.length > 0) {
+         const removeData = {
+            user_id: user.id,
+            name,
+            action: 'remove',
+            stock_ids: stocksToRemove
+         }
+         await dispatch(editWatchlist(watchlist.id, removeData))
       }
-      for(const stock_id of stocksToRemove){
-          watchlistData.action ='remove'
-          watchlistData.stock_id = stock_id
-          await dispatch(editWatchlist(watchlist.id,watchlistData))
-          await dispatch(fetchWatchlist())
-      }
-  
+      await dispatch(fetchWatchlist());
       setName("")
       setSelectStockId([])
       closeModal()
-  };
+   };
+
+
 
    return (
       <form onSubmit={handleSubmit}>
@@ -80,16 +103,16 @@ function EditWatchlistModal({ watchlistId }) {
             Watchlist Name:
             <input type="text"
                value={name}
-               onChange={(e) => setName(e.target.value)} required />
+               onChange={(e) => setName(e.target.value)} />
          </label>
-         {Object.values(allStocks).map(stock =>(
+         {Object.values(allStocks).map(stock => (
             <div key={stock.id} className="stockSelect">
-               <input 
+               <input
                   type="checkbox"
                   value={stock.id}
                   checked={selectStockId.includes(stock.id)}
-                  onChange={selectStockId.includes(stock.id) ? handleStockRemove : handleStockSelect}
-               
+                  onChange={handleCheckboxChange}
+
                />
                <label>{stock.name}</label>
             </div>
@@ -98,5 +121,6 @@ function EditWatchlistModal({ watchlistId }) {
       </form>
    )
 }
+
 
 export default EditWatchlistModal;

@@ -20,8 +20,7 @@ const Stock = () => {
     }, [dispatch]);
 
     return (
-        <div>
-
+        <div className="stock-container">
             {Object.values(allStocks).map(stock => (
                 <div key={stock.id} onClick={() => setStock(stock)}>
                 </div>

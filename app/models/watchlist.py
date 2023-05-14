@@ -24,6 +24,7 @@ class Watchlist(db.Model, UserMixin):
             'id': self.id,
             'user_id': self.user_id,
             'name': self.name, 
+            'stocks': [watchlist_stock.stock.to_stock_dict() for watchlist_stock in self.watchlist_stocks],
             "stock_ids": [watchlist_stock.stock_id for watchlist_stock in self.watchlist_stocks],
             'created_at': self.created_at,
             'updated_at': self.updated_at
