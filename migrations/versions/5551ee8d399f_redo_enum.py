@@ -111,7 +111,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('watchlist_id', 'stock_id')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE shares SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE watchlist_stocks SET SCHEMA {SCHEMA};") 
 
     op.create_table('shares',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -123,7 +123,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['stock_id'], ['stocks.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-
+    if environment == "production":
+        op.execute(f"ALTER TABLE shares SET SCHEMA {SCHEMA};")
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('stock_id', sa.Integer(), nullable=True),
