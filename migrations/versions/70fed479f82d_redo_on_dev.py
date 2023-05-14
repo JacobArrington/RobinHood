@@ -1,8 +1,8 @@
-"""dsfds
+"""redo on dev
 
-Revision ID: 7487855a6057
+Revision ID: 70fed479f82d
 Revises: 
-Create Date: 2023-05-13 22:10:21.614440
+Create Date: 2023-05-13 22:47:52.077818
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '7487855a6057'
+revision = '70fed479f82d'
 down_revision = None
 branch_labels = None
 depends_on = None
