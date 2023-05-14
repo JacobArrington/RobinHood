@@ -75,7 +75,6 @@ const StockHistory = () => {
     setTimeFrame(e.target.value);
   };
 
-<<<<<<< HEAD
   return (
     <div className="StockHistory-container">
       <div className="StockHistory-list-container">
@@ -110,26 +109,24 @@ const StockHistory = () => {
     </div>
   );
 };
-=======
-    return (
-     <div>
-         <select value={timeframe} onChange={handleTimeframeChange}>
-                <option value="daily">Daily</option>
-                <option value="weekly">Weekly</option>
-                <option value="monthly">Monthly</option>
-                <option value="quarterly">Quarterly</option>
-                <option value="yearly">Yearly</option>
-                <option value="full history">Full History</option>
-            </select>
-        {/* {Object.values(allStocks).map(stock =>(
-            <div key ={stock.id} onClick={() => handleStockClick(stock.id)}>
-                {stock.name}
-            </div>
-        ))} */}
-        {selectedStockId && (
-        <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe} ticker={allStocks[selectedStockId].ticker} stock={allStocks[selectedStockId]}/>)}
-    </div>);
-}
->>>>>>> dev
+//     return (
+//      <div>
+//          <select value={timeframe} onChange={handleTimeframeChange}>
+//                 <option value="daily">Daily</option>
+//                 <option value="weekly">Weekly</option>
+//                 <option value="monthly">Monthly</option>
+//                 <option value="quarterly">Quarterly</option>
+//                 <option value="yearly">Yearly</option>
+//                 <option value="full history">Full History</option>
+//             </select>
+//         {/* {Object.values(allStocks).map(stock =>(
+//             <div key ={stock.id} onClick={() => handleStockClick(stock.id)}>
+//                 {stock.name}
+//             </div>
+//         ))} */}
+//         {selectedStockId && (
+//         <StockChart stockHistory={allStocks[selectedStockId].stockHistory} timeframe ={timeframe} ticker={allStocks[selectedStockId].ticker} stock={allStocks[selectedStockId]}/>)}
+//     </div>);
+// }
 
 export default StockHistory;
