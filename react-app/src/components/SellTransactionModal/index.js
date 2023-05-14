@@ -60,7 +60,7 @@ function PostSellTransaction({stock}) {
             <label>
                 Total:{totalShares * stock.price}
             </label>
-            <button type="submit">Buy</button>
+            <button type="submit">Sell</button>
         </form>
     );
 }
