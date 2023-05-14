@@ -13,7 +13,7 @@ def handle_wallet():
     if request.method == 'GET':
         wallet = Wallet.query.filter_by(user_id=current_user.id).first()
         if wallet is None:
-            return {}
+            pass
         else:
             return wallet.to_wallet_dict()
 
