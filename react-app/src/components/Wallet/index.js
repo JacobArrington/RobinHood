@@ -44,12 +44,11 @@ const Wallet = () => {
           {!isWalletsEmpty ? (
            
             <>
-             {console.log(allWallets, '!!!!!!!!!!!!!!!!')}
               {Object.values(allWallets).map((wallet) => (
                 <div key={wallet.id}>
-                  <p>{wallet.account_type}</p>
+                  <p>{wallet.account_num}</p>
                   <p>{wallet.routing_num}</p>
-                  <button onClick={() => deleteWallet(wallet.id)}>
+                  <button onClick={() => deleteWallet(wallet.id)} className="delete-button">
                     Delete Wallet
                   </button>
                   <OpenModalButton
@@ -72,7 +71,6 @@ const Wallet = () => {
             </>
           ) : (
             <div>
-            <p>Marlon is Gay</p>
             <OpenModalButton
               buttonText="Create Wallet"
               modalComponent={

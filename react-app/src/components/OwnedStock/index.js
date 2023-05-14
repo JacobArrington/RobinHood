@@ -9,7 +9,6 @@ const OwnedStock = () => {
     const userId = useSelector((state) => state.session.user.id)
     const allTransactions = useSelector((state) => state?.transactionReducer)
     const stocks = useSelector((state) => state.stocksReducer)
-    console.log(allTransactions,'ALL TRANS')
 
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 

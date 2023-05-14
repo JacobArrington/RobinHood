@@ -16,9 +16,7 @@ const Portfolio = () => {
 
     return (
         <>
-        <p>{portfolioState?.portfolio?.user_id}</p>
-        <p>{portfolioState?.portfolio?.wallet}</p>
-        <p>{portfolioState?.portfolio?.buyingPower}</p>
+        <p>Your current Buying Power is : ${portfolioState?.portfolio?.buyingPower.toFixed(2)}</p>
        </>
     )
 }
