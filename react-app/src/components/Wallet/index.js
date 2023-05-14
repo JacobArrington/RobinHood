@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import UpdateWalletModal from "../UpdateWalletModal"
+import AddFundsModal from "../AddFundsModal"
 import PostWalletModal from "../PostWalletModal";
 import OpenModalButton from "../OpenModalButton";
 import { fetchWallet, destroyWallet, updateUserWallet } from "../../store/wallet";
@@ -58,6 +59,12 @@ const Wallet = () => {
                         wallet={wallet}
                         fetchUpdateWallet={fetchUpdateWallet}
                       />
+                    }
+                  />
+                  <OpenModalButton
+                    buttonText="Add funds"
+                    modalComponent={
+                      <AddFundsModal />
                     }
                   />
                 </div>

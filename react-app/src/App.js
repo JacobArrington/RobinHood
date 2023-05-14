@@ -51,7 +51,7 @@ function App() {
               <Watchlists />
               <Transaction />
               <Portfolio />
-              <OwnedStock />
+              {/* <OwnedStock /> */}
             </>
           </ProtectedRoute>
         </Switch>
