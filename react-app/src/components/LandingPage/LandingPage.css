@@ -32,7 +32,7 @@ body{
 
 .fade-in {
   opacity: 0;
-  animation: fade-in 2.5s ease-in-out forwards;
+  animation: fade-in 3.5s ease-in-out forwards;
 }
 
 @keyframes fade-in {
@@ -48,7 +48,7 @@ body{
 
 .logo {
   opacity: 0;
-  animation: logo-fade-in 2.5s ease-in-out forwards;
+  animation: logo-fade-in 1.5s ease-in-out forwards;
 }
 
 @keyframes logo-fade-in {
