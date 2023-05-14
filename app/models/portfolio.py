@@ -12,7 +12,7 @@ class Portfolio(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    wallet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('wallet.id')), nullable=False)
+    #wallet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('wallet.id')), nullable=False)
     buyingPower = db.Column(db.Float, default = 0, nullable=False)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
@@ -25,7 +25,7 @@ class Portfolio(db.Model, UserMixin):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'wallet': self.wallet_id,
+            #'wallet': self.wallet_id,
             'buyingPower': self.buyingPower,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
