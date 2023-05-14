@@ -46,7 +46,7 @@ function App() {
               <Stock />
               {/* <GetStockById /> */}
               <StockHistory />
-              
+
               <Wallet />
               <Watchlists />
               <Transaction />

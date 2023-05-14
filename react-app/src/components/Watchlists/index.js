@@ -28,7 +28,7 @@ const Watchlists = () => {
    }
 
    return (
-      <div>
+      <div className="watchlist-container">
 
          {Object.values(allWatchlist).map(watchlist => (
             <div key={watchlist.id} onClick={() => {setWatchlist(watchlist); setStocks(watchlist.stocks); }}>
@@ -40,10 +40,10 @@ const Watchlists = () => {
                      <li key={stock.id}>{stock.name}</li>
                   ))}
                </ul>
-               
+
             </div>
          ))}
-        
+
          <OpenModalButton
             buttonText="Create Watchlist"
             modalComponent={
@@ -55,8 +55,8 @@ const Watchlists = () => {
                <OpenModalButton
                   buttonText="Edit Watchlist"
                   modalComponent={
-                     <EditWatchlistModal 
-                     watchlistId={watchlist.id} 
+                     <EditWatchlistModal
+                     watchlistId={watchlist.id}
                      editwatchlist={watchlist} />
                   }
                />
@@ -66,8 +66,8 @@ const Watchlists = () => {
       </div>
    )
 }
-   
-   
+
+
 
 
 export default Watchlists

@@ -1,0 +1,44 @@
+.login-form {
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .login-form h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .login-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
+  .login-form input[type="text"],
+  .login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+  }
+
+  .login-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #0088cc;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .login-form button[type="submit"]:hover {
+    background-color: #006699;
+  }

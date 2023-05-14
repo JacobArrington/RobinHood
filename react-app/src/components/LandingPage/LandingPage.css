@@ -1,6 +1,12 @@
 body{
-    background-color: rgb(222, 204, 204);
+  background-color: rgb(222, 204, 204);
 }
+
+/* .welcome {
+  background-image: url(https://res.cloudinary.com/dip4w3xmy/image/upload/v1684028730/abstract-financial-graph-with-up-trend-line-candlestick-chart-in-stock-market-on-neon-light_slvv8s.jpg);
+  background-size: cover;
+  background-position: center;
+} */
 
 .welcome{
     display: flex;
@@ -32,7 +38,7 @@ body{
 
 .fade-in {
   opacity: 0;
-  animation: fade-in 2.5s ease-in-out forwards;
+  animation: fade-in 3.5s ease-in-out forwards;
 }
 
 @keyframes fade-in {
@@ -48,7 +54,7 @@ body{
 
 .logo {
   opacity: 0;
-  animation: logo-fade-in 2.5s ease-in-out forwards;
+  animation: logo-fade-in 1.5s ease-in-out forwards;
 }
 
 @keyframes logo-fade-in {
@@ -61,6 +67,8 @@ body{
     transform: translateY(0);
   }
 }
+
+
 
 /* .logo {
   background-position: right;

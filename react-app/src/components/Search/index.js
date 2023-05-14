@@ -5,7 +5,7 @@ import { fetchStocks, fetchStockHistory } from "../../store/stock";
 import SearchResModal from "../SearchResModal";
 import OpenModalButton from "../OpenModalButton";
 import StockChart from "../Graph/chart";
-
+import "./Search.css"
 
 export default function StockSearch() {
     const dispatch = useDispatch()
@@ -19,7 +19,7 @@ export default function StockSearch() {
         dispatch(fetchStocks)
     }, [dispatch])
 
-  
+
     const handleChange = (e) => {
         e.preventDefault();
         setSearchInput(e.target.value);
@@ -41,7 +41,8 @@ export default function StockSearch() {
     }
     return (
         <>
-            <div className=" search-container">
+   <div className="search-container">
+    < div className="search-bar-container">
                 <input
                     type="text"
                     placeholder="Search for a stock"
@@ -49,14 +50,12 @@ export default function StockSearch() {
                     value={searchInput}
                     onChange={handleChange}
 
-
                 />
                 <OpenModalButton
         modalComponent={<SearchResModal searchResults={searchResults} onStockSelect={handleStockSelect} />}
         buttonText="Search"
       />
-
-
+      </div>
             </div>
             <select value={timeframe} onChange={handleTimeframeChange}>
                 <option value='daily'>Daily</option>
