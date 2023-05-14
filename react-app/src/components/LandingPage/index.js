@@ -20,7 +20,7 @@ function LandingPage() {
    }
 
    return (
-      <div className="welcome">
+      <div className="welcome" style={{ backgroundImage: `https://res.cloudinary.com/dip4w3xmy/image/upload/v1684028730/abstract-financial-graph-with-up-trend-line-candlestick-chart-in-stock-market-on-neon-light_slvv8s.jpg`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
          <h1 className="fade-in">AppExchange</h1>
          {/* <i className="fa fa-solid fa-feather fa-bounce" onClick={demoSubmit}></i> */}
          <img className="logo" src={"https://res.cloudinary.com/dip4w3xmy/image/upload/v1684002074/robinhood-icon-logo-ACF2820914-seeklogo.com_nvgpa6.png"} onClick={demoSubmit} />
