@@ -36,6 +36,10 @@ const Wallet = () => {
     useEffect(() => {
         dispatch(fetchWallet()).then(() => setIsLoaded(true));
     }, [dispatch]);
+    
+    if (isLoaded && Object.keys(allWallets).length === 0) {
+      return <p>No wallet found</p>;
+  }
 
     const isWalletsEmpty = Object.keys(allWallets).length === 0;
 

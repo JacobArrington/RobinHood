@@ -45,9 +45,10 @@ function PostWalletModal() {
         if (Success) {
             setErrors(Success);
         } else {
-            dispatch(fetchWallet());
+            setErrors([]);
             closeModal();
-        }    
+        } 
+        dispatch(fetchWallet());   
     };
 
     return (
