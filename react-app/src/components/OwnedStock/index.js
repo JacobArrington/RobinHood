@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTransaction } from "../../store/transaction";
 import { fetchShares } from "../../store/shares";
 import { fetchStocks } from "../../store/stock";
-// this means nothing 
+// this means nothing
 const OwnedStock = () => {
     const dispatch = useDispatch()
     const userId = useSelector((state) => state.session.user.id)
@@ -22,15 +22,15 @@ const OwnedStock = () => {
     }, [dispatch]);
 
 
-    
+
     if (!isDataLoaded) {
-        return null; 
+        return null;
     }
 
     const userTransactions = Object.values(allTransactions).filter(
         (transaction) => transaction.user_id === userId
     );
-   
+
     const userOwnedStocks = userTransactions.reduce((acc, transaction) => {
         const stock = stocks[transaction.stock_id];
         const shares = Number(transaction.total_shares);
@@ -40,7 +40,7 @@ const OwnedStock = () => {
         } else if (transaction.transaction_type === 'sell') {
             newTotalShares = (acc[transaction.stock_id]?.totalShares || 0) - shares;
         }
-    
+
         if (newTotalShares > 0) {
             if (!acc[transaction.stock_id]) {
                 acc[transaction.stock_id] = {
@@ -54,7 +54,7 @@ const OwnedStock = () => {
         } else {
             delete acc[transaction.stock_id]; // Remove the stock from the object if its share count is 0
         }
-    
+
         return acc;
     }, {});
     console.log(userOwnedStocks)
@@ -63,8 +63,8 @@ const OwnedStock = () => {
             {Object.values(userOwnedStocks).map((stock) => {
                 if (stock.totalShares > 0) {
                     return (
-                        <div key={stock.stockName}>
-                            <h3>Stock Name: {stock.stockName}</h3>
+                        <div key={stock?.stockName}>
+                            <h3>Stock Name: {stock?.stockName}</h3>
                             <p>Total Shares Owned: {stock.totalShares}</p>
                             <p>Total Value: ${stock.totalValue.toFixed(2)}</p>
                         </div>
