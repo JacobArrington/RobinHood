@@ -52,7 +52,7 @@ function PostWalletModal() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="wallet-form">
             <label>
                 Account Type:
                 <select value={accountType} onChange={(e) => setAccountType(e.target.value)}>
@@ -80,7 +80,7 @@ function PostWalletModal() {
                     onChange={(e) => setRoutingNum(e.target.value)} 
                 />
             </label>
-            <button type="submit">Update Wallet</button>
+            <button type="submit">Create Wallet</button>
         </form>
     );
 };
