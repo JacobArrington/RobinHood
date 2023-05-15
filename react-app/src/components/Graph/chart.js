@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
+import { useState } from 'react';
 import OpenModalButton from "../OpenModalButton";
 import BuyTransactionModal from "../BuyTransactionModal";
 import SellTransactionModal from "../SellTransactionModal";
+import { AreaChart, Area } from 'recharts';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import './chart.css'
 import { useHistory } from 'react-router-dom';
@@ -80,7 +82,14 @@ const filterDataByTimeframe = (data, timeframe) => {
 
 
 
-const StockChart = ({ stockHistory, timeframe, ticker, stock }) => {
+const StockChart = ({ stockHistory,  ticker, stock }) => {
+  const [timeframe, setTimeframe] = useState('weekly')
+
+
+  const handleChange = (event) => {
+    setTimeframe(event.target.value);
+  }
+
   if (!stockHistory) {
     return <div>No Stock Available</div>;
   }
@@ -118,7 +127,15 @@ const StockChart = ({ stockHistory, timeframe, ticker, stock }) => {
   return (
     <div>
       <h3>{ticker}</h3>
-      <ResponsiveContainer width='95%' height={425}>
+      <div className='graphBtn'>
+        <button className='1D' value="daily" onClick={handleChange}>Daily</button>
+        <button className='1W'value="weekly" onClick={handleChange}>Weekly</button>
+        <button className='1M' value="monthly" onClick={handleChange}>Monthly</button>
+        <button className='1Q'value="quarterly" onClick={handleChange}>Quarterly</button>
+        <button className='ytd'value="yearly" onClick={handleChange}>Yearly</button>
+        <button className='1Y'value="full history" onClick={handleChange}>Full History</button>
+        </div>
+      {/* <ResponsiveContainer width='95%' height={425}>
         <LineChart
           width={1200}
           height={600}
@@ -137,7 +154,30 @@ const StockChart = ({ stockHistory, timeframe, ticker, stock }) => {
           <Legend />
           <Line type="monotone" dataKey="price" stroke="#8884d8" activeDot={{ r: 8 }} />
         </LineChart>
+      </ResponsiveContainer> */}
+
+<ResponsiveContainer width='95%' height={425}>
+        <AreaChart
+          width={1200}
+          height={600}
+          data={filteredData}
+          margin={{
+            top: 5,
+            right: 30,
+            left: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Area type="monotone" dataKey="price" stroke="#8884d8" fill="#8884d8" />
+        </AreaChart>
       </ResponsiveContainer>
+
+
       <div className='Growth'>
         {performanceFilter} Performance: {growthRate}%
       </div>
@@ -158,4 +198,4 @@ const StockChart = ({ stockHistory, timeframe, ticker, stock }) => {
   );
 };
 
-export default StockChart;
+export default React.memo(StockChart) 

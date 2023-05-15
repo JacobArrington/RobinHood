@@ -16,7 +16,7 @@ const OwnedStock = () => {
     useEffect(() => {
         const fetchData = async () => {
             await dispatch(fetchTransaction());
-            await dispatch(fetchStocks());
+            //await dispatch(fetchStocks());
             setIsDataLoaded(true);
         };
         fetchData();

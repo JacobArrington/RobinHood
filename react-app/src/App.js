@@ -45,7 +45,7 @@ function App() {
             <>
               <Stock />
               {/* <GetStockById /> */}
-              <StockHistory />
+              {/* <StockHistory /> */}
 
               <Wallet />
               <Watchlists />
