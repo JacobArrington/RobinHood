@@ -53,14 +53,18 @@
   .add-watchlist-form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    background-color: rgb(56, 55, 55);
     max-height: 70%;
-    overflow-y: scroll;
+    overflow-y: hidden;
+    border: solid 1px #2d6d2f;
+    padding: 5px;
   }
   
   .add-watchlist-form label {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     margin-bottom: 10px;
   }
   
@@ -80,14 +84,21 @@
   .add-watchlist-form button {
     padding: 8px 16px;
     margin-top: 16px;
-    background-color: #333;
+    background-color: #4caf50;
     color: #fff;
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
   }
-  
+
   .add-watchlist-form button:hover {
-    background-color: #555;
+    padding: 8px 16px;
+    margin-top: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
   }

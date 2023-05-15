@@ -1,4 +1,4 @@
-form {
+/* form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,4 +45,26 @@ form {
 
   .buyTransactionModal {
     padding: 20px;
+  } */
+
+  .buy-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: rgb(56, 55, 55);
+    border: solid 1px #2d6d2f;
+    overflow: hidden;
+  }
+
+  .buy-form button[type="submit"] {
+    padding: 0.5rem 2rem;
+    font-size: 1.2rem;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }

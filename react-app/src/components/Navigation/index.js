@@ -7,6 +7,7 @@ import StockSearch from '../Search';
 import { Redirect, useHistory } from "react-router-dom";
 import Icon from '../Logo';
 import './Navigation.css';
+import './ProfileButton.css'
 
 function Navigation({ isLoaded }) {
 	const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function Navigation({ isLoaded }) {
 			<div>
 				{!sessionUser || (
 					<>
-						<button onClick={handleLogout}>Log Out</button>
+						{/* <button onClick={handleLogout} className='button'>Log Out</button><>{sessionUser.username} {sessionUser.email}</> */}
 						<StockSearch />
 					</>
 				)}

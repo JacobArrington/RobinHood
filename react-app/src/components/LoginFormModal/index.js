@@ -34,21 +34,25 @@ function LoginFormModal() {
         </ul>
         <label>
           Email
+          <p>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          </p>
         </label>
         <label>
           Password
+          <p>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          </p>
         </label>
         <button type="submit" className="button">Log In</button>
       </form>

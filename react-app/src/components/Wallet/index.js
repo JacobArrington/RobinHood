@@ -143,7 +143,7 @@ const Wallet = () => {
               <div key={wallet.id} className="wallet-card">
                 <p>Account Type: {wallet.account_type}</p>
                 <p>Routing # {wallet.routing_num}</p>
-                <button onClick={() => deleteWallet(wallet.id)}>
+                <button className="delete-button" onClick={() => deleteWallet(wallet.id)}>
                   Delete Wallet
                 </button>
                 <OpenModalButton

@@ -4,6 +4,8 @@
 
   .button {
     cursor: pointer;
+    padding: 10px 20px;
+    margin-top: 10px;
     background: transparent;;
     border: none;
     font-size: 20px;
@@ -77,4 +79,20 @@
     gap: 2rem;
     font-size: 20px;
     color: #005bb3;
+  }
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .button:hover {
+    background-color: #3e8e41;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 20px;
   }

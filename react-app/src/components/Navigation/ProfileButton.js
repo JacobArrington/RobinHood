@@ -68,7 +68,7 @@ function ProfileButton({ user }) {
 
   return (
     <nav ref={ref} className="navbar">
-      <button
+      {/* <button
         className="toggle button"
         onClick={() => setNavbarOpen((prev) => !prev)}
       >
@@ -78,35 +78,34 @@ function ProfileButton({ user }) {
           <i className="fa-solid fa-bars" style={{ color: "white", fontSize: "35px" }}></i>
         )}
       </button>
-      <ul className={`menu-nav${navbarOpen ? ' show-menu' : ''}`}>
+      <ul className={`menu-nav${navbarOpen ? 'show-menu' : ''}`}> */}
         {user ? (
           <>
-            <div>{user.username}</div>
-            <div>{user.email}</div>
-            <li onClick={() => setNavbarOpen((prev) => !prev)}>
-              <button onClick={handleLogout} className="button">Log Out</button>
-            </li>
+            <span style={{fontSize: '20px', borderRight: '1px solid white', paddingRight: "5px"}}>{user.email}</span>
+            {/* <li onClick={() => setNavbarOpen((prev) => !prev)}> */}
+            <><button onClick={handleLogout} className="button">Log Out</button></>
+            {/* </li> */}
           </>
         ) : (
           <>
-            <li onClick={() => setNavbarOpen((prev) => !prev)}>
+            {/* <li onClick={() => setNavbarOpen((prev) => !prev)}> */}
               <OpenModalButton
                 buttonText="Log In"
                 onItemClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
-            </li>
-            <li onClick={() => setNavbarOpen((prev) => !prev)}>
+            {/* </li> */}
+            {/* <li onClick={() => setNavbarOpen((prev) => !prev)}> */}
               <OpenModalButton
                 id="log-in"
                 buttonText="Sign Up"
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />
-            </li>
+            {/* </li> */}
           </>
         )}
-      </ul>
+      {/* </ul> */}
     </nav>
 
     //     <>

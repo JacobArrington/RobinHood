@@ -75,6 +75,13 @@
     color: rgb(206, 64, 8);
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+
+  .watchlist-container button.delete-button:hover {
+    background-color: rgba(231, 105, 55, 0.219)
   }
 
   .watchlist-buttons button:hover {

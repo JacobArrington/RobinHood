@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { fetchTransaction, makeTransaction } from "../../store/transaction";
 import { changeBuyingPower } from "../../store/portfolio";
+import "./SellTransactionModal.css"
 
 function PostSellTransaction({ stock }) {
     const dispatch = useDispatch();
@@ -74,7 +75,7 @@ function PostSellTransaction({ stock }) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="sell-form">
             <label>
                 Shares:
                 <input

@@ -4,15 +4,16 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background-color: #f7f7f7;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background-color: rgb(56, 55, 55);
+    border: solid 1px #2d6d2f;
+    overflow: hidden;
   }
 
-  .signup-form h1 {
+  .signup-form-title {
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin: 0;
+    background-color: rgb(56, 55, 55);
   }
 
   .signup-form label {
