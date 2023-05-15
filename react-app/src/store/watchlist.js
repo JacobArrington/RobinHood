@@ -53,16 +53,15 @@ export const editWatchlist =(id, watchlistData) => async(dispatch) =>{
    })
    if(response.ok){
       const updatedWatchlists = await response.json();
-      console.log('updatedWatchlists!!!!!!!!!!!:', updatedWatchlists);
       dispatch(updateWatchlist(updatedWatchlists))
    }
-}  
+}
 
 export const destroyWatchlist = (id) => async (dispatch) => {
    const response = await fetch(`/api/watchlist/${id}`, {
      method: "DELETE"
    });
- 
+
    if (response.ok) {
      dispatch(deleteWatchlist({id:id}));
    }

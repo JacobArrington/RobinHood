@@ -26,7 +26,7 @@ function EditWatchlistModal({ watchlistId }) {
    const handleCheckboxChange = (e) => {
       const selectId = parseInt(e.target.value);
       const isChecked = e.target.checked;
-    
+
       setSelectStockId((prev) => {
         if (isChecked) {
           return [...prev, selectId];
@@ -52,10 +52,8 @@ function EditWatchlistModal({ watchlistId }) {
          }
          await dispatch(editWatchlist(watchlist.id, updateNameData))
        }
-     
 
-      console.log('selectStockId:', selectStockId);
-      console.log('watchlist.stock_ids:', watchlist.stock_ids);
+
 
 
       // const stocksToAdd = watchlist && watchlist.stock_ids
@@ -66,8 +64,6 @@ function EditWatchlistModal({ watchlistId }) {
       // : [];
       const stocksToAdd = selectStockId.filter((id) => !watchlist.stock_ids.includes(id));
       const stocksToRemove = watchlist.stock_ids.filter((id) => !selectStockId.includes(id))
-      console.log('stocksToAdd:', stocksToAdd);
-      console.log('stocksToRemove:', stocksToRemove);
 
       if (stocksToAdd.length > 0) {
          const addData = {
