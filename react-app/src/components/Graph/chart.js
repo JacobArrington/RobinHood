@@ -128,12 +128,12 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
     <div>
       <h3>{ticker}</h3>
       <div className='graphBtn'>
-        <button className='1D' value="daily" onClick={handleChange}>Daily</button>
-        <button className='1W'value="weekly" onClick={handleChange}>Weekly</button>
-        <button className='1M' value="monthly" onClick={handleChange}>Monthly</button>
-        <button className='1Q'value="quarterly" onClick={handleChange}>Quarterly</button>
-        <button className='ytd'value="yearly" onClick={handleChange}>Yearly</button>
-        <button className='1Y'value="full history" onClick={handleChange}>Full History</button>
+        <button className='Gbtn' value="daily" onClick={handleChange}>1D</button>
+        <button className='Gbtn'value="weekly" onClick={handleChange}>1W</button>
+        <button className='Gbtn' value="monthly" onClick={handleChange}>1M</button>
+        <button className='Gbtn'value="quarterly" onClick={handleChange}>1Q</button>
+        <button className='Gbtn'value="yearly" onClick={handleChange}>YTD</button>
+        <button className='Gbtn'value="full history" onClick={handleChange}>ALL</button>
         </div>
       {/* <ResponsiveContainer width='95%' height={425}>
         <LineChart
@@ -168,12 +168,12 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
             bottom: 5,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" />
+         
           <XAxis dataKey="date" />
           <YAxis />
           <Tooltip />
           <Legend />
-          <Area type="monotone" dataKey="price" stroke="#8884d8" fill="#8884d8" />
+          <Area type="monotone" dataKey="price" stroke="#0bd90b" fill="#0bd90b" />
         </AreaChart>
       </ResponsiveContainer>
 
