@@ -6,27 +6,27 @@ import { fetchStocks } from "../../store/stock";
 import './stock.css'
 
 
-const Stock = () => {
-    const dispatch = useDispatch()
-    const allStocks = useSelector((state) => state.stocksReducer);
+// const Stock = () => {
+//     const dispatch = useDispatch()
+//     const allStocks = useSelector((state) => state.stocksReducer);
 
-    const [stocks, setStock] = useState(Object.keys(allStocks))
+//     const [stocks, setStock] = useState(Object.keys(allStocks))
 
 
-    const [isLoaded, setIsLoaded] = useState(false);
+//     const [isLoaded, setIsLoaded] = useState(false);
 
-    useEffect(() => {
-        dispatch(authenticate()).then(dispatch(fetchStocks())).then(() => setIsLoaded(true));
-    }, [dispatch]);
+//     useEffect(() => {
+//         dispatch(authenticate()).then(dispatch(fetchStocks())).then(() => setIsLoaded(true));
+//     }, [dispatch]);
 
-    return (
-        <div className="stock-container">
-            {Object.values(allStocks).map(stock => (
-                <div key={stock.id} onClick={() => setStock(stock)}>
-                </div>
-            ))}
-        </div>
-    );
-}
+//     return (
+//         <div className="stock-container">
+//             {Object.values(allStocks).map(stock => (
+//                 <div key={stock.id} onClick={() => setStock(stock)}>
+//                 </div>
+//             ))}
+//         </div>
+//     );
+// }
 
-export default Stock;
+// export default Stock;
