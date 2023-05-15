@@ -39,13 +39,10 @@ function App() {
             <SignupFormPage />
           </Route>
           <ProtectedRoute path="/portfolio">
-            {/* <Stock />
-            <GetStockById />
-            <StockHistory /> */}
             <>
               <Stock />
               {/* <GetStockById /> */}
-              <StockHistory />
+              {/* <StockHistory /> */}
 
               <Wallet />
               <Watchlists />

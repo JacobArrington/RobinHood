@@ -60,7 +60,7 @@ const Watchlists = () => {
                      editwatchlist={watchlist} />
                   }
                />
-               <button onClick={handleDelete}>Delete Watchlist</button>
+               <button onClick={handleDelete} className="delete-button">Delete Watchlist</button>
             </>
          )}
       </div>

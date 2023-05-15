@@ -67,9 +67,14 @@
     color: #fff;
   }
 
-  .watchlist-buttons button.delete-button {
-    background-color: #f44336;
-    color: #fff;
+  .watchlist-container button.delete-button {
+    cursor: pointer;
+    background: transparent;;
+    border: none;
+    font-size: 20px;
+    color: rgb(206, 64, 8);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
   }
 
   .watchlist-buttons button:hover {
