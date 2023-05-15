@@ -52,7 +52,7 @@ function PostWalletModal() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="wallet-form">
             <label>
                 Account Type:
                 <select value={accountType} onChange={(e) => setAccountType(e.target.value)}>
