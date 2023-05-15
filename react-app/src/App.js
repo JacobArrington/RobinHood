@@ -41,7 +41,9 @@ function App() {
           <ProtectedRoute path="/portfolio">
             <>
               <Stock />
-              <StockHistory />
+              {/* <GetStockById /> */}
+              {/* <StockHistory /> */}
+
               <Wallet />
               <Watchlists />
               <Transaction />
