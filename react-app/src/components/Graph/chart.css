@@ -1,10 +1,16 @@
 .stock-chart-container {
     position: relative;
+    display: flex;
+   
   }
+  .graphContainer{
+    margin-top: 5%;
+}
+  
   
   .graphBtn {
     position: absolute;
-    top: 3%;
+   
     right: 8%;
     transform: translateY(30%);
     display: flex;
@@ -23,3 +29,24 @@
     font-size: 14px;
     margin-bottom: 5px;
   }
+  
+    .stockInfo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-size:15px
+    }
+  
+  .symbol{
+    
+    color: #11d90b
+  }
+
+.green-text {
+    color: #11d90b;
+}
+
+.red-text {
+    color: red;
+}
