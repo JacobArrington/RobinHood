@@ -57,7 +57,6 @@ const OwnedStock = () => {
 
         return acc;
     }, {});
-    console.log(userOwnedStocks)
     return (
         <>
             {Object.values(userOwnedStocks).map((stock) => {

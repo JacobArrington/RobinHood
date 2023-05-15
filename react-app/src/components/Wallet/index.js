@@ -106,7 +106,6 @@ const Wallet = () => {
   const dispatch = useDispatch()
   const allWallets = useSelector((state) => state.walletReducer);
   const portfolioState = useSelector((state) => state.portfolioReducer);
-  console.log(allWallets)
 
   const [isLoaded, setIsLoaded] = useState(false);
 
