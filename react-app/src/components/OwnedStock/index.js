@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTransaction } from "../../store/transaction";
 import { fetchShares } from "../../store/shares";
 import { fetchStocks } from "../../store/stock";
+import './own.css'
 // this means nothing 
 const OwnedStock = () => {
     const dispatch = useDispatch()
@@ -60,10 +61,11 @@ const OwnedStock = () => {
     console.log(userOwnedStocks)
     return (
         <>
+            <div className="ownStock">
             {Object.values(userOwnedStocks).map((stock) => {
                 if (stock.totalShares > 0) {
                     return (
-                        <div key={stock.stockName}>
+                        <div  classname ='myStock' key={stock.stockName}>
                             <h3>Stock Name: {stock.stockName}</h3>
                             <p>Total Shares Owned: {stock.totalShares}</p>
                             <p>Total Value: ${stock.totalValue.toFixed(2)}</p>
@@ -71,6 +73,7 @@ const OwnedStock = () => {
                     )
                 }
 })}
+            </div>
         </>
     );
 }

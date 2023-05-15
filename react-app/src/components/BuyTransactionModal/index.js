@@ -26,7 +26,7 @@ function PostBuyTransaction({stock}) {
             user_id: user.id,
             portfolio_id: portfolio.id,
             transaction_type: transactionType,
-            total_shares: totalShares,
+            total_shares: parseInt(totalShares),
             total_price: totalPrice
         }
 
@@ -53,7 +53,7 @@ function PostBuyTransaction({stock}) {
                 <input
                     type="number"
                     value={totalShares}
-                    onChange={(e) => setTotalShares(parseInt(e.target.value), setTotalPrice(e.target.value * stock.price))}
+                    onChange={(e) => setTotalShares((e.target.value), setTotalPrice(e.target.value * stock.price))}
                 />
             </label>
 
