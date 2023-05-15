@@ -80,7 +80,7 @@ function PostWalletModal() {
                     onChange={(e) => setRoutingNum(e.target.value)} 
                 />
             </label>
-            <button type="submit">Update Wallet</button>
+            <button type="submit">Create Wallet</button>
         </form>
     );
 };
