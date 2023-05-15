@@ -114,6 +114,8 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
 
   const growthRate = getGrowthRate(filteredData)
 
+  const isPositiveGrowth = growthRate > 0;
+
   const performancefilters = {
     daily: "Daily",
     weekly: "Weekly",
@@ -126,7 +128,12 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
 
   return (
     <div>
-      <h3>{ticker}</h3>
+      <div className={`stockInfo ${isPositiveGrowth ? 'green-text' : 'red-text'}`}>
+  <h3 className='symbol'>{ticker},</h3>
+  <h3 className='growth'>{performanceFilter} Performance: {growthRate}%</h3>
+  <h3 className='price'>Current Price: ${stock.price.toFixed(2)}</h3>
+</div>
+      
       <div className='graphBtn'>
         <button className='Gbtn' value="daily" onClick={handleChange}>1D</button>
         <button className='Gbtn'value="weekly" onClick={handleChange}>1W</button>
@@ -156,7 +163,7 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
         </LineChart>
       </ResponsiveContainer> */}
 
-<ResponsiveContainer width='95%' height={425}>
+<ResponsiveContainer width='95%' height={425} className='graphContainer'>
         <AreaChart
           width={1200}
           height={600}
@@ -165,7 +172,7 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
             top: 5,
             right: 30,
             left: 20,
-            bottom: 5,
+            bottom: 15,
           }}
         >
          
@@ -178,9 +185,7 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
       </ResponsiveContainer>
 
 
-      <div className='Growth'>
-        {performanceFilter} Performance: {growthRate}%
-      </div>
+      
       <OpenModalButton
         buttonText="Buy"
         modalComponent={
