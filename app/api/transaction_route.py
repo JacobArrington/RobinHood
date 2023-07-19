@@ -38,7 +38,7 @@ def create_transaction():
 
 # Update an existing transaction by ID
 @transaction_route.route('/<int:transaction_id>', methods=['PUT'])
-
+@login_required
 def update_transaction(transaction_id):
     transaction = Transaction.query.get(transaction_id)
     data = request.get_json()
@@ -53,7 +53,7 @@ def update_transaction(transaction_id):
 
 # Delete an existing transaction by ID
 @transaction_route.route('/<int:transaction_id>', methods=['DELETE'])
-
+@login_required
 def delete_transaction(transaction_id):
     transaction = Transaction.query.get(transaction_id)
     db.session.delete(transaction)
