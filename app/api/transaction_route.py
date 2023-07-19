@@ -23,6 +23,8 @@ def create_transaction():
         portfolio_id=data['portfolio_id'],
         transaction_type=data['transaction_type'],
         total_shares=data['total_shares'],
+        price_per_share=data['price_per_share'],
+        is_pending=data['is_pending'],
         total_price=data['total_price']
     )
     db.session.add(transaction)

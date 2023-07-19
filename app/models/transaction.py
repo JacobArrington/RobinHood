@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 import datetime
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, String, Float, Date, Enum, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, Date, Enum, ForeignKey 
 from flask_login import UserMixin
 
 class Transaction(db.Model, UserMixin):
@@ -17,6 +17,8 @@ class Transaction(db.Model, UserMixin):
     transaction_type = db.Column(Enum('buy', 'sell', name='transaction_type_enum'))
     total_shares = db.Column(db.Integer, nullable=False)
     total_price = db.Column(db.Integer, nullable=False)
+    price_per_share = db.Column(db.Integer, nullable=False)
+    is_pending = db.Column(db.Boolean, nullable=False, default = True)
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
     # Relationships
@@ -32,6 +34,7 @@ class Transaction(db.Model, UserMixin):
             'user_id': self.user_id,
             'portfolio_id': self.portfolio_id,
             'transaction_type': self.transaction_type,
+            'is_pending': self.is_pending,
             'total_price':self.total_price,
             'total_shares': self.total_shares,
             'created_at': self.created_at,
