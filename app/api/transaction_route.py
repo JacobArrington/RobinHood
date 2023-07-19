@@ -37,25 +37,25 @@ def create_transaction():
 #     return jsonify(transaction.to_transaction_dict())
 
 # Update an existing transaction by ID
-# @transaction_route.route('/<int:transaction_id>', methods=['PUT'])
+@transaction_route.route('/<int:transaction_id>', methods=['PUT'])
 
-# def update_transaction(transaction_id):
-#     transaction = Transaction.query.get(transaction_id)
-#     data = request.get_json()
-#     transaction.stock_id = data.get('stock_id', transaction.stock_id)
-#     transaction.user_id = data.get('user_id', transaction.user_id)
-#     transaction.portfolio_id = data.get('portfolio_id', transaction.portfolio_id)
-#     transaction.transaction_type = data.get('transaction_type', transaction.transaction_type)
-#     transaction.total_shares = data.get('total_shares', transaction.total_shares)
-#     transaction.updated_at = datetime.datetime.now()
-#     db.session.commit()
-#     return jsonify(transaction.to_transaction_dict())
+def update_transaction(transaction_id):
+    transaction = Transaction.query.get(transaction_id)
+    data = request.get_json()
+    transaction.stock_id = data.get('stock_id', transaction.stock_id)
+    transaction.user_id = data.get('user_id', transaction.user_id)
+    transaction.portfolio_id = data.get('portfolio_id', transaction.portfolio_id)
+    transaction.transaction_type = data.get('transaction_type', transaction.transaction_type)
+    transaction.total_shares = data.get('total_shares', transaction.total_shares)
+    transaction.updated_at = datetime.datetime.now()
+    db.session.commit()
+    return jsonify(transaction.to_transaction_dict())
 
 # Delete an existing transaction by ID
-# @transaction_route.route('/<int:transaction_id>', methods=['DELETE'])
+@transaction_route.route('/<int:transaction_id>', methods=['DELETE'])
 
-# def delete_transaction(transaction_id):
-#     transaction = Transaction.query.get(transaction_id)
-#     db.session.delete(transaction)
-#     db.session.commit()
-#     return '', 204
+def delete_transaction(transaction_id):
+    transaction = Transaction.query.get(transaction_id)
+    db.session.delete(transaction)
+    db.session.commit()
+    return '', 204
