@@ -54,7 +54,7 @@ function PostSellTransaction({ stock }) {
             user_id: user.id,
             portfolio_id: portfolio.id,
             transaction_type: transactionType,
-            total_shares: totalShares,
+            total_shares: parseInt(totalShares),
             total_price: totalPrice
         }
 
@@ -82,7 +82,7 @@ function PostSellTransaction({ stock }) {
                     type="number"
                     value={totalShares}
                     onChange={(e) => {
-                        const value = parseInt(e.target.value);
+                        const value = e.target.value;
                         setTotalShares(value);
                         setTotalPrice(value * stock.price);
                     }}
