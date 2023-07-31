@@ -5,6 +5,37 @@ from app.models import Transaction, Stock, Portfolio, db
 
 transaction_route = Blueprint('transactions',__name__)
 
+
+def check_stock_prices():
+   
+    pending_transactions = Transaction.query.filter_by(is_pending=True).all()
+    session = db.session()
+    
+    try:
+        for transaction in pending_transactions:
+            
+            stock = Stock.query.get(transaction.stock_id)
+            current_price = stock.price if stock else None
+            
+            
+            if current_price is not None:
+                if (transaction.transaction_type == 'buy' and current_price <= transaction.price_per_share) or \
+                (transaction.transaction_type == 'sell' and current_price >= transaction.price_per_share):
+                    transaction.is_pending = False
+                    
+                    transaction.total_price = transaction.price_per_share * transaction.total_shares
+                    session.add(transaction)
+
+       
+        session.commit()
+    except:
+        
+        session.rollback()
+        raise
+    finally:
+        
+        session.close()
+
 # Get all transactions
 @transaction_route.route('', methods=['GET'])
 @login_required
