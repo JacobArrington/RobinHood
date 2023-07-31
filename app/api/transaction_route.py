@@ -2,8 +2,12 @@ from flask import Flask, request, jsonify, Blueprint
 from flask_login import current_user, login_required
 from datetime import datetime
 from app.models import Transaction, Stock, Portfolio, db
+from apscheduler.schedulers.background import BackgroundScheduler
+
+
 
 transaction_route = Blueprint('transactions',__name__)
+scheduler = BackgroundScheduler()
 
 
 def check_stock_prices():
@@ -26,6 +30,17 @@ def check_stock_prices():
                     transaction.total_price = transaction.price_per_share * transaction.total_shares
                     session.add(transaction)
 
+                    portfolio = Portfolio.query.get(transaction.portfolio_id)
+                    if transaction.transaction_type == 'buy':
+                        portfolio.committed_buying_power -= transaction.total_price
+                        portfolio.total_shares += transaction.total_shares
+                    elif transaction.transaction_type == 'sell':
+                        portfolio.buying_power += transaction.total_price
+                        portfolio.total_shares -= transaction.total_shares
+                    session.add(portfolio)
+
+
+
        
         session.commit()
     except:
@@ -35,6 +50,11 @@ def check_stock_prices():
     finally:
         
         session.close()
+@scheduler.scheduled_jobs('interval', minutes=20)
+def timed_job():
+    check_stock_prices()
+
+scheduler.start()
 
 # Get all transactions
 @transaction_route.route('', methods=['GET'])
@@ -80,6 +100,7 @@ def update_transaction(transaction_id):
     transaction.portfolio_id = data.get('portfolio_id', transaction.portfolio_id)
     transaction.transaction_type = data.get('transaction_type', transaction.transaction_type)
     transaction.total_shares = data.get('total_shares', transaction.total_shares)
+    transaction.price_per_share = data.get('price_per_share', transaction.price_per_share)
     transaction.updated_at = datetime.datetime.now()
     db.session.commit()
     return jsonify(transaction.to_transaction_dict())

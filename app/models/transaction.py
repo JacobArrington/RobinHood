@@ -37,6 +37,7 @@ class Transaction(db.Model, UserMixin):
             'is_pending': self.is_pending,
             'total_price':self.total_price,
             'total_shares': self.total_shares,
+            'price_per_share': self.price_per_share,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
