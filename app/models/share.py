@@ -19,7 +19,7 @@ class Share(db.Model,UserMixin):
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
     # Relationships
-    user = db.relationship('User', back_populates='shares')
+    
     portfolio = db.relationship('Portfolio', back_populates='shares')
     stock = db.relationship('Stock', back_populates='shares')
 
