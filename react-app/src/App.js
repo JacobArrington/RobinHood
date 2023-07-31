@@ -40,7 +40,7 @@ function App() {
           </Route>
           <ProtectedRoute path="/portfolio">
             <>
-              <Stock />
+              {/* <Stock /> */}
               {/* <GetStockById /> */}
               {/* <StockHistory /> */}
 
