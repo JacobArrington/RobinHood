@@ -1,4 +1,5 @@
 import os
+import atexit
 from flask import Flask, render_template, request, session, redirect
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -14,6 +15,9 @@ from .api.watchlist_route import watchlist_routes
 from .api.transaction_route import transaction_route
 from .seeds import seed_commands
 from .config import Config
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger
+from .api.transaction_route import check_stock_prices
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -21,6 +25,13 @@ app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 login = LoginManager(app)
 login.login_view = 'auth.unauthorized'
 
+# setup scheduler
+
+with app.app_context():
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(lambda: check_stock_prices(app), trigger=IntervalTrigger(minutes=1))
+    scheduler.start()
+    atexit.register(lambda: scheduler.shutdown())
 
 @login.user_loader
 def load_user(id):
