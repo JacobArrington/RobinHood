@@ -1,4 +1,4 @@
-# Flask React Project
+# App-Exchange
 
 This is the starter for the Flask React project.
 
