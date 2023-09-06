@@ -16,6 +16,7 @@ import ProtectedDashboard from "./components/Dashboard";
 import Watchlists from "./components/Watchlists";
 import Portfolio from "./components/Portfolio";
 import OwnedStock from "./components/OwnedStock";
+import About from "./components/about";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,8 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          
+        
           <ProtectedRoute path="/portfolio">
             <>
               {/* <Stock /> */}
@@ -49,6 +52,7 @@ function App() {
               <Transaction />
               <Portfolio />
               <OwnedStock /> 
+              <About />
             </>
           </ProtectedRoute>
         </Switch>
