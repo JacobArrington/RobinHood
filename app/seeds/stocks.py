@@ -1,66 +1,67 @@
 from app.models import db, Stock, environment, SCHEMA
 from sqlalchemy.sql import text
+import random
 
 def seed_stocks():
     apple = Stock(
-        name="Apple", ticker="APPL", price=20.00
+        name="Apple", ticker="APPL", price = round(random.uniform(1, 100), 2)
     )
     facebook = Stock(
-        name="Facebook", ticker="FCBK", price=25.00
+        name="Facebook", ticker="FCBK", price = round(random.uniform(1, 100), 2)
     )
     google = Stock(
-        name="Google", ticker="GGLE", price=30.00
+        name="Google", ticker="GGLE", price = round(random.uniform(1, 100), 2)
     )
     instagram = Stock(
-        name="Instagram", ticker="INST", price=30.00
+        name="Instagram", ticker="INST", price = round(random.uniform(1, 100), 2)
     )
     yahoo = Stock(
-        name="Yahoo", ticker="YHOO", price=35.00
+        name="Yahoo", ticker="YHOO", price = round(random.uniform(1, 100), 2)
     )
     tesla = Stock(
-        name="Tesla", ticker="TSLA", price=50.00
+        name="Tesla", ticker="TSLA", price = round(random.uniform(1, 100), 2)
     )
     amazon = Stock(
-        name="Amazon", ticker="AMZN", price=60.00
+        name="Amazon", ticker="AMZN", price = round(random.uniform(1, 100), 2)
     )
     uber = Stock(
-        name="Uber", ticker="UBER", price=25.00
+        name="Uber", ticker="UBER", price = round(random.uniform(1, 100), 2)
     )
     bank_of_america = Stock(
-        name="Bank of America", ticker="BAC", price=30.00
+        name="Bank of America", ticker="BAC", price = round(random.uniform(1, 100), 2)
     )
     lyft = Stock(
-        name="Lyft Inc", ticker="LYFT", price=20.00
+        name="Lyft Inc", ticker="LYFT", price = round(random.uniform(1, 100), 2)
     )
     american_airline = Stock(
-        name="American Airline", ticker="AAL", price=25.00
+        name="American Airline", ticker="AAL", price = round(random.uniform(1, 100), 2)
     )
     wells_fargo = Stock(
-        name="Wells Fargo Co", ticker="WFC", price=30.00
+        name="Wells Fargo Co", ticker="WFC", price = round(random.uniform(1, 100), 2)
     )
     microsoft = Stock(
-        name="Microsoft", ticker="MSFT", price=40.00
+        name="Microsoft", ticker="MSFT", price = round(random.uniform(1, 100), 2)
     )
     verizon = Stock(
-        name="Verizon", ticker="VZ", price=15.00
+        name="Verizon", ticker="VZ", price = round(random.uniform(1, 100), 2)
     )
     walt_disney = Stock(
-        name="Walt Disney", ticker="DIS", price=30.00
+        name="Walt Disney", ticker="DIS", price = round(random.uniform(1, 100), 2)
     )
     activision_blizzard = Stock(
-        name="Activision Blizzard Inc", ticker="ATVI", price=25.00
+        name="Activision Blizzard Inc", ticker="ATVI", price = round(random.uniform(1, 100), 2)
     )
     netflix = Stock(
-        name="Netflix", ticker="NFLX", price=22.00
+        name="Netflix", ticker="NFLX", price = round(random.uniform(1, 100), 2)
     )
     nike = Stock(
-        name="Nike Inc", ticker="NKE", price=20.00
+        name="Nike Inc", ticker="NKE", price = round(random.uniform(1, 100), 2)
     )
     sales_force = Stock(
-        name="Salesforce Inc", ticker="CRM", price=70.00
+        name="Salesforce Inc", ticker="CRM", price = round(random.uniform(1, 100), 2)
     )
     twitter = Stock(
-        name="Twitter Inc", ticker="TWTR", price=40.00
+        name="Twitter Inc", ticker="TWTR", price = round(random.uniform(1, 100), 2)
     )
 
     db.session.add(apple)
