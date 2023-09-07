@@ -3,6 +3,7 @@ import { authenticate, demoLogin } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import About from "../about";
+import Ticker from "../Ticker"
 import "./LandingPage.css"
 
 
@@ -21,6 +22,7 @@ function LandingPage() {
    }
    return (
       <div>
+         <Ticker />
          <div className="welcome" >
             <h1 className="fade-in">AppExchange</h1>
             

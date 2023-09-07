@@ -5,11 +5,17 @@ from flask_login import current_user, login_required
 stocks_routes = Blueprint('stocks', __name__)
 
 @stocks_routes.route('')
-@login_required
 def get_all_stocks():
-    print(current_user)
-    stocks = Stock.query.all()
-    return [stock.to_stock_dict() for stock in stocks]
+    if current_user.is_authenticated:
+        stocks = Stock.query.all()
+        return [stock.to_stock_dict() for stock in stocks]
+    else:
+        # For non-authenticated users, only send ticker and price
+        stocks = Stock.query.with_entities(Stock.ticker, Stock.price).all()
+        print(stocks, '!!!!!!!!!')
+        stocks = Stock.query.with_entities(Stock.id, Stock.ticker, Stock.price).all()
+        return jsonify([{'id': stock.id, 'ticker': stock.ticker, 'price': stock.price} for stock in stocks])
+
 
 @stocks_routes.route('/<int:id>')
 @login_required

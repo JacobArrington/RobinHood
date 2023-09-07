@@ -17,6 +17,7 @@ import Watchlists from "./components/Watchlists";
 import Portfolio from "./components/Portfolio";
 import OwnedStock from "./components/OwnedStock";
 import About from "./components/about";
+import Ticker from "./components/Ticker";
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ function App() {
         <Switch>
           <Route exact path="/" >
             <LandingPage />
+            <Ticker />
           </Route>
           <Route path="/login" >
             <LoginFormPage />
