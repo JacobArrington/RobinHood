@@ -87,6 +87,11 @@ body{
 .demo-login-button span {
   color: rgb(11, 217, 11);
   font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.demo-login-button:hover span {
+  transform: scale(1.1);  
 }
 
 

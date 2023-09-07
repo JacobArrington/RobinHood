@@ -20,6 +20,10 @@
     margin-right: 50px
 }
 
+.ticker-item:hover {
+  transform: scale(1.1);  
+}
+
 
 @keyframes moveTicker {
     0% {
