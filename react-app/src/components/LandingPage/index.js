@@ -19,16 +19,26 @@ function LandingPage() {
    const demoSubmit = () => {
       dispatch(demoLogin())
    }
-
    return (
       <div>
-         <div className="welcome" style={{ backgroundImage: `url(https://res.cloudinary.com/dip4w3xmy/image/upload/v1684028730/abstract-financial-graph-with-up-trend-line-candlestick-chart-in-stock-market-on-neon-light_slvv8s.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+         <div className="welcome" >
             <h1 className="fade-in">AppExchange</h1>
-            <img className="logo" src={"https://res.cloudinary.com/dip4w3xmy/image/upload/v1684002074/robinhood-icon-logo-ACF2820914-seeklogo.com_nvgpa6.png"} onClick={demoSubmit} />
+            
+           
+            <button className="demo-login-button" onClick={demoSubmit}>
+               <img className="logo" src={"https://res.cloudinary.com/dip4w3xmy/image/upload/v1684002074/robinhood-icon-logo-ACF2820914-seeklogo.com_nvgpa6.png"} alt="Demo Logo" />
+               <span>Demo Login</span>
+            </button>
          </div>
          <About />
       </div>
    )
 }
-      
+
 export default LandingPage;
+
+
+
+
+
+      

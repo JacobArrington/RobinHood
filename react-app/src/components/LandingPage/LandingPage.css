@@ -69,6 +69,29 @@ body{
   }
 }
 
+.demo-login-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px; /* gap between logo and text */
+}
+
+.demo-login-button .logo {
+  /* adjust width or any other property to make it fit as you want */
+  width: 40px;
+}
+
+.demo-login-button span {
+  color: white;
+  font-size: 18px;
+}
+
+/* To remove default button outline on focus */
+.demo-login-button:focus {
+  outline: none;
+}
 
 
 /* .logo {
