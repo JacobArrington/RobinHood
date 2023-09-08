@@ -82,20 +82,22 @@ const Transaction = () => {
 
   return (
     <div className="transaction-container">
-      {userTransactions.map((transaction) => (
+      {userTransactions.slice(-5).map((transaction) => (
         <div className="transaction-card" key={transaction.id}>
-          <p className="transaction-stock-name">
+          <span className="transaction-stock-name">
             {stock[transaction.stock_id]?.name}
-          </p>
-          <p className="transaction-type">Transaction Type: {transaction.transaction_type}</p>
-          <p className="transaction-price">
+          <span className="transaction-price">
             ${transaction.total_price.toFixed(2)}
-          </p>
-          <p className="transaction-date">
+          </span>
+          </span>
+          {/* <div className="transaction-info"> */}
+          <span className="transaction-type">Transaction Type: {transaction.transaction_type}</span>
+          <span className="transaction-date">
             Purchese Date: {new Date(transaction.created_at).toLocaleDateString()}
-          </p>
+          </span>
+          {/* </div> */}
         </div>
-      ))}
+      )).reverse()}
     </div>
   );
 };
