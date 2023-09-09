@@ -158,7 +158,7 @@ const OwnedStock = () => {
         <Tooltip content={<CustomTooltip />} />
       </PieChart>
       </div>
-      <Wallet />
+     
     </div>
   );
 };
