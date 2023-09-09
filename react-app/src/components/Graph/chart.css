@@ -11,7 +11,7 @@
   .graphBtn {
     position: absolute;
    
-    right: 8%;
+    right: 26%;
     transform: translateY(30%);
     display: flex;
     
@@ -34,7 +34,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
+      width: 73%;
       font-size:15px
     }
   

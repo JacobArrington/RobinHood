@@ -163,7 +163,7 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
         </LineChart>
       </ResponsiveContainer> */}
 
-<ResponsiveContainer width='95%' height={425} className='graphContainer'>
+<ResponsiveContainer width='75%' height={425} className='graphContainer'>
         <AreaChart
           width={1200}
           height={600}
