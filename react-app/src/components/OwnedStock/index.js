@@ -64,69 +64,105 @@ const OwnedStock = () => {
 
   const mainStocks = [];
   let otherShares = 0;
+  let otherStockDetails = [];
 
+  
   Object.values(userOwnedStocks).forEach(stock => {
     const stockPercentage = (stock.totalShares / totalShares) * 100;
     if (stockPercentage < 5) {
-      otherShares += stock.totalShares;
+        otherStockDetails.push(stock);
     } else {
-      mainStocks.push(stock);
+        mainStocks.push(stock);
     }
-  });
+});
 
-  if (otherShares > 0) {
-    mainStocks.push({ stockName: "Other", ticker:"Other", totalShares: otherShares });
-  }
+if (otherStockDetails.length) {
+    mainStocks.push({
+        stockName: "Other",
+        ticker: "Other",
+        totalShares: otherStockDetails.reduce((sum, stock) => sum + stock.totalShares, 0),
+        otherStocks: otherStockDetails
+    });
+}
 
-  const chartData = mainStocks.map(stock => ({
+const chartData = mainStocks.map(stock => ({
     name: stock.stockName,
     symb: stock.ticker,
-    value: stock.totalShares
-  }));
+    value: stock.totalShares,
+    otherStocks: stock.otherStocks // Include the otherStocks in the chart data for "Other" category
+}));
 
-  const CustomTooltip = ({ active, payload }) => {
+const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
-      const data = payload[0].payload;
-      const percent = (data.value / totalShares) * 100;
+        const data = payload[0].payload;
 
-      return (
-        <div className="custom-tooltip" style={{ color: 'black' }}>
-          <div className="tooltip-item">{`Name: ${data.name}`}</div>
-          <div className="tooltip-item">{`Shares: ${data.value}`}</div>
-          <div className="tooltip-item">{`Percentage: ${percent.toFixed(2)}%`}</div>
-        </div>
-      );
+        if (data.name === "Other" && data.otherStocks) {
+            return (
+                <div className="custom-tooltip" style={{ color: 'black' }}>
+                    <div className="tooltip-item">{`Name: ${data.name}`}</div>
+                    {data.otherStocks.map(stock => {
+                        const percent = (stock.totalShares / totalShares) * 100;
+                        return (
+                            <div key={stock.ticker} className="tooltip-item">
+                                {`${stock.ticker}: `}
+                                {`${stock.totalShares} shares, `}
+                                {`${percent.toFixed(2)}%`}
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        } else {
+            const percent = (data.value / totalShares) * 100;
+            return (
+                <div className="custom-tooltip" style={{ color: 'black' }}>
+                    <div className="tooltip-item">{`Name: ${data.name}`}</div>
+                    <div className="tooltip-item">{`Shares: ${data.value}`}</div>
+                    <div className="tooltip-item">{`Percentage: ${percent.toFixed(2)}%`}</div>
+                </div>
+            );
+        }
     }
     return null;
-  };
-
-  const RADIAN = Math.PI / 180;
-  const renderLabel = ({
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    symb
+};
+const RADIAN = Math.PI / 180;
+const renderLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  symb,
 }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-    
-    let rotateAngle = -midAngle;
-    
-    return (
-        <text
-            x={x}
-            y={y}
-            fill="black"
-            textAnchor={x > cx ? "start" : "end"}
-            dominantBaseline="central"
-            transform={`rotate(${rotateAngle}, ${x}, ${y})`}
-        >
-            {symb}
-        </text>
-    );
+  const pathId = `path-${symb}`;  // unique ID for the path
+
+  
+
+  const startX = cx + innerRadius * Math.cos(-midAngle * RADIAN);
+  const startY = cy + innerRadius * Math.sin(-midAngle * RADIAN);
+  const endX = cx + outerRadius * Math.cos(-midAngle * RADIAN);
+  const endY = cy + outerRadius * Math.sin(-midAngle * RADIAN);
+
+  let displayText = symb;
+  if (symb === "Other") {
+      displayText = "Other >5%";
+  }
+
+  return (
+      <>
+          <defs>
+              <path
+                  id={pathId}
+                  d={`M ${startX} ${startY} L ${endX} ${endY}`}
+              />
+          </defs>
+          <text fill="black">
+              <textPath href={`#${pathId}`} startOffset="40%">
+                  {displayText}
+              </textPath>
+          </text>
+      </>
+  );
 };
 
   const COLORS = [
