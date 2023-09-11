@@ -60,6 +60,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { fetchTransaction } from "../../store/transaction";
+import TransactionHistoryModal from "../TransactionHistoryModal"
+import OpenModalButton from "../OpenModalButton";
 import "./transaction.css";
 import { fetchShares } from "../../store/shares";
 
@@ -98,6 +100,12 @@ const Transaction = () => {
           {/* </div> */}
         </div>
       )).reverse()}
+      <OpenModalButton
+        buttonText="See more..."
+        modalComponent={
+          <TransactionHistoryModal userTransactions={userTransactions}/>
+        } 
+        />
     </div>
   );
 };
