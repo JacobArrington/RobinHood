@@ -1,65 +1,74 @@
 .wallet-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: -610px;
+  
+}
 
-  .wallet-list {
-    margin-right: 20px;
-  }
+.wallet-list {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start; /* Ensures all items start from the same point */
+  margin-top: 800px;
+  margin-right: -600px;
+  
+}
 
-  .wallet-card {
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
+.wallet-card {
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* If needed, ensures content in the card is aligned to the start */
+}
 
-  .wallet-card p {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 5px 0;
-  }
+.wallet-card p {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 5px 0;
+}
 
-  .wallet-card button {
-    /* background-color: #4CAF50; */
-    /* color: white; */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 20px;
-  }
+.wallet-card button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 20px;
+}
 
-  .wallet-card button:hover {
-    background-color: #3e8e41;
-  }
+.wallet-card button:hover {
+  background-color: #3e8e41;
+}
 
-  .buying-power {
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-  }
+.buying-power p {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 5px 0;
+}
 
-  .buying-power p {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 5px 0;
-  }
+.wallet-card button.delete-button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: rgb(206, 64, 8);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
 
-  .wallet-card button.delete-button {
-    cursor: pointer;
-    background: transparent;;
-    border: none;
-    font-size: 20px;
-    color: rgb(206, 64, 8);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin-top: 10px;
-  }
+.wallet-card button.delete-button:hover {
+  background-color: rgba(231, 105, 55, 0.219)
+}
 
-  .wallet-card button.delete-button:hover {
-    background-color: rgba(231, 105, 55, 0.219)
-  }
+.wallet-card-actions {
+  display: flex;
+  justify-content: space-evenly; 
+}

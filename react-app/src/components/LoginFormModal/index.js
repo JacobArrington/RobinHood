@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { login } from "../../store/session";
+import { login, demoLogin } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
@@ -22,6 +22,10 @@ function LoginFormModal() {
     }
   };
 
+  const demoSubmit = () => {
+    dispatch(demoLogin())
+    closeModal()
+  }
 
   return (
     <div className="login-form">
@@ -55,6 +59,7 @@ function LoginFormModal() {
           </p>
         </label>
         <button type="submit" className="button">Log In</button>
+      <button className="demo-login-button" type='submit' onClick={demoSubmit}>Demo Login</button>
       </form>
     </div>
   );

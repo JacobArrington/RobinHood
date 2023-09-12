@@ -71,7 +71,6 @@ body{
 
 .demo-login-button {
   background-color: transparent;
- 
   border: none;
   cursor: pointer;
   display: flex;
@@ -80,7 +79,6 @@ body{
 }
 
 .demo-login-button .logo {
-  
   width: 40px;
 }
 
@@ -91,7 +89,7 @@ body{
 }
 
 .demo-login-button:hover span {
-  transform: scale(1.1);  
+  transform: scale(1.1);
 }
 
 

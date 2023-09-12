@@ -4,7 +4,8 @@
   flex-direction: column;
   align-items: center;
   height: auto; 
-  width: 55vw;   
+  width: 55vw; 
+  margin-left: 200px;  
   
   margin: 0 auto;
   margin-top: -500px;
@@ -26,4 +27,11 @@
 
 .tooltip-item {
   margin-bottom: 4px;
+}
+
+.chart-and-wallet {
+  display: flex;
+  
+  justify-content: space-between; 
+  align-items: start; 
 }

@@ -33,7 +33,7 @@ function App() {
         <Switch>
           <Route exact path="/" >
             <LandingPage />
-            <Ticker />
+            
           </Route>
           <Route path="/login" >
             <LoginFormPage />
@@ -49,7 +49,7 @@ function App() {
               {/* <GetStockById /> */}
               {/* <StockHistory /> */}
 
-              <Wallet />
+              
               <Watchlists />
               <Transaction />
               <Portfolio />

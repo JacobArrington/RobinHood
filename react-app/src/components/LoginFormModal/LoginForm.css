@@ -42,6 +42,7 @@
 
 
   .login-form button[type="submit"] {
+    margin-bottom: 5px;
     display: block;
     width: 100%;
     padding: 10px;

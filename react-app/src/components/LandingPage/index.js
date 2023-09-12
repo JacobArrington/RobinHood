@@ -25,12 +25,7 @@ function LandingPage() {
          <Ticker />
          <div className="welcome" >
             <h1 className="fade-in">AppExchange</h1>
-            
-           
-            <button className="demo-login-button" onClick={demoSubmit}>
                <img className="logo" src={"https://res.cloudinary.com/dip4w3xmy/image/upload/v1684002074/robinhood-icon-logo-ACF2820914-seeklogo.com_nvgpa6.png"} alt="Demo Logo" />
-               <span>Demo Login</span>
-            </button>
          </div>
          <About />
       </div>
@@ -38,9 +33,3 @@ function LandingPage() {
 }
 
 export default LandingPage;
-
-
-
-
-
-      

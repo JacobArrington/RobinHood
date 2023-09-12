@@ -175,28 +175,30 @@ const renderLabel = ({
 
   return (
     <div className="owned-stock-container">
-      <div className="pie-wrapper">
-      <PieChart width={700} height={700}>
-        <Pie
-          data={chartData}
-          cx={350}
-          cy={350}
-          outerRadius={150}
-          fill="#8884d8"
-          dataKey="value"
-          labelLine={false}
-          label={renderLabel}
-        >
-          {
-            chartData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
-          }
-        </Pie>
-        <Tooltip content={<CustomTooltip />} />
-      </PieChart>
+      <div className="chart-and-wallet">
+        <div className="pie-wrapper">
+          <PieChart width={700} height={700}>
+            <Pie
+              data={chartData}
+              cx={350}
+              cy={350}
+              outerRadius={150}
+              fill="#8884d8"
+              dataKey="value"
+              labelLine={false}
+              label={renderLabel}
+            >
+              {
+                chartData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+              }
+            </Pie>
+            <Tooltip content={<CustomTooltip />} />
+          </PieChart>
+        </div>
+        <Wallet />
       </div>
-     
     </div>
   );
-};
+            }
 
 export default OwnedStock;
