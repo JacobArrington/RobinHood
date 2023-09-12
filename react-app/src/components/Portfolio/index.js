@@ -52,7 +52,7 @@ const Portfolio = () => {
           <p className="grid-item-value">${portfolioState?.portfolio?.buyingPower}</p>
         </div> */}
       </div>
-    // </div>
+     </div>
   );
 };
 
