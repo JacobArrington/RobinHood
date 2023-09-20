@@ -7,7 +7,7 @@ function Ticker(){
   const dispatch = useDispatch();
   const stocksArray = useSelector((state) => Object.values(state.stocksReducer || {}));
 
-  console.log(stocksArray);
+
 
   useEffect(() => {
       dispatch(fetchStocks());
