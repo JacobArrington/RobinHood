@@ -1,4 +1,42 @@
 # App-Exchange
+App Exchange is our take on the popular application Robinhood. Developed by Jacob Arrington, Marlon Santos, And Kelly Kong
+---
+# Live Link
+https://app-exchange.onrender.com/
+---
+# ScreenShots
+---
+
+HomePage
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694647298/Screen_Shot_2023-09-13_at_7.21.22_PM_vf24lj.png)
+
+---
+Login Page
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694647364/Screen_Shot_2023-09-13_at_7.22.24_PM_yuihar.png)
+
+---
+Sign up Page
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694647441/Screen_Shot_2023-09-13_at_7.23.51_PM_ewqxcq.png)
+
+---
+Landing Page
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694647692/Screen_Shot_2023-09-13_at_7.27.47_PM_qojuu7.png)
+
+---
+Wallet Page
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694647771/Screen_Shot_2023-09-13_at_7.29.20_PM_nsbflm.png)
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694647833/Screen_Shot_2023-09-13_at_7.30.20_PM_uvtdb8.png)
+
+---
+WatchList
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694647913/Screen_Shot_2023-09-13_at_7.31.39_PM_bhv5vh.png)
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694647913/Screen_Shot_2023-09-13_at_7.31.39_PM_bhv5vh.png)
+
+---
+Transaction
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694648067/Screen_Shot_2023-09-13_at_7.34.16_PM_wkhby1.png)
+![](https://res.cloudinary.com/dip4w3xmy/image/upload/v1694648119/Screen_Shot_2023-09-13_at_7.35.05_PM_oojfwn.png)
+
 
 This is the starter for the Flask React project.
 
