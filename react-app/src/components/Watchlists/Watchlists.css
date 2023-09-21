@@ -17,6 +17,8 @@
 }
 
 .watchlist-container {
+ 
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -25,21 +27,17 @@
   overflow-y: auto;
   border-radius: 8px;
   border: 1px solid green;
-}
-.watchlist-card {
-  border-bottom: 1px solid green;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 16px;
-  width: 100%;
-  height: 40px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  margin-right: 2300px;
 }
 
-.watchlist-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+.watchlist-buttons {
+  position: absolute; 
+  top: 5px;
+  right: 25px;
+  
+  z-index: 1;
 }
+
 
 .watchlist-name {
   font-weight: bold;
@@ -52,19 +50,45 @@
 }
 
 .stocklist-container {
-  
-  margin-top: 10px;
-  padding: 5px;
   border: 1px solid green;
-  border-radius: 4px;
+  margin-top: 1px;
+  padding: 5px;
+  position: relative;
+  
+  gap: 1px;
+
 }
 
 .watchlist-stock-list {
   list-style: none; 
   margin: 0;
   padding: 0;
+  height: 90px;
+  
 }
 
+.wHead {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: -25px;  
+  margin-top: -20px
+}
+
+.delete-button {
+  background: transparent;
+  border: none;
+  color: red; 
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.delete-button:hover {
+  background-color: rgba(231, 105, 55, 0.219)
+}
 /* .watchlist-container {
     display: flex;
     flex-wrap: wrap;

@@ -15,14 +15,19 @@ function AddWatchlistModal() {
 
    const { closeModal } = useModal();
 
-   const handleStockSelect = (e) =>{
+   const handleStockSelect = (e) => {
       const selectId = parseInt(e.target.value);
-      if(selectStockId.includes(selectId)){
-         setSelectStockId(selectStockId.filter(id => id !== selectId));
-      }else{
-         setSelectStockId([...selectStockId, selectId]);
+      if (selectStockId.includes(selectId)) {
+        setSelectStockId(selectStockId.filter((id) => id !== selectId));
+      } else {
+        if (selectStockId.length >= 5) {
+         
+          alert("You can only add up to 5 stocks to a watchlist.");
+          return;
+        }
+        setSelectStockId([...selectStockId, selectId]);
       }
-   }
+    };
 
    const handleSubmit = async (e) => {
       e.preventDefault();

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import OpenModalButton from "../OpenModalButton";
 import BuyTransactionModal from "../BuyTransactionModal";
 import SellTransactionModal from "../SellTransactionModal";
+import Watchlists from '../Watchlists';
 import { AreaChart, Area } from 'recharts';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import './chart.css'
@@ -127,7 +128,7 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
   const performanceFilter = performancefilters[timeframe];
 
   return (
-    <div>
+    <div className='dashboard'>
       <div className={`stockInfo ${isPositiveGrowth ? 'green-text' : 'red-text'}`}>
   <h3 className='symbol'>{ticker},</h3>
   <h3 className='growth'>{performanceFilter} Performance: {growthRate}%</h3>
@@ -198,7 +199,11 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
           <SellTransactionModal stock={stock}/>
         }
       />
+      <div className="watchlist-section">
+        <Watchlists />
+      </div>
     </div>
+   
 
   );
 };

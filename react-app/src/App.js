@@ -50,7 +50,7 @@ function App() {
               {/* <StockHistory /> */}
 
               
-              <Watchlists />
+             
               <Transaction />
               <Portfolio />
               <OwnedStock /> 
