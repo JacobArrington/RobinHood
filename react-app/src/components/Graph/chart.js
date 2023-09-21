@@ -80,7 +80,17 @@ const filterDataByTimeframe = (data, timeframe) => {
   return filteredData;
 }
 
-
+const CustomTooltip = ({ payload, label, active }) => {
+  if (active) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label" style={{ color: 'black' }}>{`Date : ${label}`}</p>
+        <p className="intro">{`Price : ${payload[0].value}`}</p>
+      </div>
+    );
+  }
+  return null;
+};
 
 
 const StockChart = ({ stockHistory,  ticker, stock }) => {
@@ -143,47 +153,30 @@ const StockChart = ({ stockHistory,  ticker, stock }) => {
         <button className='Gbtn'value="yearly" onClick={handleChange}>YTD</button>
         <button className='Gbtn'value="full history" onClick={handleChange}>ALL</button>
         </div>
-      {/* <ResponsiveContainer width='95%' height={425}>
-        <LineChart
-          width={1200}
-          height={600}
-          data={filteredData}
-          margin={{
-            top: 5,
-            right: 40,
-            left: 20,
-            bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="price" stroke="#8884d8" activeDot={{ r: 8 }} />
-        </LineChart>
-      </ResponsiveContainer> */}
+
 
 <ResponsiveContainer width='75%' height={425} className='graphContainer'>
-        <AreaChart
-          width={1200}
-          height={600}
-          data={filteredData}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 15,
-          }}
-        >
-         
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Area type="monotone" dataKey="price" stroke="#0bd90b" fill="#0bd90b" />
-        </AreaChart>
-      </ResponsiveContainer>
+  <LineChart
+    width={1200}
+    height={600}
+    data={filteredData}
+    margin={{
+      top: 5,
+      right: 30,
+      left: 20,
+      bottom: 15,
+    }}
+  >
+    <XAxis 
+  dataKey="date" 
+  
+/>
+    <YAxis />
+    <Tooltip content={<CustomTooltip />} />
+    <Legend />
+    <Line type="monotone" dataKey="price" stroke="#0bd90b" activeDot={{ r: 1 }} />
+  </LineChart>
+</ResponsiveContainer>
 
 
       
