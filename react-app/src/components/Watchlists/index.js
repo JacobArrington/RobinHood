@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { fetchWatchlist, destroyWatchlist } from "../../store/watchlist";
 import AddWatchlistModal from "../AddWatchlistModal";
@@ -31,16 +31,18 @@ const Watchlists = () => {
       <div className="watchlist-container">
 
          {Object.values(allWatchlist).map(watchlist => (
-            <div key={watchlist.id} onClick={() => {setWatchlist(watchlist); setStocks(watchlist.stocks); }}>
-
-               <h2>{watchlist.name}</h2>
-               <ul>
-               {watchlist.stocks && watchlist.stocks.map((stock) =>(
-
-                     <li key={stock.id}>{stock.name}</li>
-                  ))}
-               </ul>
-
+            <div key={watchlist.id} onClick={() => { setWatchlist(watchlist); setStocks(watchlist.stocks); }}>
+<div className="stocklist-container"> 
+               <div className="watchlist-name">
+                  {watchlist.name}
+               </div>
+               
+          <ul className="watchlist-stock-list">
+            {watchlist.stocks && watchlist.stocks.map((stock) => (
+              <li key={stock.id}>{stock.name}</li>
+            ))}
+          </ul>
+        </div>
             </div>
          ))}
 
@@ -50,14 +52,14 @@ const Watchlists = () => {
                <AddWatchlistModal />
             }
          />
-           {watchlist && (
+         {watchlist && (
             <>
                <OpenModalButton
                   buttonText="Edit Watchlist"
                   modalComponent={
                      <EditWatchlistModal
-                     watchlistId={watchlist.id}
-                     editwatchlist={watchlist} />
+                        watchlistId={watchlist.id}
+                        editwatchlist={watchlist} />
                   }
                />
                <button onClick={handleDelete} className="delete-button">Delete Watchlist</button>
