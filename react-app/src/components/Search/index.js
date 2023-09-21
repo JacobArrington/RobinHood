@@ -80,7 +80,7 @@ export default function StockSearch() {
     < div className="search-bar-container">
                 <input
                     type="text"
-                    placeholder="Search for a stock"
+                    placeholder="press enter to list all stocks"
                     className="searchField"
                     value={searchInput}
                     onChange={handleChange}

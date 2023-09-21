@@ -26,14 +26,16 @@ function EditWatchlistModal({ watchlistId }) {
    const handleCheckboxChange = (e) => {
       const selectId = parseInt(e.target.value);
       const isChecked = e.target.checked;
-
-      setSelectStockId((prev) => {
-        if (isChecked) {
-          return [...prev, selectId];
-        } else {
-          return prev.filter((id) => id !== selectId);
+  
+      if (isChecked) {
+        if (selectStockId.length >= 5) {
+          alert("You can only add up to 5 stocks to a watchlist.");
+          return;
         }
-      });
+        setSelectStockId([...selectStockId, selectId]);
+      } else {
+        setSelectStockId(selectStockId.filter((id) => id !== selectId));
+      }
     };
 
    const handleSubmit = async (e) => {
@@ -95,29 +97,30 @@ function EditWatchlistModal({ watchlistId }) {
 
    return (
       <form onSubmit={handleSubmit} className="add-watchlist-form">
-         <label>
-            Watchlist Name:
-            <input type="text"
-               value={name}
-               className="form-input"
-               onChange={(e) => setName(e.target.value)} />
-         </label>
-         {Object.values(allStocks).map(stock => (
-            <div key={stock.id} className="stock-select">
-               <input
-                  type="checkbox"
-                  value={stock.id}
-                  checked={selectStockId.includes(stock.id)}
-                  onChange={handleCheckboxChange}
-
-               />
-               <label>{stock.name}</label>
-            </div>
-         ))}
-         <button type="submit">Edit Watchlist</button>
+        <label>
+          Watchlist Name:
+          <input
+            type="text"
+            value={name}
+            className="form-input"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
+        {Object.values(allStocks).map((stock) => (
+          <div key={stock.id} className="stock-select">
+            <input
+              type="checkbox"
+              value={stock.id}
+              checked={selectStockId.includes(stock.id)}
+              onChange={handleCheckboxChange}
+              disabled={selectStockId.length >= 5 && !selectStockId.includes(stock.id)}
+            />
+            <label>{stock.name}</label>
+          </div>
+        ))}
+        <button type="submit">Edit Watchlist</button>
       </form>
-   )
-}
-
-
-export default EditWatchlistModal;
+    );
+  }
+  
+  export default EditWatchlistModal;
