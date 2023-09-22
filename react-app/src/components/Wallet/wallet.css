@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   margin-top: -610px;
+ 
   
 }
 
@@ -12,8 +13,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start; /* Ensures all items start from the same point */
-  margin-top: 800px;
-  margin-right: -600px;
+  margin-top: 820px;
+  margin-right: -550px;
+  border: 1px solid green;
+  border-radius: 8px;;
   
 }
 
