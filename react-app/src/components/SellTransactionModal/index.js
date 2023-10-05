@@ -10,8 +10,8 @@ function PostSellTransaction({ stock }) {
     const user = useSelector((state) => state.session.user);
     const portfolio = useSelector((state) => state.portfolioReducer.portfolio);
     const [transactionType, setTransactionType] = useState('sell');
-    const [totalShares, setTotalShares] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(0);
+    const [totalShares, setTotalShares] = useState(1);
+    const [totalPrice, setTotalPrice] = useState(stock.price);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
 
@@ -79,14 +79,21 @@ function PostSellTransaction({ stock }) {
             <label>
                 Shares:
                 <input
-                    type="number"
-                    value={totalShares}
-                    onChange={(e) => {
-                        const value = e.target.value;
-                        setTotalShares(value);
-                        setTotalPrice(value * stock.price);
-                    }}
-                />
+    type="number"
+    value={totalShares}
+    onChange={(e) => {
+        const value = parseInt(e.target.value, 10);
+        if (value < 1) {
+            setErrors(["Shares must be at least 1"]);
+        } else if (value > ownedShares) {
+            setErrors(["You cannot sell more shares than you own."]);
+        } else {
+            setTotalShares(value);
+            setTotalPrice(value * stock.price);
+            setErrors([]); 
+        }
+    }}
+/>
             </label>
 
             <label>
