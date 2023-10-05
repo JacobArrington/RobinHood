@@ -19,7 +19,7 @@ class Wallet(db.Model, UserMixin):
     created_at = db.Column(db.Date, default = datetime.datetime.now())
     updated_at = db.Column(db.Date, default = datetime.datetime.now())
     user = db.relationship("User",  back_populates="wallet")
-
+    portfolio = db.relationship("Portfolio", back_populates="wallet", uselist=False)
     def to_wallet_dict(self):
         return {
             'id': self.id,

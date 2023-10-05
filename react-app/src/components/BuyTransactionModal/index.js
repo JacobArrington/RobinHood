@@ -11,7 +11,7 @@ function PostBuyTransaction({stock}) {
     const user = useSelector((state) => (state.session.user));
     const portfolio = useSelector((state)=> (state.portfolioReducer.portfolio))
     const [transactionType, setTransactionType] = useState('buy');
-    const [totalShares, setTotalShares] = useState(0);
+    const [totalShares, setTotalShares] = useState(1);
     const [totalPrice, setTotalPrice] = useState(0);
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
@@ -51,10 +51,19 @@ function PostBuyTransaction({stock}) {
             <label>
                 Shares:
                 <input
-                    type="number"
-                    value={totalShares}
-                    onChange={(e) => setTotalShares((e.target.value), setTotalPrice(e.target.value * stock.price))}
-                />
+    type="number"
+    value={totalShares}
+    onChange={(e) => {
+        const newShares = parseInt(e.target.value, 10);
+        if (newShares < 1) {
+            setErrors(prevErrors => [...prevErrors, "Shares must be at least 1"]);
+        } else {
+            setTotalShares(newShares);
+            setTotalPrice(newShares * stock.price);
+            setErrors([]); 
+        }
+    }}
+/>
             </label>
 
             <label>

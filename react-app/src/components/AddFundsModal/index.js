@@ -6,7 +6,7 @@ import './AddFundsModal.css'
 
 function AddFundsModal() {
     const dispatch = useDispatch()
-    let buyingPower = useSelector((state) => (state.portfolioReducer.portfolio.buyingPower))
+    let buyingPower = useSelector((state) => (state.portfolioReducer?.portfolio?.buyingPower || 0))
     const portfolio = useSelector((state)=> (state.portfolioReducer.portfolio))
     const [totalFunds, setTotalFunds] = useState(0);
     const [errors, setErrors] = useState([]);

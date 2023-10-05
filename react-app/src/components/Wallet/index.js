@@ -16,8 +16,12 @@ const Wallet = () => {
   const dispatch = useDispatch()
   const allWallets = useSelector((state) => state.walletReducer);
   const portfolioState = useSelector((state) => state.portfolioReducer);
-
+  const userId = useSelector((state) => state.session.user.id);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchWallet(userId)).then(() => setIsLoaded(true));
+}, [dispatch, userId])
 
   const deleteWallet = (walletId) => {
     const confirm = window.confirm(

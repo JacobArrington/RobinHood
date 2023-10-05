@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     watchlists = relationship("Watchlist", back_populates="user")
-    wallet = db.relationship("Wallet",  back_populates="user")
+    wallet = db.relationship("Wallet",  back_populates="user", uselist=False)
     portfolio = db.relationship("Portfolio",  back_populates="user")
     transactions = db.relationship('Transaction', back_populates='user')
 
